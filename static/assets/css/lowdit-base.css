@@ -1,0 +1,27 @@
+@import url("../tokens/colors.css");
+
+:root {
+  --lowdit-font-expressive: "Subjective", sans-serif;
+  --lowdit-font-display: "Optic Sans", sans-serif;
+  --lowdit-font-reading: "Atkinson Hyperlegible", sans-serif;
+}
+
+html {
+  color: var(--lowdit-night);
+  background: var(--lowdit-cream);
+}
+
+body {
+  margin: 0;
+  font-family: var(--lowdit-font-reading);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--lowdit-font-display);
+  line-height: 1.05;
+}
+
+a {
+  color: var(--lowdit-violet);
+}

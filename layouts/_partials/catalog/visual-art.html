@@ -1,0 +1,38 @@
+{{/*
+  Dict: key (string, required), index (int, default 0), accent (optional hex)
+  Returns: variant, angle, overlay, motifPos, scale, accent (safeCSS)
+*/}}
+{{- $key := .key | default "catalog" -}}
+{{- $idx := int (default 0 .index) -}}
+{{- $accentIn := .accent | default "" -}}
+{{- $hash := md5 $key -}}
+{{- $hex := dict "0" 0 "1" 1 "2" 2 "3" 3 "4" 4 "5" 5 "6" 6 "7" 7 "8" 8 "9" 9 "a" 10 "b" 11 "c" 12 "d" 13 "e" 14 "f" 15 -}}
+{{- $seed := 0 -}}
+{{- $angleSeed := 0 -}}
+{{- range $i, $ch := split $hash "" -}}
+  {{- $ni := int $i -}}
+  {{- with index $hex $ch -}}
+    {{- $seed = add $seed . -}}
+    {{- if ge $ni 16 -}}
+      {{- $angleSeed = add $angleSeed . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $variant := mod (add (mul $seed 5) $idx) 12 -}}
+{{- $angle := add (mod (add $angleSeed (mul $idx 23)) 330) 15 -}}
+{{- $overlay := mod (add $seed $idx) 2 -}}
+{{- $motifPos := mod (add $idx 1) 4 -}}
+{{- $scale := add (mod $seed 4) 6 -}}
+{{- $palette := slice "#1e4d8c" "#1a6b4a" "#7c3aed" "#b45309" "#0d9488" "#be123c" "#4338ca" "#15803d" "#a16207" "#0369a1" "#9333ea" "#64748b" -}}
+{{- $accent := $accentIn -}}
+{{- if not $accent -}}
+  {{- $accent = index $palette (mod $seed (len $palette)) -}}
+{{- end -}}
+{{- return (dict
+  "variant" ($variant | string)
+  "angle" ($angle | string)
+  "overlay" ($overlay | string)
+  "motifPos" ($motifPos | string)
+  "scale" ($scale | string)
+  "accent" ($accent | safeCSS)
+) -}}

@@ -1,0 +1,19 @@
+{{ $p := . }}
+{{ $showPrint := default true site.Params.lowdit.showPrintLink }}
+{{ $showPrez := default true site.Params.lowdit.showPresentationLink }}
+{{ $print := $p.OutputFormats.Get "print" }}
+{{ $prez := $p.OutputFormats.Get "presentation" }}
+{{ $resume := $p.OutputFormats.Get "resume" }}
+{{ if or (and $showPrint $print) (and $showPrez $prez) $resume }}
+<nav class="minigo-exports" aria-label="Export formats">
+  {{ with $print }}{{ if $showPrint }}
+    <a href="{{ .RelPermalink }}">{{ i18n "export-print" }}</a>
+  {{ end }}{{ end }}
+  {{ with $prez }}{{ if $showPrez }}
+    <a href="{{ .RelPermalink }}">{{ i18n "export-presentation" }}</a>
+  {{ end }}{{ end }}
+  {{ with $resume }}
+    <a href="{{ .RelPermalink }}">{{ i18n "export-resume" }}</a>
+  {{ end }}
+</nav>
+{{ end }}

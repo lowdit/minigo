@@ -1,0 +1,188 @@
+<style>
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 1.25rem;
+    margin-block: 2rem 3rem;
+  }
+  .catalog-card {
+    margin: 0;
+    border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: color-mix(in srgb, currentColor 3%, transparent);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+  }
+  .catalog-card:focus-within,
+  .catalog-card:hover {
+    box-shadow: 0 0.35rem 1rem color-mix(in srgb, currentColor 15%, transparent);
+    transform: translateY(-2px);
+  }
+  .catalog-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+  .catalog-card__link:focus-visible {
+    outline: 2px solid var(--catalog-accent, currentColor);
+    outline-offset: 2px;
+  }
+  .catalog-card__visual {
+    --tone-light: color-mix(in srgb, var(--catalog-accent) 35%, #fff);
+    --tone-dark: color-mix(in srgb, var(--catalog-accent) 75%, #000);
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--tone-dark);
+    color: #fff;
+  }
+  .catalog-card__visual::before,
+  .catalog-card__visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .catalog-card__visual::before { opacity: 0.95; }
+  .catalog-card__visual[data-overlay="1"]::after {
+    opacity: 0.35;
+    mix-blend-mode: soft-light;
+    background: repeating-conic-gradient(
+      from var(--visual-angle, 0deg) at 50% 50%,
+      #fff 0deg 12deg,
+      transparent 12deg 24deg
+    );
+  }
+  .catalog-card__visual[data-visual="0"]::before {
+    background: linear-gradient(var(--visual-angle, 145deg), var(--tone-dark), var(--catalog-accent) 50%, var(--tone-light));
+  }
+  .catalog-card__visual[data-visual="1"]::before {
+    background: conic-gradient(from calc(var(--visual-angle, 0deg) + 40deg) at 30% 40%, var(--tone-light), var(--catalog-accent), var(--tone-dark));
+  }
+  .catalog-card__visual[data-visual="2"]::before {
+    background: repeating-linear-gradient(
+      calc(var(--visual-angle, 45deg) + 25deg),
+      var(--tone-dark) 0 6px,
+      var(--catalog-accent) 6px 12px,
+      #fff4 12px 18px
+    );
+  }
+  .catalog-card__visual[data-visual="3"]::before {
+    background:
+      radial-gradient(circle at 50% 50%, transparent 35%, #0003 36%),
+      radial-gradient(ellipse 90% 70% at 50% 110%, var(--tone-light), var(--tone-dark));
+  }
+  .catalog-card__visual[data-visual="4"]::before {
+    background:
+      radial-gradient(circle, #fff5 1px, transparent 1.5px) 0 0 / 12px 12px,
+      linear-gradient(var(--visual-angle, 120deg), var(--catalog-accent), var(--tone-dark));
+  }
+  .catalog-card__visual[data-visual="5"]::before {
+    background: linear-gradient(to right, var(--tone-dark) 50%, var(--tone-light) 50%);
+  }
+  .catalog-card__visual[data-visual="6"]::before {
+    background:
+      linear-gradient(var(--visual-angle, 90deg), var(--tone-light) 0 45%, transparent 45% 55%, var(--tone-dark) 55%),
+      var(--catalog-accent);
+  }
+  .catalog-card__visual[data-visual="7"]::before {
+    background:
+      repeating-radial-gradient(circle at 50% 50%, var(--tone-light) 0 2px, transparent 2px 14px),
+      var(--tone-dark);
+  }
+  .catalog-card__visual[data-visual="8"]::before {
+    background:
+      linear-gradient(135deg, transparent 46%, #fff6 47%, #fff6 53%, transparent 54%),
+      repeating-linear-gradient(-12deg, transparent, transparent 9px, #ffffff18 9px 10px),
+      linear-gradient(var(--visual-angle, 200deg), var(--catalog-accent), var(--tone-dark));
+  }
+  .catalog-card__visual[data-visual="9"]::before {
+    background: radial-gradient(circle at 85% 15%, var(--tone-light) 0 22%, transparent 23%), var(--tone-dark);
+  }
+  .catalog-card__visual[data-visual="10"]::before {
+    background:
+      conic-gradient(from var(--visual-angle, 0deg) at 80% 80%, var(--catalog-accent), transparent 25%),
+      linear-gradient(160deg, var(--tone-dark), var(--catalog-accent));
+  }
+  .catalog-card__visual[data-visual="11"]::before {
+    background:
+      repeating-linear-gradient(90deg, var(--tone-dark) 0 4px, transparent 4px 10px),
+      repeating-linear-gradient(0deg, var(--catalog-accent) 0 4px, transparent 4px 10px);
+  }
+  .catalog-card__motif {
+    position: absolute;
+    z-index: 0;
+    font-size: clamp(0.65rem, 2.5vw, 0.85rem);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.32;
+    pointer-events: none;
+    max-width: 55%;
+    line-height: 1.1;
+  }
+  .catalog-card__visual[data-motif-pos="0"] .catalog-card__motif {
+    inset: auto 0.45rem 0.35rem auto;
+    text-align: right;
+    transform: rotate(-5deg);
+  }
+  .catalog-card__visual[data-motif-pos="1"] .catalog-card__motif {
+    inset: 0.35rem auto auto 0.45rem;
+    text-align: left;
+    transform: rotate(3deg);
+  }
+  .catalog-card__visual[data-motif-pos="2"] .catalog-card__motif {
+    inset: 0.35rem 0.45rem auto auto;
+    text-align: right;
+    transform: rotate(-2deg);
+  }
+  .catalog-card__visual[data-motif-pos="3"] .catalog-card__motif {
+    inset: auto auto 0.35rem 0.45rem;
+    text-align: left;
+    transform: rotate(6deg);
+  }
+  .catalog-card__label {
+    position: relative;
+    z-index: 1;
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    opacity: 0.95;
+    text-shadow: 0 1px 12px color-mix(in srgb, var(--tone-dark) 55%, transparent);
+  }
+  .catalog-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+  }
+  .catalog-card__body {
+    padding: 0.85rem 1rem 1rem;
+    flex: 1;
+  }
+  .catalog-card__title {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    line-height: 1.35;
+    font-weight: 600;
+  }
+  .catalog-card__meta,
+  .catalog-card__sub {
+    margin: 0;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    opacity: 0.85;
+  }
+  .catalog-card__sub {
+    margin-top: 0.25rem;
+    font-size: 0.8125rem;
+    opacity: 0.65;
+  }
+</style>

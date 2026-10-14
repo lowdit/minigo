@@ -1,0 +1,29 @@
+{{ define "main" }}
+<div class="minigo-page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="minigo-desc">{{ . }}</p>{{ end }}
+</div>
+{{ with .Content }}
+  <div class="minigo-intro">{{ . }}</div>
+{{ end }}
+
+{{ if site.Sections }}
+  <h2>{{ i18n "section-sections" }}</h2>
+  <ul class="minigo-card-grid">
+    {{ range site.Sections }}
+      <li class="minigo-card">
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        {{ with .Description }}<p class="minigo-desc">{{ . }}</p>{{ end }}
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}
+
+{{ $main := site.Params.lowdit.mainSections | default (slice "reports") }}
+{{ $pages := where site.RegularPages "Section" "in" $main }}
+{{ $pages = $pages.ByDate.Reverse | first 10 }}
+{{ with $pages }}
+  <h2>{{ i18n "section-latest" }}</h2>
+  {{ partial "list/items.html" (dict "pages" . "style" (site.Params.lowdit.listStyle | default "timeline")) }}
+{{ end }}
+{{ end }}

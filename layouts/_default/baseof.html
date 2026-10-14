@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Lang | default "fr" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ block "title" . }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+  {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="stylesheet" href="{{ "assets/css/fonts.css" | relURL }}">
+  <link rel="stylesheet" href="{{ "assets/css/lowdit-base.css" | relURL }}">
+  {{ with resources.Get "css/minigo.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ end }}
+  {{ block "head" . }}{{ end }}
+</head>
+<body class="minigo minigo--{{ .Kind }}">
+  <a class="skip-link" href="#main">{{ i18n "nav-skiplinks-content" }}</a>
+  <header class="minigo-header">
+    <div class="minigo-header__inner">
+      <a class="minigo-logo" href="{{ "" | relLangURL }}">{{ site.Title }}</a>
+      {{ if eq (site.Params.lowdit.search | default "") "pagefind" }}
+        {{ partial "search/pagefind-ui.html" . }}
+      {{ end }}
+    </div>
+  </header>
+  <main id="main" class="minigo-main">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ block "footer" . }}{{ end }}
+</body>
+</html>

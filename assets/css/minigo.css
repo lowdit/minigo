@@ -1,0 +1,113 @@
+.minigo-header {
+  border-bottom: 1px solid color-mix(in srgb, var(--lowdit-night) 12%, transparent);
+  padding: 1rem 1.25rem;
+}
+
+.minigo-header__inner {
+  max-width: 48rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.minigo-logo {
+  font-family: var(--lowdit-font-display, "Atkinson Hyperlegible", sans-serif);
+  font-weight: 700;
+  color: var(--lowdit-night);
+  text-decoration: none;
+}
+
+.minigo-logo:hover {
+  color: var(--lowdit-violet);
+}
+
+.minigo-search {
+  flex: 1 1 12rem;
+  max-width: 20rem;
+}
+
+.minigo-search input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--lowdit-muted);
+  border-radius: 4px;
+  font: inherit;
+}
+
+.minigo-main {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.minigo-card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+}
+
+.minigo-card {
+  border: 1px solid color-mix(in srgb, var(--lowdit-night) 10%, transparent);
+  border-radius: 6px;
+  padding: 1rem;
+  background: var(--lowdit-white);
+}
+
+.minigo-card a {
+  font-weight: 600;
+}
+
+.minigo-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.minigo-timeline li {
+  padding: 1rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--lowdit-night) 8%, transparent);
+}
+
+.minigo-timeline time {
+  color: var(--lowdit-muted);
+  font-size: 0.9rem;
+}
+
+.minigo-exports {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.minigo-exports a {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--lowdit-violet) 12%, var(--lowdit-cream));
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.minigo-exports a:hover {
+  background: color-mix(in srgb, var(--lowdit-violet) 22%, var(--lowdit-cream));
+}
+
+.minigo-page-header {
+  margin-bottom: 1.5rem;
+}
+
+.minigo-page-header h1 {
+  margin: 0 0 0.5rem;
+}
+
+.minigo-desc {
+  color: var(--lowdit-muted);
+  margin: 0;
+}

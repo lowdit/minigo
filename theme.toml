@@ -1,0 +1,9 @@
+name = "minigo"
+license = "MIT"
+description = "Lowdit minimal shell: document catalogs, export links, optional Pagefind"
+homepage = "https://github.com/lowdit/minigo"
+tags = ["lowdit", "documentation"]
+min_version = "0.128.0"
+
+[author]
+  name = "Bertrand Keller"

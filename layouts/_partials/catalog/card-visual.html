@@ -1,0 +1,16 @@
+{{/* Dict: art (visual-art dict), motif, label, thumbnail (optional URL) */}}
+{{- $art := .art -}}
+<div
+  class="catalog-card__visual"
+  data-visual="{{ $art.variant }}"
+  data-overlay="{{ $art.overlay }}"
+  data-motif-pos="{{ $art.motifPos }}"
+  style="--catalog-accent: {{ $art.accent }}; --visual-angle: {{ $art.angle }}deg;"
+>
+  {{- with .thumbnail -}}
+    <img class="catalog-card__img" src="{{ . }}" alt="" loading="lazy" decoding="async">
+  {{- else -}}
+    {{- with .motif -}}<span class="catalog-card__motif" aria-hidden="true">{{ . }}</span>{{- end -}}
+    {{- with .label -}}<span class="catalog-card__label" aria-hidden="true">{{ . }}</span>{{- end -}}
+  {{- end -}}
+</div>

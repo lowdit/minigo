@@ -1,0 +1,29 @@
+{{/* Liste section en galerie (pages = RegularPages ou Sections). */}}
+<div class="minigo-page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="minigo-desc">{{ . }}</p>{{ end }}
+</div>
+{{ with .Content }}<div class="minigo-intro">{{ . }}</div>{{ end }}
+{{- $pages := .RegularPages -}}
+{{- if gt (len .Sections) 0 -}}
+  {{- $pages = .Sections -}}
+{{- end -}}
+{{- $pages = $pages.ByTitle -}}
+<section class="catalog-grid">
+  {{- range $i, $p := $pages -}}
+    {{- $key := $p.RelPermalink -}}
+    {{- $art := partial "catalog/visual-art.html" (dict "key" $key "index" $i "accent" ($p.Params.accent | default "")) -}}
+    {{- $motif := upper (substr ($p.File.ContentBaseName | default "DOC") 0 6) -}}
+    <article class="catalog-card">
+      <a class="catalog-card__link" href="{{ $p.RelPermalink }}">
+        {{ partial "catalog/card-visual.html" (dict "art" $art "motif" $motif "label" "DOC" "thumbnail" $p.Params.thumbnail) }}
+        <div class="catalog-card__body">
+          <h2 class="catalog-card__title">{{ $p.LinkTitle }}</h2>
+          {{- with $p.Description -}}<p class="catalog-card__meta">{{ . }}</p>{{- end -}}
+          {{- with $p.Summary -}}<p class="catalog-card__meta">{{ . }}</p>{{- end -}}
+        </div>
+      </a>
+    </article>
+  {{- end -}}
+</section>
+{{ partial "catalog/styles.html" . }}

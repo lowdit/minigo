@@ -1,0 +1,30 @@
+{{/* Requires post-build: npx pagefind --site public */}}
+<div class="minigo-search" data-pagefind-ui>
+  <label class="visually-hidden" for="pagefind-input">{{ i18n "search-label" }}</label>
+</div>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/pagefind/pagefind-ui.js" defer></script>
+<script defer>
+  window.addEventListener('DOMContentLoaded', function () {
+    if (typeof PagefindUI === 'undefined') return;
+    new PagefindUI({
+      element: '[data-pagefind-ui]',
+      showImages: false,
+      translations: {
+        placeholder: {{ i18n "search-placeholder" | jsonify }}
+      }
+    });
+  });
+</script>
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>

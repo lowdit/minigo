@@ -1,0 +1,30 @@
+# Hugo
+public
+/resources
+!/content/resources
+_vendor
+go.sum
+.hugo_build.lock
+.frontmatter
+themes
+.env
+
+# OS file systems
+.DS_Store
+
+# Editors
+.vscode
+.obsidian
+.config
+.opencode
+
+# Node
+node_modules
+package.json
+package-lock.json
+
+# Scripts
+/scripts/jobs/__pycache__
+/scripts/jobs/.venv
+/scripts/jobs/path
+.aider*

@@ -1,0 +1,21 @@
+baseURL = "http://localhost:1313/"
+title = "Documents Lowdit"
+defaultContentLanguage = "fr"
+locale = "fr-FR"
+
+[module]
+  [[module.imports]]
+    path = "github.com/lowdit/minigo"
+
+theme = "minigo"
+
+[params.lowdit]
+  siteProfile = "catalog"
+  mainSections = ["reports"]
+  listStyle = "timeline"
+  showSummary = true
+  showDate = true
+  search = "pagefind"
+
+[markup.goldmark.renderer]
+  unsafe = true
