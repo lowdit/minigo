@@ -5,7 +5,7 @@
   {{ range $pages }}
     <li class="minigo-card">
       <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-      {{ if site.Params.lowdit.showDate }}<p><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time></p>{{ end }}
+      {{ if site.Params.lowdit.showDate }}{{- with partial "lowdit/page-date.html" . -}}<p>{{ . }}</p>{{- end -}}{{ end }}
       {{ if and site.Params.lowdit.showSummary .Summary }}<p>{{ .Summary }}</p>{{ end }}
     </li>
   {{ end }}
@@ -14,7 +14,7 @@
 <ul class="minigo-timeline">
   {{ range $pages }}
     <li>
-      {{ if site.Params.lowdit.showDate }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time> — {{ end }}
+      {{- if site.Params.lowdit.showDate -}}{{- with partial "lowdit/page-date.html" . -}}{{ . }} — {{ end }}{{ end }}
       <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
       {{ if and site.Params.lowdit.showSummary .Summary }}<p>{{ .Summary }}</p>{{ end }}
     </li>

@@ -10,12 +10,27 @@ locale = "fr-FR"
 theme = "minigo"
 
 [params.lowdit]
-  siteProfile = "catalog"
+  siteProfile = "library"
+  view = "thinktank"
+  homeEyebrow = "Minigo · coque catalogue"
   mainSections = ["reports"]
   listStyle = "timeline"
   showSummary = true
   showDate = true
   search = "pagefind"
+
+[[menus.main]]
+  name = "Accueil"
+  url = "/"
+  weight = 1
+[[menus.main]]
+  name = "Produit"
+  url = "/product/"
+  weight = 2
+[[menus.main]]
+  name = "Rapports"
+  url = "/reports/"
+  weight = 3
 
 [markup.goldmark.renderer]
   unsafe = true

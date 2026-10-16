@@ -1,0 +1,48 @@
+.lowdit-product__layout {
+  display: grid;
+  gap: var(--lowdit-space-6, 2rem);
+  margin-top: var(--lowdit-space-5, 1.5rem);
+}
+
+@media (min-width: 52rem) {
+  .lowdit-product__layout {
+    grid-template-columns: min(14rem, 28%) 1fr;
+    align-items: start;
+  }
+
+  .lowdit-product__nav {
+    position: sticky;
+    top: var(--lowdit-space-4, 1rem);
+  }
+}
+
+.lowdit-product__nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--lowdit-border-subtle, color-mix(in srgb, var(--lowdit-night) 10%, transparent));
+}
+
+.lowdit-product__nav li {
+  margin: 0;
+}
+
+.lowdit-product__nav a {
+  display: block;
+  padding: 0.45rem 0 0.45rem 1rem;
+  margin-left: -2px;
+  border-left: 2px solid transparent;
+  color: var(--lowdit-night);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.lowdit-product__nav a:hover,
+.lowdit-product__nav a[aria-current="page"] {
+  border-left-color: var(--lowdit-violet);
+  color: var(--lowdit-violet);
+}
+
+.lowdit-product__content :is(h2, h3) {
+  margin-top: var(--lowdit-space-6, 2rem);
+}

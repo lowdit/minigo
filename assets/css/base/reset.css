@@ -1,0 +1,75 @@
+/* ============================================================================
+   RESET (couche « generic » ITCSS) — Minigo
+   ============================================================================
+   Rôle : annuler les styles par défaut des navigateurs AVANT toute règle de
+   site. Aucune règle de marque ni de composant ici — uniquement le socle
+   neutre. Placé après les tokens (settings) et avant lowdit-base (elements).
+
+   Reset minimal type modern-normalize : box-sizing, marges des éléments de
+   flux, listes, médias, champs de formulaire. Volontairement court (lowtech) :
+   pas de normalize complet, pas de logique applicative.
+   ============================================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid currentColor;
+  opacity: 0.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,16 +1,50 @@
+/* ============================================================================
+   COMPONENTS (couche « components » ITCSS) — Minigo
+   ============================================================================
+   Rôle : composants de la coque commune (header, nav, hero, listes, grilles).
+   Ordre ITCSS des imports (baseof.html) :
+     tokens (settings) → reset (generic) → lowdit-base (elements)
+     → system + views → CE FICHIER (components) → utils (utilities)
+     → product-doc → site-overrides (site).
+   Les utilities (skip-links…) ont été extraites vers css/utils.css.
+   ============================================================================ */
+
+/* General */
+
 .minigo-header {
   border-bottom: 1px solid color-mix(in srgb, var(--lowdit-night) 12%, transparent);
   padding: 1rem 1.25rem;
 }
 
 .minigo-header__inner {
-  max-width: 48rem;
+  max-width: var(--lowdit-content-wide, 72rem);
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
+}
+
+.minigo-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.minigo-nav a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.minigo-nav a:hover,
+.minigo-nav a[aria-current="page"] {
+  color: var(--lowdit-violet);
 }
 
 .minigo-logo {
@@ -38,9 +72,9 @@
 }
 
 .minigo-main {
-  max-width: 48rem;
+  max-width: var(--lowdit-content-default, 64rem);
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
+  padding: 1.5rem clamp(1rem, 4vw, 2rem) 3rem;
 }
 
 .minigo-card-grid {
@@ -110,4 +144,144 @@
 .minigo-desc {
   color: var(--lowdit-muted);
   margin: 0;
+}
+
+/* Largeur par vue : voir css/views/*.css (priorité sur cette coque) */
+body[class*="minigo--view-"] .minigo-main {
+  max-width: var(--lowdit-main-max, var(--lowdit-content-wide, 84rem));
+}
+
+.minigo-hero {
+  margin: 0 0 2.5rem;
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--lowdit-night) 10%, transparent);
+}
+
+.minigo-hero__eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lowdit-violet);
+  margin: 0 0 0.75rem;
+}
+
+.minigo-hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+
+.minigo-hero__lead {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--lowdit-muted);
+  margin: 0 0 1rem;
+  max-width: 38em;
+}
+
+.minigo-hero__intro {
+  max-width: 40em;
+  line-height: 1.55;
+}
+
+.minigo-hero--slides .minigo-hero__eyebrow { color: var(--lowdit-teal, #0d9488); }
+.minigo-hero--publisher .minigo-hero__eyebrow { color: var(--lowdit-night); }
+.minigo-hero--cv .minigo-hero__eyebrow { color: var(--lowdit-violet); }
+
+.minigo-home-section__head {
+  margin-bottom: 1.25rem;
+}
+
+.minigo-home-section__head h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
+}
+
+.minigo-home-section__head p {
+  margin: 0;
+  color: var(--lowdit-muted);
+}
+
+.minigo-featured-book {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0 0 2.5rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--lowdit-night) 4%, var(--lowdit-cream));
+  border: 1px solid color-mix(in srgb, var(--lowdit-night) 8%, transparent);
+}
+
+@media (min-width: 40rem) {
+  .minigo-featured-book {
+    grid-template-columns: 1fr min(14rem, 35%);
+    align-items: center;
+  }
+}
+
+.minigo-featured-book__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.5rem;
+  color: var(--lowdit-muted);
+}
+
+.minigo-featured-book__desc {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+}
+
+.minigo-featured-book__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.minigo-featured-book__cover .catalog-card__visual {
+  border-radius: 6px;
+  aspect-ratio: 3 / 4;
+}
+
+.minigo-btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.minigo-btn--primary {
+  background: var(--lowdit-night);
+  color: var(--lowdit-white);
+}
+
+.minigo-btn--primary:hover {
+  background: var(--lowdit-violet);
+  color: var(--lowdit-white);
+}
+
+.minigo-btn--ghost {
+  border: 1px solid color-mix(in srgb, var(--lowdit-night) 25%, transparent);
+  color: var(--lowdit-night);
+}
+
+.minigo-btn--ghost:hover {
+  border-color: var(--lowdit-violet);
+  color: var(--lowdit-violet);
+}
+
+.repogo-toc {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--lowdit-night) 10%, transparent);
+}
+
+.repogo-toc ol {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  line-height: 1.6;
 }

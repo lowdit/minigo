@@ -1,0 +1,17 @@
+{{/* Retourne le nom de vue CSS (sans extension). */}}
+{{- $explicit := site.Params.lowdit.view | default site.Params.lowdit.skin | default "" -}}
+{{- if eq $explicit "none" -}}
+  {{- "" -}}
+{{- else if ne $explicit "" -}}
+  {{- $explicit -}}
+{{- else -}}
+  {{- $profile := site.Params.lowdit.siteProfile | default "catalog" -}}
+  {{- if eq $profile "cv" -}}cv-vitrine
+  {{- else if eq $profile "publisher" -}}publisher
+  {{- else if eq $profile "presentations" -}}deck-studio
+  {{- else if eq $profile "inquiry" -}}inquiry
+  {{- else if eq $profile "library" -}}thinktank
+  {{- else if eq $profile "hub" -}}thinktank
+  {{- else -}}catalog
+  {{- end -}}
+{{- end -}}

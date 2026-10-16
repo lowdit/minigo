@@ -1,0 +1,17 @@
+{{/* Couche system + vue active (bundle si possible).
+     Les tokens (settings) sont chargés en amont par lowdit/view-tokens.html :
+     ne pas les relier ici (évite le double chargement). */}}
+<link rel="stylesheet" href="{{ "assets/css/lowdit-system.css" | relURL }}">
+{{- $view := partial "lowdit/resolve-view.html" . -}}
+{{- $viewName := $view | default "catalog" -}}
+{{- $viewCss := resources.Get (printf "css/views/%s.css" $viewName) -}}
+{{- if not $viewCss -}}
+  {{- $viewCss = resources.Get "css/views/catalog.css" -}}
+{{- end -}}
+{{- if $viewCss -}}
+  {{- with $viewCss | minify -}}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- end -}}
+{{- else -}}
+  <link rel="stylesheet" href="{{ printf "assets/css/views/%s.css" $viewName | relURL }}">
+{{- end -}}

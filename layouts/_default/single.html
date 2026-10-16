@@ -2,7 +2,7 @@
 <article>
   <header class="minigo-page-header">
     <h1>{{ .Title }}</h1>
-    {{ if site.Params.lowdit.showDate }}<p class="minigo-desc"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time></p>{{ end }}
+    {{ if site.Params.lowdit.showDate }}{{- with partial "lowdit/page-date.html" . -}}<p class="minigo-desc">{{ . }}</p>{{- end -}}{{ end }}
   </header>
   {{ partial "exports/links.html" . }}
   <div class="minigo-body">

@@ -2,7 +2,11 @@
 set -euo pipefail
 SITE_DIR="${1:-exampleSite}"
 cd "$(dirname "$0")/.."
-hugo -s "$SITE_DIR" --minify
+HUGO_ARGS=( -s "$SITE_DIR" --minify --environment production )
+if [ -n "${HUGO_BASEURL:-}" ]; then
+  HUGO_ARGS+=( --baseURL "$HUGO_BASEURL" )
+fi
+hugo "${HUGO_ARGS[@]}"
 if command -v pagefind >/dev/null 2>&1; then
   pagefind --site "$SITE_DIR/public"
 elif command -v npx >/dev/null 2>&1; then

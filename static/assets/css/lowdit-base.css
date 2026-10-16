@@ -1,5 +1,6 @@
-@import url("../tokens/colors.css");
-
+/* Couleurs : chargées par le partial lowdit/view-tokens.html (settings),
+   AVANT les elements — pas d'import ici (et chemin fiable quel que soit
+   l'empaquetage static/module). */
 :root {
   --lowdit-font-expressive: "Subjective", sans-serif;
   --lowdit-font-display: "Optic Sans", sans-serif;

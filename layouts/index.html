@@ -1,4 +1,14 @@
 {{ define "main" }}
+{{- $profile := site.Params.lowdit.siteProfile | default "library" -}}
+{{- if eq $profile "cv" -}}
+  {{ partial "home/cv.html" . }}
+{{- else if eq $profile "publisher" -}}
+  {{ partial "home/publisher.html" . }}
+{{- else if eq $profile "presentations" -}}
+  {{ partial "home/presentations.html" . }}
+{{- else if or (eq $profile "library") (eq $profile "hub") -}}
+  {{ partial "home/thinktank.html" . }}
+{{- else -}}
 <div class="minigo-page-header">
   <h1>{{ .Title }}</h1>
   {{ with .Description }}<p class="minigo-desc">{{ . }}</p>{{ end }}
@@ -6,6 +16,9 @@
 {{ with .Content }}
   <div class="minigo-intro">{{ . }}</div>
 {{ end }}
+{{- end -}}
+{{- if or (eq $profile "cv") (eq $profile "publisher") (eq $profile "presentations") -}}
+{{- else -}}
 
 {{ if site.Sections }}
   <h2>{{ i18n "section-sections" }}</h2>
@@ -26,4 +39,5 @@
   <h2>{{ i18n "section-latest" }}</h2>
   {{ partial "list/items.html" (dict "pages" . "style" (site.Params.lowdit.listStyle | default "timeline")) }}
 {{ end }}
+{{- end -}}
 {{ end }}

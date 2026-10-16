@@ -1,0 +1,36 @@
+/* ============================================================================
+   UTILITIES (couche « utilities » ITCSS) — Minigo
+   ============================================================================
+   Rôle : classes utilitaires sans sémantique de composant (skip-links,
+   aides d'affichage…). Placée EN DERNIER dans l'ordre d'imports pour que
+   les utilities puissent surcharger composants et vues sans !important.
+
+   Règle : une utility est réutilisable partout ; si elle décrit un
+   composant, elle appartient à minigo.css ou à css/views/*.css.
+   ============================================================================ */
+
+/* Skip-links : zone de liens invisibles au repos, révélés au focus clavier.
+   Markup attendu (baseof.html) :
+     <div class="skip-links" role="navigation"><a href="#main">…</a></div> */
+.skip-links {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.skip-links a {
+  position:absolute;
+  display:inline-block;
+  overflow:hidden;
+  clip:rect(1px,1px,1px,1px);
+  padding:var(--baseline,1.5em);
+  text-decoration:none;
+  color:#fff;
+  background:#000
+}
+
+.skip-links a:focus {
+  position:static;
+  overflow:visible;
+  clip:auto
+}

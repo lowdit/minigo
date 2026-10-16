@@ -7,17 +7,51 @@
   {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
   <link rel="stylesheet" href="{{ "assets/css/fonts.css" | relURL }}">
+  {{/* Ordre ITCSS des fondations (voir docs/CSS-ARCHITECTURE.md) :
+       settings (tokens, view-tokens) → generic (reset) →
+       elements (lowdit-base) → system + views (view-styles) →
+       components (minigo.css) → utilities (utils.css) →
+       product-doc → site-overrides (site). */}}
+  {{ partial "lowdit/view-tokens.html" . }}
+  {{ with resources.Get "css/base/reset.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ end }}
   <link rel="stylesheet" href="{{ "assets/css/lowdit-base.css" | relURL }}">
+  {{ partial "lowdit/view-styles.html" . }}
   {{ with resources.Get "css/minigo.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ end }}
+  {{ with resources.Get "css/utils.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ end }}
+  {{ with resources.Get "css/product-doc.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ end }}
+  {{/* Point d'extension pour les sites consommant ce thème (module ou symlink) :
+      déposer un fichier assets/css/site-overrides.css côté site pour surcharger
+      le style sans forker ce baseof. Chargé en dernier, avant le bloc "head". */}}
+  {{ with resources.Get "css/site-overrides.css" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{ end }}
   {{ block "head" . }}{{ end }}
 </head>
-<body class="minigo minigo--{{ .Kind }}">
-  <a class="skip-link" href="#main">{{ i18n "nav-skiplinks-content" }}</a>
+<body class="minigo minigo--{{ .Kind }}{{ with partial "lowdit/view-body-class.html" . }} {{ . }}{{ end }}">
+  <div class="lowdit-page-bg" aria-hidden="true"></div>
+  <div class=skip-links role=navigation>
+    <a href="#main">{{ i18n "nav-skiplinks-content" }}</a>
+  </div>
   <header class="minigo-header">
     <div class="minigo-header__inner">
       <a class="minigo-logo" href="{{ "" | relLangURL }}">{{ site.Title }}</a>
+      {{- with site.Menus.main -}}
+      <nav class="minigo-nav" aria-label="{{ i18n "nav-main" | default "Navigation principale" }}">
+        <ul class="minigo-nav__list">
+          {{- range . -}}
+          <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+          {{- end -}}
+        </ul>
+      </nav>
+      {{- end -}}
       {{ if eq (site.Params.lowdit.search | default "") "pagefind" }}
         {{ partial "search/pagefind-ui.html" . }}
       {{ end }}

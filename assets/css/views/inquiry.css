@@ -1,0 +1,60 @@
+/* Vue inquiry — Fromago : confiance, formulaires, mesure étroite */
+.minigo--view-inquiry {
+  --view-accent: var(--lowdit-accent-marque);
+  --view-surface-page: var(--lowdit-white);
+}
+
+.minigo--view-inquiry {
+  background: var(--lowdit-white);
+}
+
+.minigo--view-inquiry .lowdit-page-bg {
+  background: var(--lowdit-white);
+}
+
+.minigo--view-inquiry .lowdit-page-bg::before {
+  opacity: 0.06;
+}
+
+.minigo--view-inquiry .lowdit-page-bg::after {
+  display: none;
+}
+
+.minigo--view-inquiry .minigo-header {
+  border-bottom: 1px solid var(--lowdit-border-subtle);
+  background: var(--lowdit-white);
+}
+
+.minigo--view-inquiry .minigo-main {
+  max-width: var(--lowdit-content-narrow);
+}
+
+.minigo--view-inquiry .minigo-hero {
+  border: none;
+  padding: var(--lowdit-space-6) 0 var(--lowdit-space-4);
+}
+
+.minigo--view-inquiry .minigo-hero h1 {
+  font-size: var(--lowdit-font-size-hero);
+  letter-spacing: -0.02em;
+}
+
+.minigo--view-inquiry .minigo-hero__eyebrow {
+  color: var(--lowdit-accent-marque);
+}
+
+.minigo--view-inquiry .minigo-card {
+  border-radius: var(--lowdit-radius-md);
+  border: 1px solid var(--lowdit-border-subtle);
+  background: var(--lowdit-white);
+}
+
+.minigo--view-inquiry .minigo-btn--primary {
+  background: var(--lowdit-night);
+  color: var(--lowdit-white);
+}
+
+.minigo--view-inquiry .minigo-btn--primary:hover {
+  background: var(--lowdit-accent-marque);
+  color: var(--lowdit-night);
+}

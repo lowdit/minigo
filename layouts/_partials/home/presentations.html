@@ -1,0 +1,37 @@
+{{/* Accueil présentations — coque Minigo (Sligo peut surcharger index) */}}
+<header class="minigo-hero minigo-hero--slides">
+  <p class="minigo-hero__eyebrow">{{ site.Params.lowdit.homeEyebrow | default "Présentations" }}</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="minigo-hero__lead">{{ . }}</p>{{ end }}
+  {{ with .Content }}<div class="minigo-hero__intro">{{ . }}</div>{{ end }}
+</header>
+
+{{- $sec := site.GetPage "decks" -}}
+<section class="minigo-home-section">
+  <div class="minigo-home-section__head">
+    <h2>{{ i18n "home-decks-heading" | default "Présentations" }}</h2>
+    <p>{{ i18n "home-decks-sub" | default "Decks prêts à projeter." }}</p>
+  </div>
+  {{- with $sec -}}
+    {{- $pages := .RegularPages.ByDate.Reverse -}}
+    <section class="catalog-grid">
+      {{- range $i, $p := $pages -}}
+        {{- $key := $p.RelPermalink -}}
+        {{- $art := partial "catalog/visual-art.html" (dict "key" $key "index" $i "accent" ($p.Params.accent | default "")) -}}
+        {{- $motif := upper (substr ($p.File.ContentBaseName | default "SLIDE") 0 6) -}}
+        <article class="catalog-card">
+          <a class="catalog-card__link" href="{{ $p.RelPermalink }}">
+            {{ partial "catalog/card-visual.html" (dict "art" $art "motif" $motif "label" "▶" "thumbnail" $p.Params.thumbnail) }}
+            <div class="catalog-card__body">
+              <h2 class="catalog-card__title">{{ $p.LinkTitle }}</h2>
+              {{- with $p.Description -}}<p class="catalog-card__meta">{{ . }}</p>{{- end -}}
+            </div>
+          </a>
+        </article>
+      {{- end -}}
+    </section>
+    {{ partial "catalog/styles.html" . }}
+  {{- else -}}
+    <p>{{ i18n "list-empty" }}</p>
+  {{- end -}}
+</section>

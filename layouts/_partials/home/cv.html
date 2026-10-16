@@ -1,0 +1,31 @@
+{{/* Accueil Resugo — vitrine CV (catalog) */}}
+<header class="minigo-hero minigo-hero--cv">
+  <p class="minigo-hero__eyebrow">{{ site.Params.lowdit.homeEyebrow | default "Resugo" }}</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="minigo-hero__lead">{{ . }}</p>{{ end }}
+  {{ with .Content }}<div class="minigo-hero__intro">{{ . }}</div>{{ end }}
+</header>
+
+{{- $sec := site.GetPage "resume" -}}
+{{- $items := slice -}}
+{{- with $sec -}}
+  {{- $items = .RegularPages -}}
+  {{- if gt (len .Sections) 0 -}}{{- $items = .Sections -}}{{- end -}}
+  {{- $items = where $items "Params.resume" "!=" nil -}}
+  {{- $items = where $items "Params.motivation_letter" "!=" true -}}
+  {{- $items = where $items "File.BaseFileName" "ne" "letter" -}}
+  {{- $items = $items.ByTitle -}}
+{{- end -}}
+
+<section class="minigo-home-section">
+  <div class="minigo-home-section__head">
+    <h2>{{ i18n "home-cv-heading" | default "Curricula disponibles" }}</h2>
+    <p>{{ i18n "home-cv-sub" | default "Un visuel par profil — export web, PDF et impression." }}</p>
+  </div>
+  {{- with $items -}}
+    {{ partial "home/catalog-grid.html" (dict "pages" . "cardPartial" "resume/gallery-card.html" "cardKey" "resume" "ariaLabel" "Curricula") }}
+  {{- else -}}
+    <p>{{ i18n "list-empty" | default "Aucun CV pour le moment." }}</p>
+  {{- end -}}
+</section>
+{{ partial "catalog/styles.html" . }}

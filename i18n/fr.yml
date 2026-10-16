@@ -7,3 +7,12 @@ export-resume: CV (PDF)
 section-latest: Derniers documents
 section-sections: Sections
 list-empty: Aucun document pour le moment.
+home-cv-heading: Curricula en vitrine
+home-cv-sub: Profils distincts, export web et impression.
+home-books-heading: Catalogue
+home-books-sub: Ouvrages et dossiers prêts pour le web et le print.
+home-decks-heading: Decks
+home-decks-sub: Prêt à projeter — sobre, accessible, mémorable.
+home-featured-label: Parution récente
+home-read-online: Lire en ligne
+repogo-chapters: Chapitres
