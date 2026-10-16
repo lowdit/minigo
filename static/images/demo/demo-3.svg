@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Courbe d'évolution">
+  <rect width="800" height="500" fill="#F7F6F2"/>
+  <g stroke="#0B2545" stroke-opacity=".08" stroke-width="1">
+    <line x1="80" y1="140" x2="720" y2="140"/>
+    <line x1="80" y1="230" x2="720" y2="230"/>
+    <line x1="80" y1="320" x2="720" y2="320"/>
+    <line x1="80" y1="410" x2="720" y2="410"/>
+  </g>
+  <path d="M80 360 L190 300 L300 330 L410 220 L520 250 L630 150 L720 180 L720 430 L80 430 Z" fill="#2F6BFF" fill-opacity=".12"/>
+  <path d="M80 360 L190 300 L300 330 L410 220 L520 250 L630 150 L720 180" fill="none" stroke="#2F6BFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#2F6BFF">
+    <circle cx="190" cy="300" r="8"/><circle cx="300" cy="330" r="8"/><circle cx="410" cy="220" r="8"/><circle cx="520" cy="250" r="8"/><circle cx="630" cy="150" r="8"/>
+  </g>
+</svg>

@@ -9,7 +9,7 @@
   <h2>{{ i18n "section-sections" }}</h2>
   <ul class="minigo-card-grid">
     {{ range site.Sections }}
-      {{ if ne .Section "product" }}
+      {{ if ne .Section "installation" }}
       <li class="minigo-card">
         <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
         {{ with .Description }}<p class="minigo-desc">{{ . }}</p>{{ end }}

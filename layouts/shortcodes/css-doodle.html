@@ -1,0 +1,6 @@
+{{/* Dessin génératif css-doodle. Usage :
+   {{< css-doodle >}}
+   :doodle { @grid: 5 / 200px; }
+   background: navy;
+   {{< /css-doodle >}} */}}
+<css-doodle class="lowdit-doodle">{{ .Inner | strings.TrimSpace | safeHTML }}</css-doodle>

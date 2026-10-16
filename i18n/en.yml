@@ -7,3 +7,5 @@ export-resume: CV (PDF)
 section-latest: Latest documents
 section-sections: Sections
 list-empty: No documents yet.
+
+home-cv-all: All CVs

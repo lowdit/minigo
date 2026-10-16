@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Anneaux concentriques">
+  <rect width="800" height="500" fill="#F7F6F2"/>
+  <g fill="none" stroke-width="26" stroke-linecap="round" transform="rotate(-90 400 250)">
+    <circle cx="400" cy="250" r="130" stroke="#E4E1DA"/>
+    <circle cx="400" cy="250" r="130" stroke="#14C6B1" stroke-dasharray="510 817"/>
+    <circle cx="400" cy="250" r="86" stroke="#E4E1DA"/>
+    <circle cx="400" cy="250" r="86" stroke="#5B3DF5" stroke-dasharray="360 540"/>
+    <circle cx="400" cy="250" r="42" stroke="#E4E1DA"/>
+    <circle cx="400" cy="250" r="42" stroke="#FF5B5B" stroke-dasharray="170 264"/>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+{{/* Charge à la demande les moteurs de diagrammes et d'art génératif.
+     Détecté via shortcode {{< mermaid >}}, paramètre de page (mermaid/cssDoodle),
+     bloc de code fencé ```mermaid, ou usage HTML direct. */}}
+{{- $body := .RawContent | default "" -}}
+{{- $needMermaid := or (.HasShortcode "mermaid") (.Params.mermaid) (strings.Contains $body "class=\"mermaid\"") (findRE "(?m)^\\s*(`{3,}|~{3,})\\s*mermaid" $body) -}}
+{{- $needDoodle := or (.HasShortcode "css-doodle") (.Params.cssDoodle) (strings.Contains $body "<css-doodle") -}}
+
+{{- if $needMermaid -}}
+  {{- with resources.Get "css/mermaid.css" }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end -}}
+  {{- with resources.Get "js/mermaid.min.js" }}<script src="{{ .RelPermalink }}" defer></script>{{ end -}}
+  <script>
+    window.addEventListener('load', function () {
+      if (!window.mermaid) return;
+      // Les blocs de code ```mermaid sont rendus en <code class="language-mermaid"> :
+      // on les convertit en <pre class="mermaid"> pour le rendu Mermaid.
+      document.querySelectorAll('pre > code.language-mermaid').forEach(function (code) {
+        var pre = code.parentElement;
+        pre.classList.add('mermaid');
+        pre.textContent = code.textContent;
+      });
+      mermaid.initialize({ startOnLoad: true, securityLevel: 'strict' });
+    });
+  </script>
+{{- end -}}
+
+{{- if $needDoodle -}}
+  {{- with resources.Get "js/css-doodle.min.js" }}<script src="{{ .RelPermalink }}" defer></script>{{ end -}}
+{{- end -}}

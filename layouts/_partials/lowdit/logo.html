@@ -1,0 +1,11 @@
+{{/* Marque du module — image dans assets/logos/<module>.png (issue de la planche
+     lowdit-brand, distribuée par scripts/sync-brand.sh). Repli : titre du site.
+     Renseigner [params.lowdit] logo = "logos/<module>.png" dans le site. */}}
+{{- $title := or site.Params.organisation site.Title -}}
+{{- $logo := "" -}}
+{{- with site.Params.lowdit }}{{ $logo = .logo }}{{ end -}}
+{{- if not $logo }}{{ $logo = "logos/minigo.png" }}{{ end -}}
+{{- with resources.Get $logo -}}
+  <img class="lowdit-logo__mark" src="{{ .RelPermalink }}" alt="" width="40" height="40" decoding="async">
+{{- end -}}
+<span class="lowdit-logo__name">{{ $title }}</span>

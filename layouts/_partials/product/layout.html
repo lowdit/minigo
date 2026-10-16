@@ -1,21 +1,48 @@
 <article class="lowdit-product">
   <header class="minigo-hero">
-    <p class="minigo-hero__eyebrow">{{ i18n "product-eyebrow" | default "Produit" }}</p>
+    <p class="minigo-hero__eyebrow">{{ i18n "product-eyebrow" | default "Installation" }}</p>
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="minigo-hero__lead">{{ . }}</p>{{ end }}
   </header>
+  {{- $section := .CurrentSection -}}
+  {{- $children := slice -}}
+  {{- with $section -}}{{- $children = .Pages.ByWeight -}}{{- end -}}
   <div class="lowdit-product__layout">
-    {{- $section := .CurrentSection -}}
-    <nav class="lowdit-product__nav" aria-label="{{ i18n "product-nav" | default "Documentation produit" }}">
+    <nav class="lowdit-product__nav" aria-label="{{ i18n "product-nav" | default "Documentation d'installation" }}">
       <ul>
-        {{- with $section -}}
+        {{- if $children -}}
           <li>
-            <a href="{{ .RelPermalink }}"{{ if eq $.RelPermalink .RelPermalink }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
+            <a href="{{ $section.RelPermalink }}"{{ if eq $.RelPermalink $section.RelPermalink }} aria-current="page"{{ end }}>{{ $section.LinkTitle }}</a>
           </li>
-          {{- range .Pages.ByWeight -}}
+          {{- range $children -}}
             <li>
               <a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $.RelPermalink }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
             </li>
+          {{- end -}}
+        {{- else -}}
+          {{/* Une seule page : ancres générées depuis les titres du contenu. */}}
+          {{- range .Fragments.Headings -}}
+            {{- if .ID -}}
+              <li>
+                <a href="#{{ .ID }}">{{ .Title }}</a>
+                {{- with .Headings -}}
+                  <ul>
+                    {{- range . -}}<li><a href="#{{ .ID }}">{{ .Title }}</a></li>{{- end -}}
+                  </ul>
+                {{- end -}}
+              </li>
+            {{- else -}}
+              {{- range .Headings -}}
+                <li>
+                  <a href="#{{ .ID }}">{{ .Title }}</a>
+                  {{- with .Headings -}}
+                    <ul>
+                      {{- range . -}}<li><a href="#{{ .ID }}">{{ .Title }}</a></li>{{- end -}}
+                    </ul>
+                  {{- end -}}
+                </li>
+              {{- end -}}
+            {{- end -}}
           {{- end -}}
         {{- end -}}
       </ul>

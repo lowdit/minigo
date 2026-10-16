@@ -13,17 +13,22 @@
 
 .minigo-header {
   border-bottom: 1px solid color-mix(in srgb, var(--lowdit-night) 12%, transparent);
-  padding: 1rem 1.25rem;
+  padding: 1rem clamp(1rem, 4vw, 2rem);
 }
 
 .minigo-header__inner {
-  max-width: var(--lowdit-content-wide, 72rem);
+  max-width: var(--lowdit-content-default, 64rem);
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   align-items: center;
   justify-content: space-between;
+}
+
+/* L'en-tête suit la largeur du contenu (alignement gauche/droit). */
+body[class*="minigo--view-"] .minigo-header__inner {
+  max-width: var(--lowdit-main-max, var(--lowdit-content-wide, 84rem));
 }
 
 .minigo-nav__list {
@@ -48,10 +53,36 @@
 }
 
 .minigo-logo {
-  font-family: var(--lowdit-font-display, "Atkinson Hyperlegible", sans-serif);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--lowdit-font-logo, "Optician Sans", "Subjectivity", ui-sans-serif, system-ui, sans-serif);
   font-weight: 700;
   color: var(--lowdit-night);
   text-decoration: none;
+}
+
+/* Marque de module (logo issu de la planche lowdit-brand) */
+.lowdit-logo__mark {
+  display: inline-block;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  vertical-align: middle;
+  flex: none;
+}
+
+.lowdit-logo__name {
+  display: inline-block;
+}
+
+/* Liens de marque dans les thèmes dérivés (sligo, fromago, resugo) */
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--lowdit-font-logo, "Optician Sans", "Subjectivity", ui-sans-serif, system-ui, sans-serif);
+  font-weight: 700;
 }
 
 .minigo-logo:hover {
@@ -113,6 +144,20 @@
   font-size: 0.9rem;
 }
 
+.minigo-summary,
+.minigo-card__summary {
+  margin: 0.35rem 0 0;
+  color: var(--lowdit-muted);
+  max-width: 68ch;
+  line-height: 1.5;
+}
+
+.minigo-card__meta {
+  margin: 0.25rem 0 0;
+  color: var(--lowdit-muted);
+  font-size: 0.9rem;
+}
+
 .minigo-exports {
   display: flex;
   flex-wrap: wrap;
@@ -122,15 +167,19 @@
 
 .minigo-exports a {
   display: inline-block;
-  padding: 0.35rem 0.75rem;
-  border-radius: 4px;
-  background: color-mix(in srgb, var(--lowdit-violet) 12%, var(--lowdit-cream));
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--lowdit-radius-sm, 6px);
+  background: color-mix(in srgb, var(--lowdit-violet) 14%, var(--lowdit-cream));
+  border: 1px solid color-mix(in srgb, var(--lowdit-violet) 30%, transparent);
+  color: var(--lowdit-night);
   text-decoration: none;
+  font-weight: 600;
   font-size: 0.9rem;
 }
 
 .minigo-exports a:hover {
-  background: color-mix(in srgb, var(--lowdit-violet) 22%, var(--lowdit-cream));
+  background: color-mix(in srgb, var(--lowdit-violet) 26%, var(--lowdit-cream));
+  border-color: var(--lowdit-violet);
 }
 
 .minigo-page-header {
@@ -203,6 +252,19 @@ body[class*="minigo--view-"] .minigo-main {
   color: var(--lowdit-muted);
 }
 
+.minigo-home-section__more {
+  margin: 1.25rem 0 0;
+  font-weight: 600;
+}
+
+.minigo-home-section__more a {
+  text-decoration: none;
+}
+
+.minigo-home-section__more a:hover {
+  text-decoration: underline;
+}
+
 .minigo-featured-book {
   display: grid;
   gap: 1.5rem;
@@ -242,7 +304,7 @@ body[class*="minigo--view-"] .minigo-main {
 
 .minigo-featured-book__cover .catalog-card__visual {
   border-radius: 6px;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 2 / 3;
 }
 
 .minigo-btn {

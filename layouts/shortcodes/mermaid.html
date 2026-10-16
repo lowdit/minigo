@@ -1,0 +1,7 @@
+{{/* Diagramme Mermaid. Usage :
+   {{< mermaid >}}
+   graph TD; A-->B;
+   {{< /mermaid >}} */}}
+<figure class="lowdit-diagram">
+  <pre class="mermaid">{{ .Inner | strings.TrimSpace | safeHTML }}</pre>
+</figure>

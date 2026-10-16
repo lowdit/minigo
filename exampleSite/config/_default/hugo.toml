@@ -3,13 +3,13 @@ title = "Documents Lowdit"
 defaultContentLanguage = "fr"
 locale = "fr-FR"
 
-[module]
-  [[module.imports]]
-    path = "github.com/lowdit/minigo"
-
+# Dev/`hugo server` : thème résolu en local via `themes/` (symlink).
+# La prod utilise `config/production/hugo.toml` (module GitHub).
 theme = "minigo"
 
 [params.lowdit]
+  logo = "logos/minigo.png"
+  faviconDir = "favicons/minigo"
   siteProfile = "library"
   view = "thinktank"
   homeEyebrow = "Minigo · coque catalogue"
@@ -24,8 +24,8 @@ theme = "minigo"
   url = "/"
   weight = 1
 [[menus.main]]
-  name = "Produit"
-  url = "/product/"
+  name = "Installation"
+  url = "/installation/"
   weight = 2
 [[menus.main]]
   name = "Rapports"

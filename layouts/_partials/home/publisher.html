@@ -22,6 +22,7 @@
     {{- end -}}
   </div>
 
+  {{- $pinned := site.Params.lowdit.pinned | default slice -}}
   <div class="pub-workspace__grid">
     <aside class="pub-catalog" aria-labelledby="pub-catalog-heading">
       <h2 id="pub-catalog-heading" class="pub-catalog__heading">{{ i18n "home-books-heading" | default "Catalogue" }}</h2>
@@ -75,6 +76,23 @@
         </article>
       {{- else -}}
         <p class="pub-workspace__empty">{{ i18n "list-empty" }}</p>
+      {{- end -}}
+      {{- with $pinned -}}
+      <section class="pub-pinned" aria-labelledby="pub-pinned-heading">
+        <h2 id="pub-pinned-heading" class="pub-pinned__heading">{{ i18n "home-pinned-heading" | default "Épinglés" }}</h2>
+        <ul class="pub-pinned__list">
+          {{- range . -}}
+            {{- with site.GetPage . -}}
+            <li class="pub-pinned__item">
+              <a class="pub-pinned__link" href="{{ .RelPermalink }}">
+                <span class="pub-pinned__name">{{ .LinkTitle }}</span>
+                {{- with .Description -}}<span class="pub-pinned__desc">{{ . | truncate 90 }}</span>{{- end -}}
+              </a>
+            </li>
+            {{- end -}}
+          {{- end -}}
+        </ul>
+      </section>
       {{- end -}}
       {{ with .Content }}<div class="pub-workspace__note">{{ . }}</div>{{ end }}
     </div>

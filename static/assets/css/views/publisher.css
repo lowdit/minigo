@@ -3,7 +3,7 @@
   --view-accent: var(--lowdit-accent-repogo);
   --view-surface-page: var(--lowdit-cream);
   --catalog-accent: var(--lowdit-accent-repogo);
-  --lowdit-main-max: var(--lowdit-content-full);
+  --lowdit-main-max: var(--lowdit-content-wide);
   --lowdit-surface-page: var(--view-surface-page);
 }
 
@@ -34,8 +34,18 @@
   text-underline-offset: 0.2em;
 }
 
+/* Accueil : largeur généreuse ; pages de contenu : largeur réduite (lecture).
+   L'en-tête hérite de la même valeur via --lowdit-main-max. */
+body:has(.pub-workspace) {
+  --lowdit-main-max: var(--lowdit-content-full);
+}
+
+body:has(.repogo-article) {
+  --lowdit-main-max: var(--lowdit-content-default);
+}
+
 .minigo--view-publisher .minigo-main {
-  max-width: var(--lowdit-content-full);
+  max-width: var(--lowdit-main-max);
   padding-top: var(--lowdit-space-5);
 }
 
@@ -291,6 +301,32 @@
   outline-offset: 2px;
 }
 
+/* ——— Boutons d'export (« version imprimable »…) bien visibles ——— */
+.minigo--view-publisher .minigo-exports a {
+  padding: 0.55rem 1rem;
+  background: var(--lowdit-white);
+  border: 1px solid var(--lowdit-accent-repogo);
+  color: var(--lowdit-accent-repogo);
+  font-weight: 600;
+}
+
+.minigo--view-publisher .minigo-exports a:hover {
+  background: color-mix(in srgb, var(--lowdit-accent-repogo) 12%, var(--lowdit-white));
+  border-color: var(--lowdit-accent-repogo);
+}
+
+/* Le premier export (version imprimable) en action principale, accent plein. */
+.minigo--view-publisher .minigo-exports a:first-child {
+  background: var(--lowdit-accent-repogo);
+  border-color: var(--lowdit-accent-repogo);
+  color: var(--lowdit-white);
+}
+
+.minigo--view-publisher .minigo-exports a:first-child:hover {
+  background: var(--lowdit-night);
+  border-color: var(--lowdit-night);
+}
+
 /* ——— Lecture rapport (Repogo single) ——— */
 .minigo--view-publisher .repogo-article {
   display: grid;
@@ -320,8 +356,92 @@
   letter-spacing: 0.08em;
 }
 
+/* Lecture d'un rapport : corps sur une surface distincte de la page. */
+.minigo--view-publisher .repogo-article__body {
+  background: var(--lowdit-white);
+  border: 1px solid var(--lowdit-border-subtle);
+  border-radius: var(--lowdit-radius-lg);
+  padding: var(--lowdit-space-6);
+}
+
+.minigo--view-publisher .repogo-article__body .minigo-page-header h1 {
+  font-family: var(--lowdit-font-reading);
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--lowdit-space-3);
+}
+
 .pub-workspace__note {
   margin-top: var(--lowdit-space-4);
   font-size: var(--lowdit-font-size-sm);
   color: var(--lowdit-muted);
+}
+
+/* ——— Épinglés : sélection dans la zone centrale (pas une liste à part) ——— */
+.pub-pinned {
+  margin-top: var(--lowdit-space-5);
+  padding: var(--lowdit-space-4);
+  background: color-mix(in srgb, var(--lowdit-accent-repogo) 6%, var(--lowdit-white));
+  border: 1px solid var(--lowdit-border-subtle);
+  border-radius: var(--lowdit-radius-md);
+}
+
+.pub-pinned__heading {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 var(--lowdit-space-3);
+  color: var(--lowdit-night);
+}
+
+.pub-pinned__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.pub-pinned__link {
+  display: block;
+  padding: 0.45rem 0.6rem;
+  border-radius: var(--lowdit-radius-sm);
+  text-decoration: none;
+  color: inherit;
+  border-left: 3px solid transparent;
+}
+
+.pub-pinned__link:hover {
+  background: color-mix(in srgb, var(--lowdit-night) 4%, var(--lowdit-white));
+  border-left-color: var(--lowdit-accent-repogo);
+}
+
+.pub-pinned__name {
+  font-weight: 600;
+  color: var(--lowdit-night);
+}
+
+.pub-pinned__desc {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--lowdit-muted);
+  line-height: 1.35;
+}
+
+/* css-doodle décoratif (galerie / couverture) — voir docs/CSS-VUES-ET-GALERIE.md */
+.catalog-card__visual .lowdit-doodle,
+.lowdit-doodle {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 8rem;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  css-doodle.lowdit-doodle,
+  .lowdit-doodle {
+    display: none !important;
+  }
 }
