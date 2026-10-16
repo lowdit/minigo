@@ -3,7 +3,12 @@
 {{- $books := slice -}}
 {{- with $sec -}}{{- $books = .RegularPages.ByDate.Reverse -}}{{- end -}}
 {{- $featured := site.Params.lowdit.featuredBook | default "" -}}
-{{- $featPage := cond (ne $featured "") (site.GetPage $featured) (index $books 0) -}}
+{{- $featPage := false -}}
+{{- if ne $featured "" -}}
+  {{- $featPage = site.GetPage $featured -}}
+{{- else if $books -}}
+  {{- $featPage = index $books 0 -}}
+{{- end -}}
 
 <div class="pub-workspace">
   <div class="pub-workspace__bar">

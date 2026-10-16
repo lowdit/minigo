@@ -1,0 +1,11 @@
+{{/* Options d'affichage des listes et fiches.
+   Défaut documenté : tout activé (cf. minigo/README.md).
+   Un booléen ne peut pas passer par `default` : Hugo considère `false` comme
+   une valeur vide. On teste donc la présence réelle avec `isset`. */}}
+{{- $showDate := true -}}
+{{- $showSummary := true -}}
+{{- with site.Params.lowdit -}}
+  {{- if isset . "showDate" -}}{{- $showDate = .showDate -}}{{- end -}}
+  {{- if isset . "showSummary" -}}{{- $showSummary = .showSummary -}}{{- end -}}
+{{- end -}}
+{{- return (dict "showDate" $showDate "showSummary" $showSummary) -}}
