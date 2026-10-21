@@ -57,15 +57,7 @@
   <header class="minigo-header">
     <div class="minigo-header__inner">
       <a class="minigo-logo" href="{{ "" | relLangURL }}">{{ partial "lowdit/logo.html" . }}</a>
-      {{- with site.Menus.main -}}
-      <nav class="minigo-nav" aria-label="{{ i18n "nav-main" | default "Navigation principale" }}">
-        <ul class="minigo-nav__list">
-          {{- range . -}}
-          <li><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
-          {{- end -}}
-        </ul>
-      </nav>
-      {{- end -}}
+      {{ partial "minigo/main-nav.html" . }}
       {{ if eq (site.Params.lowdit.search | default "") "pagefind" }}
         {{ partial "search/pagefind-ui.html" . }}
       {{ end }}

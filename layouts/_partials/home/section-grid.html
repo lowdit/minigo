@@ -1,0 +1,17 @@
+{{/* Grille d’accueil : sections de premier niveau (pas installation / taxonomies par défaut). */}}
+{{- $defaultExclude := slice "installation" "categories" "tags" -}}
+{{- $exclude := site.Params.lowdit.homeExcludeSections | default $defaultExclude -}}
+{{ if site.Sections }}
+  <h2>{{ i18n "section-sections" }}</h2>
+  <ul class="minigo-card-grid">
+    {{- range site.Sections -}}
+      {{- $show := .Params.lowdit.showOnHome | default true -}}
+      {{- if and $show (not (in $exclude .Section)) -}}
+    <li class="minigo-card">
+      <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      {{ with .Description }}<p class="minigo-desc">{{ . }}</p>{{ end }}
+    </li>
+      {{- end -}}
+    {{- end -}}
+  </ul>
+{{ end }}

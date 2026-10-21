@@ -13,7 +13,7 @@ theme = "minigo"
   siteProfile = "library"
   view = "thinktank"
   homeEyebrow = "Minigo · coque catalogue"
-  mainSections = ["reports"]
+  mainSections = ["reports", "guides"]
   listStyle = "timeline"
   showSummary = true
   showDate = true
@@ -24,13 +24,18 @@ theme = "minigo"
   url = "/"
   weight = 1
 [[menus.main]]
-  name = "Installation"
-  url = "/installation/"
+  name = "Guides"
+  url = "/guides/"
   weight = 2
 [[menus.main]]
   name = "Rapports"
   url = "/reports/"
   weight = 3
+[[menus.main]]
+  name = "Installation"
+  identifier = "installation"
+  url = "/installation/"
+  weight = 10
 
 [markup.goldmark.renderer]
   unsafe = true

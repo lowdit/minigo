@@ -21,9 +21,15 @@
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
+  gap: 0.75rem 1rem;
   align-items: center;
   justify-content: flex-start;
+}
+
+@media (min-width: 48rem) {
+  .minigo-header__inner {
+    flex-wrap: nowrap;
+  }
 }
 
 /* L'en-tête suit la largeur du contenu (alignement gauche/droit). */
@@ -41,17 +47,34 @@ body[class*="minigo--view-"] .minigo-header__inner {
 .minigo-nav__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
+  gap: 0.35rem 0.85rem;
   align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   line-height: 1.35;
+}
+
+@media (min-width: 48rem) {
+  .minigo-nav__list {
+    flex-wrap: nowrap;
+    gap: 0.35rem 1rem;
+    font-size: 0.9rem;
+  }
 }
 
 .minigo-nav__list li {
   margin: 0;
+  text-wrap: nowrap;
+}
+
+.minigo-nav__spacer {
+  flex: 1 1 2rem;
+  min-width: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .minigo-nav a {
@@ -123,13 +146,21 @@ body[class*="minigo--view-"] .minigo-header__inner {
   padding: 1.5rem clamp(1rem, 4vw, 2rem) 3rem;
 }
 
+.minigo-main > h2 {
+  margin-block: 2.25rem 1rem;
+}
+
+.minigo-main > h2:first-of-type {
+  margin-block-start: 1.75rem;
+}
+
 .minigo-card-grid {
   display: grid;
-  gap: 1rem;
+  gap: var(--lowdit-grid-gap-lg, 1.75rem);
   grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
   list-style: none;
   padding: 0;
-  margin: 1rem 0 0;
+  margin-block: 0.75rem 2.75rem;
 }
 
 .minigo-card {

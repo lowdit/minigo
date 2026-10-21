@@ -100,3 +100,10 @@
 .sligo-deck-studio--plain {
   /* rétrocompat wrapper Sligo */
 }
+
+@media (min-width: 72rem) {
+  .minigo--view-deck-studio .catalog-grid,
+  .sligo-deck-studio .catalog-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

@@ -20,17 +20,7 @@
 {{- if or (eq $profile "cv") (eq $profile "publisher") (eq $profile "presentations") -}}
 {{- else -}}
 
-{{ if site.Sections }}
-  <h2>{{ i18n "section-sections" }}</h2>
-  <ul class="minigo-card-grid">
-    {{ range site.Sections }}
-      <li class="minigo-card">
-        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-        {{ with .Description }}<p class="minigo-desc">{{ . }}</p>{{ end }}
-      </li>
-    {{ end }}
-  </ul>
-{{ end }}
+{{ partial "home/section-grid.html" . }}
 
 {{ $main := site.Params.lowdit.mainSections | default (slice "reports") }}
 {{ $pages := where site.RegularPages "Section" "in" $main }}
