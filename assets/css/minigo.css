@@ -21,9 +21,9 @@
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem 1.25rem;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 /* L'en-tête suit la largeur du contenu (alignement gauche/droit). */
@@ -31,14 +31,27 @@ body[class*="minigo--view-"] .minigo-header__inner {
   max-width: var(--lowdit-main-max, var(--lowdit-content-wide, 84rem));
 }
 
+.minigo-nav {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
 .minigo-nav__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem 1.25rem;
+  gap: 0.5rem 1.25rem;
+  align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 0.9rem;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+}
+
+.minigo-nav__list li {
+  margin: 0;
 }
 
 .minigo-nav a {
@@ -90,8 +103,10 @@ body[class*="minigo--view-"] .minigo-header__inner {
 }
 
 .minigo-search {
-  flex: 1 1 12rem;
+  flex: 0 1 16rem;
+  width: 100%;
   max-width: 20rem;
+  margin-inline-start: auto;
 }
 
 .minigo-search input {

@@ -97,6 +97,15 @@ ol {
   padding-inline-start: 1.4rem;
 }
 
+/* Listes composants : pas d'indentation « prose » (nav, grilles, doc). */
+.minigo-nav__list,
+.lowdit-product__nav ul,
+.minigo-card-grid,
+.minigo-timeline {
+  padding-inline-start: 0;
+  list-style: none;
+}
+
 li + li {
   margin-block-start: 0.3rem;
 }

@@ -1,0 +1,12 @@
+<script defer>
+  window.addEventListener('DOMContentLoaded', function () {
+    if (typeof PagefindUI === 'undefined') return;
+    new PagefindUI({
+      element: '[data-pagefind-ui]',
+      showImages: false,
+      translations: {
+        placeholder: {{ i18n "search-placeholder" | jsonify }}
+      }
+    });
+  });
+</script>

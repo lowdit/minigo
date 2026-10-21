@@ -23,7 +23,14 @@
   {{ with resources.Get "css/base/typography.css" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{ end }}
-  <link rel="stylesheet" href="{{ "assets/css/lowdit-base.css" | relURL }}">
+  {{ with resources.Get "css/lowdit-base.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ else }}
+    <link rel="stylesheet" href="{{ "assets/css/lowdit-base.css" | relURL }}">
+  {{ end }}
+  {{ if eq (site.Params.lowdit.search | default "") "pagefind" }}
+    {{ partial "search/pagefind-assets.html" . }}
+  {{ end }}
   {{ partial "lowdit/view-styles.html" . }}
   {{ with resources.Get "css/minigo.css" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
@@ -68,6 +75,9 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ block "footer" . }}{{ end }}
+  {{ if eq (site.Params.lowdit.search | default "") "pagefind" }}
+    {{ partial "search/pagefind-init.html" . }}
+  {{ end }}
   {{ block "script" . }}{{ end }}
   {{/* Panneau de debug (dev uniquement) — centralisé ici pour tous les modules. */}}
   {{- if eq (getenv "HUGO_ENV") "dev" -}}
