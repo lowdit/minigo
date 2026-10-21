@@ -234,7 +234,7 @@ body[class*="minigo--view-"] .minigo-main {
   line-height: 1.55;
 }
 
-.minigo-hero--slides .minigo-hero__eyebrow { color: var(--lowdit-teal, #0d9488); }
+.minigo-hero--slides .minigo-hero__eyebrow { color: var(--lowdit-turquoise); }
 .minigo-hero--publisher .minigo-hero__eyebrow { color: var(--lowdit-night); }
 .minigo-hero--cv .minigo-hero__eyebrow { color: var(--lowdit-violet); }
 

@@ -1,0 +1,181 @@
+/* ============================================================================
+   TYPOGRAPHIE (couche « elements » ITCSS) — Minigo
+   ============================================================================
+   Le reset (`base/reset.css`) neutralise les navigateurs, dont
+   `h1..h6 { font-size: inherit; font-weight: inherit }` : aucune taille de
+   titre n'est alors définie. Cette feuille rétablit une **échelle
+   typographique fluide** (clamp) pour les titres et les éléments de base
+   (paragraphes, listes, définitions, citations, code…).
+
+   Placée après le reset et AVANT `lowdit-base.css` (elements) : ce dernier
+   affine familles et interlignes, et les contextes de prose
+   (`.minigo-body`, `.minigo-intro`, `.lowdit-product__content`) gardent la
+   main sur les titres internes (spécificité supérieure).
+
+   Volonté lowtech : aucune classe requise, aucun build, `clamp()` pour le
+   fluide. Les valeurs d'échelle sont exposées en tokens `--lowdit-type-*`.
+   ============================================================================ */
+
+:root {
+  /* Échelle fluide : min → croissance viewport → max. */
+  --lowdit-type-xs:   clamp(0.75rem,   0.72rem  + 0.15vw, 0.8125rem);
+  --lowdit-type-sm:   clamp(0.875rem,  0.85rem  + 0.15vw, 0.9375rem);
+  --lowdit-type-base: clamp(1rem,      0.96rem  + 0.2vw,  1.0625rem);
+  --lowdit-type-md:   clamp(1.0625rem, 1.02rem  + 0.25vw, 1.1875rem);
+  --lowdit-type-lg:   clamp(1.25rem,   1.15rem  + 0.5vw,  1.5rem);
+  --lowdit-type-xl:   clamp(1.5rem,    1.3rem   + 1vw,    2rem);
+  --lowdit-type-2xl:  clamp(1.875rem,  1.5rem   + 1.9vw,  2.75rem);
+  --lowdit-type-3xl:  clamp(2.25rem,   1.6rem   + 3.2vw,  3.5rem);
+  --lowdit-type-4xl:  clamp(2.75rem,   1.7rem   + 5vw,    4.75rem);
+
+  --lowdit-measure: 68ch;
+}
+
+/* --- Texte courant -------------------------------------------------------- */
+
+body {
+  font-size: var(--lowdit-type-base);
+  line-height: var(--lowdit-line-body, 1.55);
+}
+
+/* --- Titres --------------------------------------------------------------- */
+/* La famille et l'interligne sont affinés par lowdit-base.css ; ici : la TAILLE. */
+
+h1 { font-size: var(--lowdit-type-3xl); }
+h2 { font-size: var(--lowdit-type-2xl); }
+h3 { font-size: var(--lowdit-type-xl); }
+h4 { font-size: var(--lowdit-type-lg); }
+h5 { font-size: var(--lowdit-type-md); }
+h6 { font-size: var(--lowdit-type-sm); }
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.01em;
+}
+
+h5, h6 {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+h6 {
+  text-transform: uppercase;
+}
+
+/* — Titres d'article : espacement haut/bas, sans l'isoler du contexte prose — */
+h1, h2, h3, h4, h5, h6 {
+  margin-block: 0 0.5rem;
+}
+
+/* --- Blocs de texte : rythme vertical de base ----------------------------- */
+/* Les composants (classes) gardent la priorité : ils priment sur ces éléments. */
+
+p,
+ul,
+ol,
+dl,
+figure,
+blockquote,
+pre,
+table {
+  margin-block: 0 1.1rem;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+/* --- Listes --------------------------------------------------------------- */
+
+ul,
+ol {
+  padding-inline-start: 1.4rem;
+}
+
+li + li {
+  margin-block-start: 0.3rem;
+}
+
+/* --- Listes de définitions (restaurées après le reset) -------------------- */
+
+dt {
+  font-weight: 700;
+}
+
+dd {
+  margin-inline-start: 1.4rem;
+}
+
+dd + dt {
+  margin-block-start: 0.8rem;
+}
+
+/* --- Citations ------------------------------------------------------------ */
+
+blockquote {
+  margin: 1.4rem 0;
+  padding: 0.3rem 0 0.3rem 1.1rem;
+  border-inline-start: 3px solid var(--lowdit-violet);
+  color: var(--lowdit-muted);
+  max-width: 66ch;
+}
+
+blockquote > :last-child {
+  margin-block-end: 0;
+}
+
+/* --- Médias et légendes --------------------------------------------------- */
+
+figure {
+  margin: 1.4rem 0;
+  max-width: 100%;
+}
+
+figcaption {
+  margin-block-start: 0.5rem;
+  font-size: var(--lowdit-type-sm);
+  color: var(--lowdit-muted);
+}
+
+/* --- Petit texte, annotations --------------------------------------------- */
+
+small,
+.lowdit-small {
+  font-size: var(--lowdit-type-sm);
+}
+
+/* --- Code ---------------------------------------------------------------- */
+
+code,
+kbd,
+samp {
+  font-family: var(--lowdit-font-mono);
+  font-size: 0.9em;
+}
+
+/* --- Emphase et marquage -------------------------------------------------- */
+
+strong, b { font-weight: 700; }
+mark {
+  background: var(--lowdit-violet-soft, color-mix(in srgb, var(--lowdit-violet) 18%, transparent));
+  color: inherit;
+}
+
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* --- Accroche réutilisable ------------------------------------------------ */
+
+.lowdit-lead {
+  font-size: var(--lowdit-type-lg);
+  line-height: 1.5;
+  color: var(--lowdit-muted);
+  max-width: 38em;
+}

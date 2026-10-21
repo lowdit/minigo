@@ -18,6 +18,11 @@
   {{ with resources.Get "css/base/reset.css" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{ end }}
+  {{/* Couche « elements » : échelle typographique fluide (taille des titres,
+       rythme de base) — rétablit ce que le reset neutralise. */}}
+  {{ with resources.Get "css/base/typography.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ end }}
   <link rel="stylesheet" href="{{ "assets/css/lowdit-base.css" | relURL }}">
   {{ partial "lowdit/view-styles.html" . }}
   {{ with resources.Get "css/minigo.css" }}

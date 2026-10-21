@@ -90,7 +90,7 @@
 {{- $js        := slice $jquery $debug $sa11y $popper $tippy | resources.Concat "/assets/js/debugBundle.js" -}}
 {{- $debug     := resources.Get "css/debug.css" -}}
 {{- $checka11y := resources.Get "/css/checka11y.css" -}}
-{{- $debug     := slice $debug $checka11y | resources.Concat "/assets/js/debug.css" -}}
+{{- $debug     := slice $debug $checka11y | resources.Concat "/assets/css/debug-panel.css" -}}
 <link rel="stylesheet" href="{{ $debug.Permalink }}" media="screen">
 <script type="text/javascript" src="{{ $js.Permalink }}"></script>
 <script>

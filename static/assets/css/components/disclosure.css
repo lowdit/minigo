@@ -25,26 +25,26 @@
   padding: 0.75rem 1rem;
   border: 1px solid color-mix(in srgb, var(--lowdit-night) 15%, transparent);
   border-radius: 6px;
-  background: var(--lowdit-cream, #fffefe);
+  background: var(--lowdit-cream, #F7F6F2);
   font-weight: 600;
   text-align: left;
   cursor: pointer;
 }
 
 .lowdit-disclosure__trigger:hover {
-  border-color: color-mix(in srgb, var(--lowdit-violet, #6c3ce0) 40%, transparent);
+  border-color: color-mix(in srgb, var(--lowdit-violet, #5B3DF5) 40%, transparent);
 }
 
 /* Focus clavier visible (WCAG 2.4.7) */
 .lowdit-disclosure__trigger:focus-visible {
-  outline: 2px solid var(--lowdit-violet, #6c3ce0);
+  outline: 2px solid var(--lowdit-violet, #5B3DF5);
   outline-offset: 2px;
 }
 
 /* Chevron décoratif piloté par aria-expanded */
 .lowdit-disclosure__trigger::after {
   content: "\25B8"; /* triangle vers la droite */
-  color: var(--lowdit-violet, #6c3ce0);
+  color: var(--lowdit-violet, #5B3DF5);
   transition: transform 0.15s ease;
   flex-shrink: 0;
 }

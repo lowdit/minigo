@@ -10,7 +10,7 @@ ou chemins statiques). Volonté lowtech — pas de SCSS/PostCSS.
 |---|---|---|---|
 | 1 | settings | `assets/css/tokens/*.css` (+ `lowdit-colors.css`) | Variables CSS (couleurs, layout, motion, elevation) — chargées par le partial `lowdit/view-tokens.html`, **avant** reset/base. |
 | 2 | generic | `assets/css/base/reset.css` | Reset navigateur neutre (box-sizing, marges, listes, médias, reduced-motion). Aucune marque ni composant. |
-| 3 | elements | `assets/css/lowdit-base.css` | Styles de base des éléments (html, body, titres, liens) typés avec les tokens |
+| 3 | elements | `assets/css/base/typography.css` puis `assets/css/lowdit-base.css` | **Typographie fluide** (`clamp`) : taille des titres, corps, `dl/dt/dd`, citations, code — rétablit ce que le reset neutralise (`h1..h6 { font-size: inherit }`). Puis familles/interlignes et prose des éléments. |
 | 4 | system + views | `assets/css/lowdit-system.css`, `assets/css/views/*.css` | Système partagé puis vues produit (publisher, cv-vitrine, deck-studio, inquiry, catalog, thinktank) |
 | 5 | components | `assets/css/minigo.css` | Composants de la coque commune (header, nav, hero, listes, grilles) |
 | 6 | utilities | `assets/css/utils.css` | Classes utilitaires réutilisables (skip-links). En dernier : elles peuvent surcharger sans `!important`. |
@@ -30,6 +30,9 @@ ou chemins statiques). Volonté lowtech — pas de SCSS/PostCSS.
 
 ## Historique
 
+- 2026-10-16 : ajout de la couche **typographie** (`assets/css/base/typography.css`,
+  chargée après le reset) — échelle fluide `clamp` pour `h1..h6` et éléments de
+  base ; correction de `.minigo-page-header h1` (sans `font-size` depuis le reset).
 - 2026-10-16 : séparation des settings dans `lowdit/view-tokens.html` (chargé
   avant reset/base) ; suppression des `@import` redondants de `lowdit-system.css`
   (fin du double chargement des tokens) et de l'`@import` cassé de `lowdit-base.css`.
