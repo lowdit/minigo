@@ -57,6 +57,23 @@ h1, h2, h3 {
   letter-spacing: -0.01em;
 }
 
+/* Graisse des titres : Atkinson n'offre que Regular (400) et Bold (700).
+   Sans règle ici, les titres héritaient du 400 du corps — c'est précisément
+   ce qui donnait un titrage « mou » (constat du banc d'essai polices,
+   2026-10-22). h1–h4 passent en 700 : l'impact vient de la graisse et de
+   l'échelle, pas d'une seconde famille de police (webperf préservée).
+   h5/h6 étaient déjà en 700 (petits libellés), règle conservée ci-dessous. */
+h1, h2, h3, h4 {
+  font-weight: 700;
+}
+
+/* Interlettrage : resserré davantage sur les très grandes tailles — à 700,
+   un tracking à -0.01em paraît encore lâche. h3 et en dessous gardent
+   -0.01em pour ne pas tasser les petits titres. */
+h1, h2 {
+  letter-spacing: -0.02em;
+}
+
 h5, h6 {
   font-weight: 700;
   letter-spacing: 0.01em;
