@@ -1,0 +1,78 @@
+# Plan de test par page — fusionné en dev (rail + script page-test-plan.py).
+# Clés : a11y (accessibilité), qa (hors a11y : éditorial, perf, SEO…)
+
+every:
+  a11y:
+    - id: skip-link
+      label: "Lien d'évitement vers #main"
+      manual: "Tab au chargement : premier focus = lien « Aller au contenu »"
+    - id: focus-visible
+      label: "Focus visible (clavier)"
+      manual: "Tab sur nav, liens, boutons — contour perceptible (WCAG 2.4.7)"
+    - id: headings
+      label: "Hiérarchie des titres"
+      manual: "Un seul h1 ; pas de saut de niveau ; titres descriptifs"
+    - id: zoom-200
+      label: "Zoom 200 %"
+      manual: "Pas de scroll horizontal ; texte lisible sans perte de contenu"
+  qa:
+    - id: title-desc
+      label: "title + meta description"
+      manual: "Onglet navigateur + « Afficher la source » ou panneau Debug → Params"
+    - id: canonical-og
+      label: "Canonical + partage social"
+      manual: "partial lowdit/social-meta — carte Twitter/OG si applicable"
+    - id: lang
+      label: "Langue de page"
+      manual: "html lang=fr (ou cohérent avec le contenu)"
+
+by_layout:
+  product:
+    a11y:
+      - id: landmarks
+        label: "Landmarks (header, main, nav)"
+        manual: "Inspecteur ou lecteur d'écran : régions repérables"
+    qa:
+      - id: product-toc
+        label: "Structure doc produit"
+        manual: "Titres h2/h3 suffisants pour parcourir la page installation"
+
+by_kind:
+  home:
+    a11y:
+      - id: home-nav
+        label: "Navigation accueil"
+        manual: "Liste de liens : noms explicites hors contexte"
+    qa:
+      - id: latest-list
+        label: "Liste « Derniers documents »"
+        manual: "Dates, titres, liens — cohérence avec mainSections"
+
+# Chemins RelPermalink (avec slash final)
+by_path:
+  /installation/:
+    qa:
+      - id: code-blocks
+        label: "Blocs de code copiables"
+        manual: "Commandes hugo lisibles ; contrastes en thème clair/sombre"
+
+# Outils injectables (équivalent bookmarklets / extensions — dev local uniquement)
+tools:
+  - id: axe
+    label: "Lancer axe-core (auto)"
+    type: inject_axe
+    note: "Même famille que l’extension axe DevTools — résultats dans la console"
+  - id: sa11y-builtin
+    label: "SA11y (déjà dans le bundle debug)"
+    type: hint
+    note: "Bouton flottant accessibilité — cocher pour activer"
+  - id: wave
+    label: "WAVE (WebAIM)"
+    type: external
+    url: "https://wave.webaim.org/report#/"
+    note: "Extension navigateur recommandée ; cette URL analyse l’URL courante si WAVE est installé"
+  - id: insights
+    label: "Accessibility Insights"
+    type: external
+    url: "https://accessibilityinsights.io/docs/web/overview/"
+    note: "Extension FastPass / Assessment — à lancer sur cette URL"

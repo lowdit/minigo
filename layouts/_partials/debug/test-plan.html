@@ -1,0 +1,33 @@
+{{- $data := site.Data.test_plan | default dict -}}
+{{- $every := $data.every | default dict -}}
+{{- $a11y := $every.a11y | default slice -}}
+{{- $qa := $every.qa | default slice -}}
+
+{{- with .Layout -}}
+  {{- with index $data.by_layout . -}}
+    {{- range .a11y | default slice -}}{{- $a11y = $a11y | append . -}}{{- end -}}
+    {{- range .qa | default slice -}}{{- $qa = $qa | append . -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with .Kind -}}
+  {{- with index $data.by_kind . -}}
+    {{- range .a11y | default slice -}}{{- $a11y = $a11y | append . -}}{{- end -}}
+    {{- range .qa | default slice -}}{{- $qa = $qa | append . -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with index $data.by_path .RelPermalink -}}
+  {{- range .a11y | default slice -}}{{- $a11y = $a11y | append . -}}{{- end -}}
+  {{- range .qa | default slice -}}{{- $qa = $qa | append . -}}{{- end -}}
+{{- end -}}
+
+{{- with .Params.test_plan -}}
+  {{- range .a11y | default slice -}}{{- $a11y = $a11y | append . -}}{{- end -}}
+  {{- range .qa | default slice -}}{{- $qa = $qa | append . -}}{{- end -}}
+  {{- range .a11y_skip | default slice -}}{{- $a11y = where $a11y "id" "!=" . -}}{{- end -}}
+  {{- range .qa_skip | default slice -}}{{- $qa = where $qa "id" "!=" . -}}{{- end -}}
+{{- end -}}
+
+{{- $tools := $data.tools | default slice -}}
+{{- return dict "a11y" $a11y "qa" $qa "tools" $tools "path" .RelPermalink "title" .Title -}}

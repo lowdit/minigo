@@ -6,6 +6,7 @@
   <title>{{ block "title" . }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
   {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
+  {{ partial "lowdit/social-meta.html" . }}
   {{ partial "lowdit/favicon.html" . }}
   {{ partial "lowdit/diagrams.html" . }}
   <link rel="stylesheet" href="{{ "assets/css/fonts.css" | relURL }}">
@@ -73,6 +74,7 @@
   {{ block "script" . }}{{ end }}
   {{/* Panneau de debug (dev uniquement) — centralisé ici pour tous les modules. */}}
   {{- if eq (getenv "HUGO_ENV") "dev" -}}
+  {{- partial "debug/test-assist.html" (dict "context" .) -}}
   {{- partial "debug/debug.html" (dict "context" .) -}}
   {{- end -}}
 </body>

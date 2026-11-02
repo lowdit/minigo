@@ -10,6 +10,7 @@ theme = "minigo"
 [params.lowdit]
   logo = "logos/minigo.png"
   faviconDir = "favicons/minigo"
+  socialImage = "/assets/social/twittercard-default.png"
   siteProfile = "library"
   view = "thinktank"
   homeEyebrow = "Minigo · coque catalogue"

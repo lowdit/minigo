@@ -2,6 +2,9 @@
   <p class="minigo-hero__eyebrow">{{ site.Params.lowdit.homeEyebrow | default "Publications" }}</p>
   <h1>{{ .Title }}</h1>
   {{ with .Description }}<p class="minigo-hero__lead">{{ . }}</p>{{ end }}
+  {{ with site.Params.lowdit.homeExtraPartial }}
+    {{ partial . $ }}
+  {{ end }}
   {{ with .Content }}<div class="minigo-hero__intro">{{ . }}</div>{{ end }}
 </header>
 

@@ -10,7 +10,7 @@ Minigo n’est pas réservé aux rapports. Une page Markdown suffit pour documen
 
 ## Contenu minimal
 
-- un **titre** et éventuellement une **description** (SEO + cartes) ;
+- un **titre** et éventuellement une **description** (SEO, cartes, Open Graph / Twitter via le partial `lowdit/social-meta.html`) ;
 - du **texte** en Markdown ;
 - une **date** si vous affichez « Dernières publications ».
 

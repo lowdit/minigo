@@ -8,8 +8,8 @@
       {{- $show := .Params.lowdit.showOnHome | default true -}}
       {{- if and $show (not (in $exclude .Section)) -}}
     <li class="minigo-card">
-      <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-      {{ with .Description }}<p class="minigo-desc">{{ . }}</p>{{ end }}
+      <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+      {{ with .Description }}<p class="minigo-card__summary">{{ . }}</p>{{ end }}
     </li>
       {{- end -}}
     {{- end -}}

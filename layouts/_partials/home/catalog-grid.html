@@ -1,7 +1,8 @@
-{{/* Dict: pages (slice Page), cardPartial (string), cardKey (string, default "page") */}}
+{{/* Dict: pages (slice Page), cardPartial (string), cardKey (string, default "page"), gridClass (string) */}}
 {{- $pages := .pages -}}
 {{- $partialName := .cardPartial | default "home/catalog-card-default.html" -}}
-<section class="catalog-grid" aria-label="{{ .ariaLabel | default "Catalogue" }}">
+{{- $gridClass := .gridClass | default "catalog-grid" -}}
+<section class="{{ $gridClass }}" aria-label="{{ .ariaLabel | default "Catalogue" }}">
   {{- range $i, $p := $pages -}}
     {{- if eq $.cardKey "resume" -}}
       {{ partial $partialName (dict "page" $p "index" $i) }}

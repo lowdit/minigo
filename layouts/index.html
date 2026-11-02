@@ -16,12 +16,7 @@
 {{ with .Content }}
   <div class="minigo-intro">{{ . }}</div>
 {{ end }}
-{{- end -}}
-{{- if or (eq $profile "cv") (eq $profile "publisher") (eq $profile "presentations") -}}
-{{- else -}}
-
 {{ partial "home/section-grid.html" . }}
-
 {{ $main := site.Params.lowdit.mainSections | default (slice "reports") }}
 {{ $pages := where site.RegularPages "Section" "in" $main }}
 {{ $pages = $pages.ByDate.Reverse | first 10 }}

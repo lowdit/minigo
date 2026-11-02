@@ -1,0 +1,37 @@
+{{- $plan := partial "debug/test-plan.html" .context -}}
+<script id="lowdit-test-plan-data">window.__LOWDIT_TEST_PLAN__={{ $plan | jsonify | safeJS }};</script>
+<aside id="lowdit-test-assist" class="lowdit-test-assist" aria-labelledby="lowdit-test-assist-title" hidden>
+  <header class="lowdit-test-assist__head">
+    <h2 id="lowdit-test-assist-title">Aide au test</h2>
+    <p class="lowdit-test-assist__path">{{ .context.RelPermalink }}</p>
+    <button type="button" class="lowdit-test-assist__close" aria-label="Fermer le panneau">×</button>
+  </header>
+  <div class="lowdit-test-assist__body">
+    <section aria-labelledby="lowdit-test-a11y-heading">
+      <h3 id="lowdit-test-a11y-heading">Accessibilité</h3>
+      <ul class="lowdit-test-assist__list" data-list="a11y"></ul>
+    </section>
+    <section aria-labelledby="lowdit-test-qa-heading">
+      <h3 id="lowdit-test-qa-heading">Qualité / éditorial</h3>
+      <ul class="lowdit-test-assist__list" data-list="qa"></ul>
+    </section>
+    <section aria-labelledby="lowdit-test-tools-heading">
+      <h3 id="lowdit-test-tools-heading">Outils (extensions &amp; scripts)</h3>
+      <ul class="lowdit-test-assist__tools" data-list="tools"></ul>
+    </section>
+  </div>
+  <footer class="lowdit-test-assist__foot">
+    <p>Cocher = vu ; état enregistré par URL (localStorage). Pas un verdict de conformité.</p>
+  </footer>
+</aside>
+<button type="button" id="lowdit-test-assist-toggle" class="lowdit-test-assist-toggle" aria-expanded="false" aria-controls="lowdit-test-assist">
+  Test
+</button>
+{{- $testAssistJs := resources.Get "js/debug/test-assist.js" -}}
+{{- $testAssistCss := resources.Get "css/debug-test-assist.css" -}}
+{{- with $testAssistCss -}}
+<link rel="stylesheet" href="{{ .RelPermalink }}" media="screen">
+{{- end -}}
+{{- with $testAssistJs -}}
+<script src="{{ .RelPermalink }}" defer></script>
+{{- end -}}

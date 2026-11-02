@@ -1,0 +1,62 @@
+{{/*
+  Open Graph + Twitter Card — CONVENTIONS §7 · contrat SEO-HEAD-CONTRACT.yaml
+  Ne pas dupliquer meta name=description (déjà émise par le layout de base).
+*/}}
+{{- $title := "" -}}
+{{- if or (eq .Type "presentation") (eq .Layout "presentation") -}}
+  {{- $title = .Title -}}
+{{- else if .IsHome -}}
+  {{- $title = printf "%s | %s" .Title site.Title -}}
+{{- else -}}
+  {{- $title = printf "%s | %s" .Title site.Title -}}
+{{- end -}}
+
+{{- $desc := .Description -}}
+{{- if not $desc -}}
+  {{- with .Params.description -}}{{- $desc = . -}}{{- end -}}
+{{- end -}}
+{{- if not $desc -}}
+  {{- with .Params.header -}}{{- $desc = . -}}{{- end -}}
+{{- end -}}
+{{- if not $desc -}}
+  {{- with site.Params.description -}}{{- $desc = . -}}{{- end -}}
+{{- end -}}
+
+{{- $ogType := "website" -}}
+{{- if and .IsPage (not .IsHome) (ne .Type "presentation") -}}
+  {{- $ogType = "article" -}}
+{{- end -}}
+
+{{- $img := "" -}}
+{{- with .Params.image -}}
+  {{- $img = (printf "images/%s" . | absURL) -}}
+{{- else -}}
+  {{- with .Params.images -}}
+    {{- $img = (. | absURL) -}}
+  {{- else -}}
+    {{- with site.Params.lowdit.socialImage -}}
+      {{- $img = (. | absURL) -}}
+    {{- else -}}
+      {{- with site.Params.socialImage -}}
+        {{- $img = (. | absURL) -}}
+      {{- else -}}
+        {{- $img = ("/assets/social/twittercard-default.png" | absURL) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+<meta property="og:locale" content="{{ site.Language.Lang | default "fr" }}">
+<meta property="og:type" content="{{ $ogType }}">
+<meta property="og:title" content="{{ $title }}">
+{{- with $desc -}}
+<meta property="og:description" content="{{ . | plainify }}">
+{{- end -}}
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ $img }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+{{- with $desc -}}
+<meta name="twitter:description" content="{{ . | plainify }}">
+{{- end -}}
+<meta name="twitter:image" content="{{ $img }}">
