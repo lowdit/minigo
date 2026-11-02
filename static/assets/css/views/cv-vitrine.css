@@ -70,9 +70,6 @@
   border-color: color-mix(in srgb, var(--lowdit-accent-sligo) 30%, var(--lowdit-border-subtle));
 }
 
-/* Galerie Resugo : 5 profils démo → une rangée sur grand écran (ratio visuel = catalog/styles). */
-@media (min-width: 72rem) {
-  .minigo--view-cv-vitrine .catalog-grid:has(> :nth-child(5):last-child) {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
+.minigo--view-cv-vitrine .catalog-card__visual {
+  aspect-ratio: 3 / 2;
 }
