@@ -47,13 +47,23 @@ body[class*="minigo--view-"] .minigo-header__inner {
 .minigo-nav__list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 0.35rem 0.85rem;
   align-items: center;
+  width: 100%;
   list-style: none;
   margin: 0;
   padding: 0;
   font-size: 0.875rem;
   line-height: 1.35;
+}
+
+/* Petits écrans : la navigation occupe sa propre ligne sous le logo dès
+   40 rem, avant que les libellés ne se tassent contre la marque. */
+@media (max-width: 39.9375rem) {
+  .minigo-nav {
+    flex: 1 1 100%;
+  }
 }
 
 @media (min-width: 48rem) {
@@ -69,15 +79,10 @@ body[class*="minigo--view-"] .minigo-header__inner {
   text-wrap: nowrap;
 }
 
-.minigo-nav__spacer {
-  flex: 1 1 2rem;
-  min-width: 1rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
 .minigo-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
   color: inherit;
   text-decoration: none;
   font-weight: 500;
@@ -86,6 +91,28 @@ body[class*="minigo--view-"] .minigo-header__inner {
 .minigo-nav a:hover,
 .minigo-nav a[aria-current="page"] {
   color: var(--lowdit-violet);
+}
+
+/* Zones tactiles : sur téléphone et tablette, les entrées de menu visent
+   44 × 44 px (recommandation doigt), avec une typographie à 1 rem. */
+@media (max-width: 48rem) {
+  .minigo-nav__list {
+    gap: 0 0.5rem;
+    font-size: 1rem;
+  }
+
+  .minigo-nav__list li {
+    display: flex;
+  }
+
+  .minigo-nav a {
+    min-height: 44px;
+    padding-inline: 0.5rem;
+  }
+
+  .minigo-logo {
+    min-height: 44px;
+  }
 }
 
 .minigo-logo {
@@ -200,7 +227,7 @@ body[class*="minigo--view-"] .minigo-header__inner {
   transform: translateY(-2px);
 }
 
-.minigo-card:focus-within {
+.minigo-card:focus-within:has(:focus-visible) {
   border-color: var(--lowdit-violet);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--lowdit-violet) 28%, transparent);
 }
@@ -247,7 +274,7 @@ body[class*="minigo--view-"] .minigo-header__inner {
   margin-block-end: 0.4rem;
   font-size: 0.8125rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--lowdit-tracking-label, 0.04em);
   text-transform: uppercase;
   color: color-mix(in srgb, var(--lowdit-night) 62%, var(--lowdit-muted));
 }
@@ -340,7 +367,8 @@ body[class*="minigo--view-"] .minigo-main {
   max-width: var(--lowdit-main-max, var(--lowdit-content-wide, 84rem));
 }
 
-.minigo-hero {
+/* Hero : panneau signature → charte-premium.css ; variante sans panneau : .minigo-hero--bare */
+.minigo-hero--bare {
   margin: 0 0 2.5rem;
   padding: 2rem 0 1.5rem;
   border-bottom: 1px solid color-mix(in srgb, var(--lowdit-night) 10%, transparent);
@@ -349,14 +377,13 @@ body[class*="minigo--view-"] .minigo-main {
 .minigo-hero__eyebrow {
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--lowdit-tracking-eyebrow, 0.06em);
   text-transform: uppercase;
   color: var(--lowdit-violet);
   margin: 0 0 0.75rem;
 }
 
 .minigo-hero h1 {
-  font-size: clamp(1.75rem, 4vw, 2.35rem);
   line-height: 1.15;
   margin: 0 0 1rem;
 }
@@ -377,6 +404,13 @@ body[class*="minigo--view-"] .minigo-main {
 .minigo-hero--slides .minigo-hero__eyebrow { color: var(--lowdit-turquoise); }
 .minigo-hero--publisher .minigo-hero__eyebrow { color: var(--lowdit-night); }
 .minigo-hero--cv .minigo-hero__eyebrow { color: var(--lowdit-violet); }
+
+.minigo-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lowdit-space-3, 0.75rem);
+  margin: var(--lowdit-space-5, 1.5rem) 0 0;
+}
 
 .minigo-home-section__head {
   margin-bottom: 1.25rem;

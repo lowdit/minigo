@@ -227,7 +227,7 @@ body[class*="minigo--view-"] .minigo-header__inner {
   transform: translateY(-2px);
 }
 
-.minigo-card:focus-within {
+.minigo-card:focus-within:has(:focus-visible) {
   border-color: var(--lowdit-violet);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--lowdit-violet) 28%, transparent);
 }
@@ -274,7 +274,7 @@ body[class*="minigo--view-"] .minigo-header__inner {
   margin-block-end: 0.4rem;
   font-size: 0.8125rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: var(--lowdit-tracking-label, 0.04em);
   text-transform: uppercase;
   color: color-mix(in srgb, var(--lowdit-night) 62%, var(--lowdit-muted));
 }
@@ -367,7 +367,8 @@ body[class*="minigo--view-"] .minigo-main {
   max-width: var(--lowdit-main-max, var(--lowdit-content-wide, 84rem));
 }
 
-.minigo-hero {
+/* Hero : panneau signature → charte-premium.css ; variante sans panneau : .minigo-hero--bare */
+.minigo-hero--bare {
   margin: 0 0 2.5rem;
   padding: 2rem 0 1.5rem;
   border-bottom: 1px solid color-mix(in srgb, var(--lowdit-night) 10%, transparent);
@@ -376,14 +377,13 @@ body[class*="minigo--view-"] .minigo-main {
 .minigo-hero__eyebrow {
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--lowdit-tracking-eyebrow, 0.06em);
   text-transform: uppercase;
   color: var(--lowdit-violet);
   margin: 0 0 0.75rem;
 }
 
 .minigo-hero h1 {
-  font-size: clamp(1.75rem, 4vw, 2.35rem);
   line-height: 1.15;
   margin: 0 0 1rem;
 }
@@ -404,6 +404,13 @@ body[class*="minigo--view-"] .minigo-main {
 .minigo-hero--slides .minigo-hero__eyebrow { color: var(--lowdit-turquoise); }
 .minigo-hero--publisher .minigo-hero__eyebrow { color: var(--lowdit-night); }
 .minigo-hero--cv .minigo-hero__eyebrow { color: var(--lowdit-violet); }
+
+.minigo-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--lowdit-space-3, 0.75rem);
+  margin: var(--lowdit-space-5, 1.5rem) 0 0;
+}
 
 .minigo-home-section__head {
   margin-bottom: 1.25rem;

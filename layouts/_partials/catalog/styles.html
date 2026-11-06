@@ -7,16 +7,18 @@
   }
   .catalog-card {
     margin: 0;
-    border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
-    border-radius: 0.5rem;
+    border: 1px solid var(--lowdit-border-subtle, color-mix(in srgb, currentColor 12%, transparent));
+    border-radius: var(--lowdit-radius-lg, 14px);
     overflow: hidden;
-    background: color-mix(in srgb, currentColor 3%, transparent);
-    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    background: var(--lowdit-white, #fff);
+    box-shadow: 0 0.5rem 1.5rem color-mix(in srgb, var(--lowdit-night, #0b2545) 6%, transparent);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
   }
   .catalog-card:focus-within,
   .catalog-card:hover {
-    box-shadow: 0 0.35rem 1rem color-mix(in srgb, currentColor 15%, transparent);
-    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--catalog-accent, currentColor) 35%, transparent);
+    box-shadow: 0 1rem 2.25rem color-mix(in srgb, var(--catalog-accent, currentColor) 18%, transparent);
+    transform: translateY(-3px);
   }
   .catalog-card__link {
     display: flex;

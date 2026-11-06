@@ -9,7 +9,7 @@ ou chemins statiques). Volonté lowtech — pas de SCSS/PostCSS.
 | # | Couche ITCSS | Fichier | Rôle |
 |---|---|---|---|
 | 1 | settings | `assets/css/tokens/*.css` (+ `lowdit-colors.css`) | Variables CSS (couleurs, layout, motion, elevation) — chargées par le partial `lowdit/view-tokens.html`, **avant** reset/base. |
-| 2 | generic | `assets/css/base/reset.css` | Reset navigateur neutre (box-sizing, marges, listes, médias, reduced-motion). Aucune marque ni composant. |
+| 2 | generic | `assets/css/base/reset.css` | Reset navigateur neutre (box-sizing, `scrollbar-gutter: stable` sur `html`, marges, listes, médias, reduced-motion). Aucune marque ni composant. |
 | 3 | elements | `assets/css/base/typography.css` puis `assets/css/lowdit-base.css` | **Typographie fluide** (`clamp`) : taille des titres, corps, `dl/dt/dd`, citations, code — rétablit ce que le reset neutralise (`h1..h6 { font-size: inherit }`). Puis familles/interlignes et prose des éléments. |
 | 4 | system + views | `assets/css/lowdit-system.css`, `assets/css/views/*.css` | Système partagé puis vues produit (publisher, cv-vitrine, deck-studio, inquiry, catalog, thinktank) |
 | 5 | components | `assets/css/minigo.css` | Composants de la coque commune (header, nav, hero, listes, grilles) |

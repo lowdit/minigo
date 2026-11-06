@@ -1,10 +1,8 @@
 ---
-title: Bibliothèque documentaire
-description: Exemple Minigo — guides courts, rapports et installation (Lowdit).
+title: Minigo — coque Lowdit
+description: Showroom de la coque Hugo partagée (tokens, cartes, focus, formulaires) — les vues produit vivent sur Repogo, Sligo, Resugo et Fromago.
 ---
 
-Site de démonstration **Minigo** (modules Hugo, sans dossier `themes/`).
+Cette démo **ne remplace pas** le site [lowdit-brand](https://github.com/lowdit/lowdit-brand) : elle montre ce que Minigo charge par défaut (ITCSS, `sync-brand.sh`, signaux qualité).
 
-Les **rapports** montrent le profil *thinktank* (timeline, dates, contenus longs). Les **guides** montrent des pages simples, sans lourdeur éditoriale.
-
-→ [Guides](/guides/) · [Rapports](/reports/)
+Les **rapports** ci-dessous illustrent le profil thinktank (timeline). Pour une vitrine moteur, ouvrir l’exampleSite du module concerné.

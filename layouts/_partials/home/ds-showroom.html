@@ -1,0 +1,37 @@
+{{/* Accueil vitrine Minigo — showroom coque DS (exampleSite module, pas thinktank). */}}
+<header class="minigo-hero minigo-hero--signature minigo-hero--ds-showroom">
+  <p class="minigo-hero__eyebrow">{{ site.Params.lowdit.homeEyebrow | default "Minigo · coque" }}</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="minigo-hero__lead">{{ . }}</p>{{ end }}
+  <p class="minigo-hero__actions">
+    <a class="minigo-btn minigo-btn--primary" href="/installation/">Installation</a>
+    <a class="minigo-btn minigo-btn--ghost" href="/guides/">Guides</a>
+  </p>
+</header>
+
+<section aria-labelledby="minigo-showroom-coque">
+  <h2 id="minigo-showroom-coque">Ce que montre cette démo</h2>
+  <ul class="minigo-card-grid">
+    <li class="minigo-card minigo-card--pillar">
+      <span class="minigo-card__kicker">Coque</span>
+      <h3>Header, nav, cartes, boutons</h3>
+      <p class="minigo-card__summary">Tokens Lowdit, focus visible, grilles — la base partagée par Repogo, Sligo, Resugo et Fromago.</p>
+    </li>
+    <li class="minigo-card minigo-card--pillar">
+      <span class="minigo-card__kicker">Vues</span>
+      <h3><a href="/reports/">Thinktank · timeline</a></h3>
+      <p class="minigo-card__summary">Cet exampleSite reste en vue <code>thinktank</code> pour les rapports ; les modules moteur activent publisher, deck-studio, cv-vitrine ou inquiry.</p>
+    </li>
+    <li class="minigo-card minigo-card--pillar">
+      <span class="minigo-card__kicker">Design system</span>
+      <h3><a href="https://github.com/lowdit/lowdit-brand">lowdit-brand</a></h3>
+      <p class="minigo-card__summary">Fondations, composants documentés, starter kit — cette coque s’y synchronise via <code>sync-brand.sh</code>.</p>
+    </li>
+  </ul>
+</section>
+
+{{ with .Content }}
+<div class="minigo-intro minigo-body">{{ . }}</div>
+{{ end }}
+
+{{ partial "home/section-grid.html" . }}

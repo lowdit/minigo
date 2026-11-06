@@ -1,0 +1,149 @@
+.lowdit-test-assist-toggle {
+  position: fixed;
+  z-index: 1001;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 0.65rem 0.5rem;
+  writing-mode: vertical-rl;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  border: none;
+  border-radius: 0.35rem 0 0 0.35rem;
+  background: #2563eb;
+  cursor: pointer;
+  box-shadow: -2px 0 8px rgb(0 0 0 / 0.15);
+}
+
+.lowdit-test-assist-toggle:hover,
+.lowdit-test-assist-toggle:focus-visible {
+  background: #1d4ed8;
+}
+
+.lowdit-test-assist:not([hidden]) {
+  position: fixed;
+  z-index: 1002;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(22rem, 92vw);
+  max-height: 100vh;
+  color: #0f172a;
+  background: #f8fafc;
+  border-left: 1px solid #cbd5e1;
+  box-shadow: -4px 0 24px rgb(0 0 0 / 0.12);
+}
+
+.lowdit-test-assist__head {
+  position: relative;
+  padding: 1rem 2.5rem 0.75rem 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.lowdit-test-assist__head h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.lowdit-test-assist__path {
+  margin: 0.35rem 0 0;
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: #64748b;
+  word-break: break-all;
+}
+
+.lowdit-test-assist__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.15rem 0.45rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.lowdit-test-assist__body {
+  flex: 1;
+  overflow: auto;
+  padding: 0.75rem 1rem 1rem;
+}
+
+.lowdit-test-assist__body h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #475569;
+}
+
+.lowdit-test-assist__body h3:first-child {
+  margin-top: 0;
+}
+
+.lowdit-test-assist__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lowdit-test-assist__list li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-bottom: 0.65rem;
+}
+
+.lowdit-test-assist__list label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.lowdit-test-assist__hint {
+  font-size: 0.78rem;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+.lowdit-test-assist__tools {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lowdit-test-assist__tools li {
+  margin-bottom: 0.75rem;
+}
+
+.lowdit-test-assist__tools button,
+.lowdit-test-assist__tools a {
+  font-size: 0.88rem;
+}
+
+.lowdit-test-assist__tool-note {
+  margin: 0.25rem 0 0;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.lowdit-test-assist__foot {
+  padding: 0.65rem 1rem;
+  font-size: 0.72rem;
+  color: #64748b;
+  border-top: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.lowdit-test-assist__foot p {
+  margin: 0;
+}

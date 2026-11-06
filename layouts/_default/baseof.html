@@ -36,6 +36,16 @@
   {{ with resources.Get "css/minigo.css" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{ end }}
+  {{ with resources.Get "css/components/forms.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ else }}
+    <link rel="stylesheet" href="{{ "assets/css/components/forms.css" | relURL }}">
+  {{ end }}
+  {{ with resources.Get "css/charte-premium.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ else }}
+    <link rel="stylesheet" href="{{ "assets/css/charte-premium.css" | relURL }}">
+  {{ end }}
   {{ with resources.Get "css/utils.css" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{ end }}

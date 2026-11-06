@@ -6,6 +6,8 @@
   {{ partial "home/publisher.html" . }}
 {{- else if eq $profile "presentations" -}}
   {{ partial "home/presentations.html" . }}
+{{- else if eq $profile "ds-showroom" -}}
+  {{ partial "home/ds-showroom.html" . }}
 {{- else if or (eq $profile "library") (eq $profile "hub") -}}
   {{ partial "home/thinktank.html" . }}
 {{- else -}}
