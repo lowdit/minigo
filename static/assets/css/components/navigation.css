@@ -1,0 +1,18 @@
+/* Navigation — aria-current non porté par la couleur seule (Core v2-04). */
+
+.minigo-nav a[aria-current="page"] {
+  color: var(--lowdit-color-link);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+}
+
+.lowdit-product__nav a[aria-current="page"],
+.lowdit-product__nav a[aria-current="location"] {
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: currentColor;
+}

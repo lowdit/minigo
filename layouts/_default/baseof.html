@@ -41,6 +41,16 @@
   {{ else }}
     <link rel="stylesheet" href="{{ "assets/css/components/forms.css" | relURL }}">
   {{ end }}
+  {{ with resources.Get "css/components/buttons.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ else }}
+    <link rel="stylesheet" href="{{ "assets/css/components/buttons.css" | relURL }}">
+  {{ end }}
+  {{ with resources.Get "css/components/navigation.css" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{ else }}
+    <link rel="stylesheet" href="{{ "assets/css/components/navigation.css" | relURL }}">
+  {{ end }}
   {{ with resources.Get "css/charte-premium.css" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{ else }}

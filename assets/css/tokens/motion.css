@@ -10,12 +10,19 @@
   :root {
     --lowdit-transition-hover: transform var(--lowdit-duration-medium) var(--lowdit-ease-out),
       box-shadow var(--lowdit-duration-medium) var(--lowdit-ease-out);
+    /* Contrôles (bouton, champ) — couleurs et bordures, pas de transform */
+    --lowdit-transition-control: background-color var(--lowdit-duration-medium) var(--lowdit-ease-out),
+      color var(--lowdit-duration-medium) var(--lowdit-ease-out),
+      border-color var(--lowdit-duration-medium) var(--lowdit-ease-out),
+      box-shadow var(--lowdit-duration-fast) var(--lowdit-ease-out),
+      outline-color var(--lowdit-duration-fast) var(--lowdit-ease-out);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   :root {
     --lowdit-transition-hover: none;
+    --lowdit-transition-control: none;
   }
 
   *,
