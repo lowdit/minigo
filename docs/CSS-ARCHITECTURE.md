@@ -52,27 +52,29 @@ La prose de base (`lowdit-base.css`) et `html` consomment les rôles sémantique
 Décision humaine 2026-10-25 (`P-minigo-card-titre-pattern-01`) après revue du
 bloc `.minigo-card` en session directe.
 
-1. **Component-scope d'abord** — le style d'un composant vit dans le bloc du
-   composant (`minigo.css`, ou `views/*.css` quand c'est une vue). Les
-   **utilities** (`utils.css`) sont réservées aux primitives réutilisables
-   hors de tout composant (skip-links, `.visually-hidden`). Un site sans
-   composants partout ne supporte pas une cascade d'utilities
-   sémantiquement creuses : la maintenance se fait par bloc, pas par
-   famille de classes atomiques.
-2. **BEM allégé** — BEM garde le bloc (`.minigo-card`), les variantes
-   (`--audience`, `--pillar`) et les éléments dont le rôle est réellement
-   distinct (`__kicker`, `__meta`, `__summary`). À l'intérieur du bloc, quand
-   le partial garantit la structure, on préfère les **sélecteurs structuraux**
-   (`.minigo-card h3`) à des classes d'élément qui ne changent rien pour un
-   humain qui relit. Exemple : `.minigo-card h3` au lieu de
-   `.minigo-card__heading`, `.minigo-card h3 a` au lieu de `__title-link`.
-3. **Un markup par pattern** — un même rôle visuel (titre de carte) n'est pas
+1. **Scoping composant (objectif)** — une **classe racine** par pattern
+   (`.lowdit-accordion`, `.minigo-card`, `.pub-catalog`) ; le CSS vit
+   **sous ce parent** via sélecteurs structurels (`summary h3`, `h3 a`) et
+   ajouts ciblés si besoin. Les **utilities** (`utils.css`) restent pour les
+   primitives hors composant (skip-links, `.visually-hidden`). La maintenance
+   se fait par **bloc**, pas par catalogue de classes d'éléments.
+2. **Prose vs composants** — la prose (`.lowdit-product__content`, etc.) style
+   les titres avec `:where(h2, h3, …)` pour garder une **spécificité basse**.
+   Les règles du composant, plus précises (ex.
+   `.lowdit-accordion > details > summary h3`), emportent sans astuce BEM ni
+   `!important`.
+3. **BEM si besoin** — pas une obligation de nommage. On utilise une variante
+   `--*` (`.minigo-btn--ghost`), un élément `__*` ou un second bloc seulement
+   quand le markup varie, qu'il y a collision entre vues, ou qu'un hook stable
+   est requis (tests, script, surcharge site). Sinon : parent + structure HTML
+   documentée dans le partial.
+4. **Un markup par pattern** — un même rôle visuel (titre de carte) n'est pas
    déclaré trois fois (`a` nu, `__title-link`, `__heading`). Un seul markup
    répond au lien et sans lien :
    `<h3><a href="…">Titre</a></h3>` — le lien s'étend à la carte via
    `::after` (`inset: 0`), le titre reste un heading réel. Limite assumée :
    le texte sous l'overlay n'est pas sélectionnable à la souris.
-4. **CSS moderne + ancien, sans fiche de compat** —
+5. **CSS moderne + ancien, sans fiche de compat** —
    - **Repli d'abord, amélioration ensuite** : déclarer la valeur token simple
      (`border-color: var(--lowdit-border-subtle)`) PUIS la version moderne
      (`color-mix(...)`) dans la même règle. Un moteur ancien garde la première,
@@ -88,6 +90,7 @@ bloc `.minigo-card` en session directe.
 
 ## Historique
 
+- 2026-11-12 : position explicite **scoping d'abord, BEM si besoin** ; prose titres en `:where()` ; accordéon canon sans classes d'élément.
 - 2026-11-02 : jetons sémantiques clair/sombre opt-in dans `tokens/colors.css` ; prose `lowdit-base.css` branchée sur `--lowdit-color-*` ; section « Schémas de couleur » (P-brand-color-scheme-css-01).
 - 2026-10-26 : navigation du header — suppression de `.minigo-nav__spacer`,
   Installation reste le dernier élément ; sous 40 rem la navigation passe sur

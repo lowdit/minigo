@@ -61,31 +61,32 @@ a {
   margin-top: 0;
 }
 
-.minigo-body :is(h2, h3, h4, h5),
-.minigo-intro :is(h2, h3, h4, h5),
-.lowdit-product__content :is(h2, h3, h4, h5) {
+/* Prose — titres éditoriaux (:where = spécificité basse ; les blocs composant l'emportent). */
+.minigo-body :where(h2, h3, h4, h5),
+.minigo-intro :where(h2, h3, h4, h5),
+.lowdit-product__content :where(h2, h3, h4, h5) {
   font-family: var(--lowdit-font-display);
   line-height: 1.18;
   color: var(--lowdit-color-text, var(--lowdit-night));
 }
 
-.minigo-body h2,
-.minigo-intro h2,
-.lowdit-product__content h2 {
+.minigo-body :where(h2),
+.minigo-intro :where(h2),
+.lowdit-product__content :where(h2) {
   font-size: clamp(1.4rem, 2.4vw, 1.8rem);
   margin: 2.4rem 0 0.75rem;
 }
 
-.minigo-body h3,
-.minigo-intro h3,
-.lowdit-product__content h3 {
+.minigo-body :where(h3),
+.minigo-intro :where(h3),
+.lowdit-product__content :where(h3) {
   font-size: clamp(1.15rem, 1.8vw, 1.35rem);
   margin: 1.8rem 0 0.5rem;
 }
 
-.minigo-body h4,
-.minigo-intro h4,
-.lowdit-product__content h4 {
+.minigo-body :where(h4),
+.minigo-intro :where(h4),
+.lowdit-product__content :where(h4) {
   font-size: 1.05rem;
   margin: 1.4rem 0 0.4rem;
 }
