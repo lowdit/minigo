@@ -1,24 +1,13 @@
 {{/* Dict: pages (slice Page), cardPartial (string), cardKey (string, default "page"), gridClass (string) */}}
 {{- $pages := .pages -}}
-{{- $partialName := .cardPartial | default "home/catalog-card-default.html" -}}
+{{- $partialName := .cardPartial | default "catalog/card.html" -}}
 {{- $gridClass := .gridClass | default "catalog-grid" -}}
 <section class="{{ $gridClass }}" aria-label="{{ .ariaLabel | default "Catalogue" }}">
   {{- range $i, $p := $pages -}}
     {{- if eq $.cardKey "resume" -}}
       {{ partial $partialName (dict "page" $p "index" $i) }}
     {{- else -}}
-      {{- $key := $p.RelPermalink -}}
-      {{- $art := partial "catalog/visual-art.html" (dict "key" $key "index" $i "accent" ($p.Params.accent | default "")) -}}
-      {{- $motif := upper (substr ($p.File.ContentBaseName | default "DOC") 0 6) -}}
-      <article class="catalog-card">
-        <a class="catalog-card__link" href="{{ $p.RelPermalink }}">
-          {{ partial "catalog/card-visual.html" (dict "art" $art "motif" $motif "label" "DOC" "thumbnail" $p.Params.thumbnail) }}
-          <div class="catalog-card__body">
-            <h2 class="catalog-card__title">{{ $p.LinkTitle }}</h2>
-            {{- with $p.Description -}}<p class="catalog-card__meta">{{ . }}</p>{{- end -}}
-          </div>
-        </a>
-      </article>
+      {{ partial "catalog/card.html" (dict "page" $p "index" $i) }}
     {{- end -}}
   {{- end -}}
 </section>
