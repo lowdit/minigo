@@ -2,5 +2,5 @@
 {{- $d := .PublishDate -}}
 {{- if $d.IsZero -}}{{- $d = .Date -}}{{- end -}}
 {{- if and (not $d.IsZero) (gt $d.Year 1) -}}
-<time class="minigo-date" datetime="{{ $d.Format "2006-01-02" }}">{{ $d.Format "2 January 2006" }}</time>
+<time class="lowdit-date" datetime="{{ $d.Format "2006-01-02" }}">{{ $d.Format "2 January 2006" }}</time>
 {{- end -}}

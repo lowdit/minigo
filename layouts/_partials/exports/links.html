@@ -5,7 +5,7 @@
 {{ $prez := $p.OutputFormats.Get "presentation" }}
 {{ $resume := $p.OutputFormats.Get "resume" }}
 {{ if or (and $showPrint $print) (and $showPrez $prez) $resume }}
-<nav class="minigo-exports" aria-label="Export formats">
+<nav class="lowdit-exports" aria-label="Export formats">
   {{ with $print }}{{ if $showPrint }}
     <a href="{{ .RelPermalink }}">{{ i18n "export-print" }}</a>
   {{ end }}{{ end }}

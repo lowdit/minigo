@@ -2,26 +2,26 @@
 {{- $style := .style | default "timeline" -}}
 {{- $flags := partial "lowdit/display-flags.html" . -}}
 {{- if eq $style "cards" -}}
-<ul class="minigo-card-grid grid">
+<ul class="lowdit-card-grid grid">
   {{- range $pages -}}
     {{- $sum := "" -}}
     {{- with .Description -}}{{- $sum = . -}}{{- else -}}{{- $sum = .Summary | plainify -}}{{- end -}}
-    <li class="minigo-card">
+    <li class="lowdit-card">
       <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
-      {{- if $flags.showDate }}{{- with partial "lowdit/page-date.html" . -}}<p class="minigo-card__meta">{{ . }}</p>{{- end -}}{{- end -}}
-      {{- if and $flags.showSummary $sum -}}<p class="minigo-card__summary">{{ $sum | truncate 180 }}</p>{{- end -}}
+      {{- if $flags.showDate }}{{- with partial "lowdit/page-date.html" . -}}<p class="lowdit-card__meta">{{ . }}</p>{{- end -}}{{- end -}}
+      {{- if and $flags.showSummary $sum -}}<p class="lowdit-card__summary">{{ $sum | truncate 180 }}</p>{{- end -}}
     </li>
   {{- end -}}
 </ul>
 {{- else -}}
-<ul class="minigo-timeline stack" data-space="1">
+<ul class="lowdit-timeline stack" data-space="1">
   {{- range $pages -}}
     {{- $sum := "" -}}
     {{- with .Description -}}{{- $sum = . -}}{{- else -}}{{- $sum = .Summary | plainify -}}{{- end -}}
     <li>
       <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
       {{- if $flags.showDate -}}{{- with partial "lowdit/page-date.html" . -}} {{ . }}{{- end -}}{{- end -}}
-      {{- if and $flags.showSummary $sum -}}<p class="minigo-summary">{{ $sum | truncate 180 }}</p>{{- end -}}
+      {{- if and $flags.showSummary $sum -}}<p class="lowdit-summary">{{ $sum | truncate 180 }}</p>{{- end -}}
     </li>
   {{- end -}}
 </ul>

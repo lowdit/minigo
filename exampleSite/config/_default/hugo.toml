@@ -3,9 +3,9 @@ title = "Documents Lowdit"
 defaultContentLanguage = "fr"
 locale = "fr-FR"
 
-# Dev/`hugo server` : thème résolu en local via `themes/` (symlink).
+# Modules résolus sur les dépôts locaux par bin/hugo.work (aussi pour hugo server).
 # La prod utilise `config/production/hugo.toml` (module GitHub).
-theme = "minigo"
+theme = ["github.com/lowdit/minigo"]
 
 [params.lowdit]
   logo = "logos/minigo.png"
@@ -40,3 +40,7 @@ theme = "minigo"
 
 [markup.goldmark.renderer]
   unsafe = true
+
+[module]
+  # Espace de travail local : minigo, lowdit-kit et les modules du disque.
+  workspace = "../../bin/hugo.work"

@@ -2,11 +2,11 @@
 {{- if eq (.Params.layout | default .Layout) "gallery" -}}
   {{ partial "catalog/section-gallery.html" . }}
 {{- else -}}
-<div class="minigo-page-header">
+<div class="lowdit-page-header">
   <h1>{{ .Title }}</h1>
-  {{ with .Description }}<p class="minigo-desc">{{ . }}</p>{{ end }}
+  {{ with .Description }}<p class="lowdit-desc">{{ . }}</p>{{ end }}
 </div>
-{{ with .Content }}<div class="minigo-intro">{{ . }}</div>{{ end }}
+{{ with .Content }}<div class="lowdit-intro">{{ . }}</div>{{ end }}
 {{ $pages := .RegularPages }}
 {{ if not $pages }}
   <p>{{ i18n "list-empty" }}</p>

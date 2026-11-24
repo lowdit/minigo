@@ -1,11 +1,11 @@
-<header class="minigo-hero minigo-hero--signature">
-  <p class="minigo-hero__eyebrow">{{ site.Params.lowdit.homeEyebrow | default "Publications" }}</p>
+<header class="lowdit-hero lowdit-hero--signature">
+  <p class="lowdit-hero__eyebrow">{{ site.Params.lowdit.homeEyebrow | default "Publications" }}</p>
   <h1>{{ .Title }}</h1>
-  {{ with .Description }}<p class="minigo-hero__lead">{{ . }}</p>{{ end }}
+  {{ with .Description }}<p class="lowdit-hero__lead">{{ . }}</p>{{ end }}
   {{ with site.Params.lowdit.homeExtraPartial }}
     {{ partial . $ }}
   {{ end }}
-  {{ with .Content }}<div class="minigo-hero__intro">{{ . }}</div>{{ end }}
+  {{ with .Content }}<div class="lowdit-hero__intro">{{ . }}</div>{{ end }}
 </header>
 
 {{ partial "home/section-grid.html" . }}

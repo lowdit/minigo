@@ -50,26 +50,12 @@
       <link rel="stylesheet" href="{{ "assets/css/lowdit-shell.css" | relURL }}">
     {{ end }}
   {{ end }}
-  {{ with resources.Get "css/components/forms.css" }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{ else }}
-    <link rel="stylesheet" href="{{ "assets/css/components/forms.css" | relURL }}">
-  {{ end }}
-  {{ with resources.Get "css/components/buttons.css" }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{ else }}
-    <link rel="stylesheet" href="{{ "assets/css/components/buttons.css" | relURL }}">
-  {{ end }}
-  {{ with resources.Get "css/components/navigation.css" }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{ else }}
-    <link rel="stylesheet" href="{{ "assets/css/components/navigation.css" | relURL }}">
-  {{ end }}
-  {{ with resources.Get "css/components/quiz-drill.css" }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{ else }}
-    <link rel="stylesheet" href="{{ "assets/css/components/quiz-drill.css" | relURL }}">
-  {{ end }}
+  {{- /* Composants du kit (lowdit-kit), dans l'ordre de la cascade. */}}
+  {{- range slice "forms" "buttons" "navigation" "card" "accordion" "disclosure" "quiz-drill" }}
+    {{- with resources.Get (printf "css/components/%s.css" .) }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}">
+    {{- end }}
+  {{- end }}
   {{ with resources.Get "css/charte-premium.css" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{ else }}
@@ -101,16 +87,16 @@
   <div class=skip-links role=navigation>
     <a href="#main">{{ i18n "nav-skiplinks-content" }}</a>
   </div>
-  <header class="lowdit-header minigo-header">
-    <div class="lowdit-header__inner minigo-header__inner">
-      <a class="lowdit-logo minigo-logo" href="{{ "" | relLangURL }}">{{ partial "lowdit/logo.html" . }}</a>
+  <header class="lowdit-header">
+    <div class="lowdit-header__inner">
+      <a class="lowdit-logo" href="{{ "" | relLangURL }}">{{ partial "lowdit/logo.html" . }}</a>
       {{ partial "minigo/main-nav.html" . }}
       {{ if eq (site.Params.lowdit.search | default "") "pagefind" }}
         {{ partial "search/pagefind-ui.html" . }}
       {{ end }}
     </div>
   </header>
-  <main id="main" class="lowdit-main minigo-main">
+  <main id="main" class="lowdit-main">
     {{ block "main" . }}{{ end }}
   </main>
   {{ block "footer" . }}{{ end }}

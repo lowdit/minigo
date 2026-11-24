@@ -1,8 +1,8 @@
 <article class="lowdit-product">
-  <header class="content-hero minigo-hero">
-    <p class="minigo-hero__eyebrow">{{ i18n "product-eyebrow" | default "Installation" }}</p>
+  <header class="content-hero lowdit-hero">
+    <p class="lowdit-hero__eyebrow">{{ i18n "product-eyebrow" | default "Installation" }}</p>
     <h1>{{ .Title }}</h1>
-    {{ with .Description }}<p class="minigo-hero__lead">{{ . }}</p>{{ end }}
+    {{ with .Description }}<p class="lowdit-hero__lead">{{ . }}</p>{{ end }}
   </header>
   {{- $section := .CurrentSection -}}
   {{- $children := slice -}}

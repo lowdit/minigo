@@ -1,14 +1,14 @@
 {{/* Accueil présentations — coque Minigo (Sligo peut surcharger index) */}}
-<header class="minigo-hero minigo-hero--slides">
-  <p class="minigo-hero__eyebrow">{{ site.Params.lowdit.homeEyebrow | default "Présentations" }}</p>
+<header class="lowdit-hero lowdit-hero--slides">
+  <p class="lowdit-hero__eyebrow">{{ site.Params.lowdit.homeEyebrow | default "Présentations" }}</p>
   <h1>{{ .Title }}</h1>
-  {{ with .Description }}<p class="minigo-hero__lead">{{ . }}</p>{{ end }}
-  {{ with .Content }}<div class="minigo-hero__intro">{{ . }}</div>{{ end }}
+  {{ with .Description }}<p class="lowdit-hero__lead">{{ . }}</p>{{ end }}
+  {{ with .Content }}<div class="lowdit-hero__intro">{{ . }}</div>{{ end }}
 </header>
 
 {{- $sec := site.GetPage "decks" -}}
-<section class="minigo-home-section">
-  <div class="minigo-home-section__head">
+<section class="lowdit-home-section">
+  <div class="lowdit-home-section__head">
     <h2>{{ i18n "home-decks-heading" | default "Présentations" }}</h2>
     <p>{{ i18n "home-decks-sub" | default "Decks prêts à projeter." }}</p>
   </div>

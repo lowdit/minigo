@@ -62,9 +62,9 @@
           </header>
           {{- with .Description -}}<p class="pub-reader__summary">{{ . }}</p>{{- end -}}
           <p class="pub-reader__actions">
-            <a class="minigo-btn minigo-btn--primary" href="{{ .RelPermalink }}">{{ i18n "home-read-online" | default "Continuer la lecture" }}</a>
+            <a class="lowdit-btn lowdit-btn--primary" href="{{ .RelPermalink }}">{{ i18n "home-read-online" | default "Continuer la lecture" }}</a>
             {{- with .OutputFormats.Get "print" -}}
-              <a class="minigo-btn minigo-btn--ghost" href="{{ .RelPermalink }}">{{ i18n "export-print" | default "Version imprimable" }}</a>
+              <a class="lowdit-btn lowdit-btn--ghost" href="{{ .RelPermalink }}">{{ i18n "export-print" | default "Version imprimable" }}</a>
             {{- end -}}
           </p>
           {{- $key := .RelPermalink -}}

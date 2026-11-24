@@ -11,12 +11,12 @@
 {{- else if or (eq $profile "library") (eq $profile "hub") -}}
   {{ partial "home/thinktank.html" . }}
 {{- else -}}
-<div class="minigo-page-header">
+<div class="lowdit-page-header">
   <h1>{{ .Title }}</h1>
-  {{ with .Description }}<p class="minigo-desc">{{ . }}</p>{{ end }}
+  {{ with .Description }}<p class="lowdit-desc">{{ . }}</p>{{ end }}
 </div>
 {{ with .Content }}
-  <div class="minigo-intro">{{ . }}</div>
+  <div class="lowdit-intro">{{ . }}</div>
 {{ end }}
 {{ partial "home/section-grid.html" . }}
 {{ $main := site.Params.lowdit.mainSections | default (slice "reports") }}

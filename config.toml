@@ -2,9 +2,11 @@
   [module.hugoVersion]
     extended = false
     min = "0.128.0"
-  # `lowdit-brand` n'est PAS un module Hugo : ses assets (tokens, lowdit-base,
-  # lowdit-system, views, composants) sont copiés dans minigo via
-  # `lowdit-brand/scripts/sync-brand.sh`. Rien à importer ici.
+  # Minigo = site navigable minimal (accueil, rubriques, pages, RSS, recherche).
+  # Tout le visuel (jetons, base, composants, modèles, coque CSS, polices) vient
+  # du kit générique : aucune copie ici.
+  [[module.imports]]
+    path = "github.com/lowdit/lowdit-kit"
 
 [markup.goldmark.renderer]
   unsafe = true

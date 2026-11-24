@@ -1,11 +1,11 @@
 {{ define "main" }}
 <article>
-  <header class="minigo-page-header">
+  <header class="lowdit-page-header">
     <h1>{{ .Title }}</h1>
-    {{ if (partial "lowdit/display-flags.html" .).showDate }}{{- with partial "lowdit/page-date.html" . -}}<p class="minigo-desc">{{ . }}</p>{{- end -}}{{ end }}
+    {{ if (partial "lowdit/display-flags.html" .).showDate }}{{- with partial "lowdit/page-date.html" . -}}<p class="lowdit-desc">{{ . }}</p>{{- end -}}{{ end }}
   </header>
   {{ partial "exports/links.html" . }}
-  <div class="minigo-body">
+  <div class="lowdit-body">
     {{ .Content }}
   </div>
 </article>
