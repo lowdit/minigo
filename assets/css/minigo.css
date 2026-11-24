@@ -1,22 +1,22 @@
 /* ============================================================================
-   COMPONENTS (couche « components » ITCSS) — Minigo
+   Lowdit shell — coque (ex-minigo.css, palier C)
    ============================================================================
    Rôle : composants de la coque commune (header, nav, hero, listes, grilles).
    Ordre ITCSS des imports (baseof.html) :
      tokens (settings) → reset (generic) → lowdit-base (elements)
-     → system + views → CE FICHIER (components) → utils (utilities)
+     → system + views → lowdit-shell.css (components coque) → utils (utilities)
      → product-doc → site-overrides (site).
    Les utilities (skip-links…) ont été extraites vers css/utils.css.
    ============================================================================ */
 
 /* General */
 
-.minigo-header {
+.lowdit-header, .lowdit-header {
   border-bottom: 1px solid color-mix(in srgb, var(--lowdit-night) 12%, transparent);
   padding: 1rem clamp(1rem, 4vw, 2rem);
 }
 
-.minigo-header__inner {
+.lowdit-header__inner, .lowdit-header__inner {
   max-width: var(--lowdit-content-default, 64rem);
   margin: 0 auto;
   display: flex;
@@ -27,24 +27,24 @@
 }
 
 @media (min-width: 48rem) {
-  .minigo-header__inner {
+.lowdit-header__inner, .lowdit-header__inner {
     flex-wrap: nowrap;
   }
 }
 
 /* L'en-tête suit la largeur du contenu (alignement gauche/droit). */
-body[class*="minigo--view-"] .minigo-header__inner {
+body[class*="lowdit--view-"] .lowdit-header__inner, body[class*="lowdit--view-"] .lowdit-header__inner {
   max-width: var(--lowdit-main-max, var(--lowdit-content-wide, 84rem));
 }
 
-.minigo-nav {
+.lowdit-nav, .lowdit-nav {
   flex: 1 1 auto;
   display: flex;
   justify-content: flex-end;
   min-width: 0;
 }
 
-.minigo-nav__list {
+.lowdit-nav__list, .lowdit-nav__list {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -61,25 +61,25 @@ body[class*="minigo--view-"] .minigo-header__inner {
 /* Petits écrans : la navigation occupe sa propre ligne sous le logo dès
    40 rem, avant que les libellés ne se tassent contre la marque. */
 @media (max-width: 39.9375rem) {
-  .minigo-nav {
+.lowdit-nav, .lowdit-nav {
     flex: 1 1 100%;
   }
 }
 
 @media (min-width: 48rem) {
-  .minigo-nav__list {
+.lowdit-nav__list, .lowdit-nav__list {
     flex-wrap: nowrap;
     gap: 0.35rem 1rem;
     font-size: 0.9rem;
   }
 }
 
-.minigo-nav__list li {
+.lowdit-nav__list li, .lowdit-nav__list li {
   margin: 0;
   text-wrap: nowrap;
 }
 
-.minigo-nav a {
+.lowdit-nav a, .lowdit-nav a {
   display: inline-flex;
   align-items: center;
   min-height: 1.5rem;
@@ -88,38 +88,38 @@ body[class*="minigo--view-"] .minigo-header__inner {
   font-weight: 500;
 }
 
-.minigo-nav a:hover,
-.minigo-nav a[aria-current="page"] {
+.lowdit-nav a:hover,
+.lowdit-nav a[aria-current="page"], .lowdit-nav a[aria-current="page"] {
   color: var(--lowdit-violet);
 }
 
 /* Zones tactiles : sur téléphone et tablette, les entrées de menu visent
    44 × 44 px (recommandation doigt), avec une typographie à 1 rem. */
 @media (max-width: 48rem) {
-  .minigo-nav__list {
+.lowdit-nav__list, .lowdit-nav__list {
     gap: 0 0.5rem;
     font-size: 1rem;
   }
 
-  .minigo-nav__list li {
+.lowdit-nav__list li, .lowdit-nav__list li {
     display: flex;
   }
 
-  .minigo-nav a {
+.lowdit-nav a, .lowdit-nav a {
     min-height: 44px;
     padding-inline: 0.5rem;
   }
 
-  .minigo-logo {
+.lowdit-logo, .lowdit-logo {
     min-height: 44px;
   }
 }
 
-.minigo-logo {
+.lowdit-logo, .lowdit-logo {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--lowdit-font-logo, "Optician Sans", "Subjectivity", ui-sans-serif, system-ui, sans-serif);
+  font-family: var(--lowdit-font-logo, "Optician Sans", ui-sans-serif, system-ui, sans-serif);
   font-weight: 700;
   color: var(--lowdit-night);
   text-decoration: none;
@@ -137,13 +137,11 @@ body[class*="minigo--view-"] .minigo-header__inner {
 
 /* Titre du site (texte issu du partial lowdit/logo.html) :
    rôle TITRAGE (--lowdit-font-display), jamais --lowdit-font-logo.
-   « Optician Sans » (rôle logo) ne contient AUCUN accent (111 glyphes ASCII) :
-   un titre comme « Formations accessibilité » serait rendu caractère par
-   caractère en mélange avec le repli système. Subjectivity couvre le français
-   (accents, ç) — cf. brand/TYPOGRAPHIE.md. */
+   « Optician Sans » (rôle logo) ne contient AUCUN accent : un titre éditorial
+   reste donc sur --lowdit-font-display. */
 .lowdit-logo__name {
   display: inline-block;
-  font-family: var(--lowdit-font-display, "Subjectivity", ui-sans-serif, system-ui, sans-serif);
+  font-family: var(--lowdit-font-display, "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif);
 }
 
 /* Liens de marque dans les thèmes dérivés (sligo, fromago, resugo) */
@@ -151,22 +149,22 @@ body[class*="minigo--view-"] .minigo-header__inner {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  font-family: var(--lowdit-font-logo, "Optician Sans", "Subjectivity", ui-sans-serif, system-ui, sans-serif);
+  font-family: var(--lowdit-font-logo, "Optician Sans", ui-sans-serif, system-ui, sans-serif);
   font-weight: 700;
 }
 
-.minigo-logo:hover {
+.lowdit-logo:hover, .lowdit-logo:hover {
   color: var(--lowdit-violet);
 }
 
-.minigo-search {
+.lowdit-search {
   flex: 0 1 16rem;
   width: 100%;
   max-width: 20rem;
   margin-inline-start: auto;
 }
 
-.minigo-search input {
+.lowdit-search input {
   width: 100%;
   padding: 0.5rem 0.75rem;
   border: 1px solid var(--lowdit-muted);
@@ -174,102 +172,33 @@ body[class*="minigo--view-"] .minigo-header__inner {
   font: inherit;
 }
 
-.minigo-main {
+.lowdit-main, .lowdit-main {
   max-width: var(--lowdit-content-default, 64rem);
   margin: 0 auto;
-  padding: 1.5rem clamp(1rem, 4vw, 2rem) 3rem;
+  padding: 0 clamp(1rem, 4vw, 2rem) 3rem;
 }
 
-.minigo-main > h2 {
+.lowdit-main > h2, .lowdit-main > h2 {
   margin-block: 2.25rem 1rem;
 }
 
-.minigo-main > h2:first-of-type {
+.lowdit-main > h2:first-of-type, .lowdit-main > h2:first-of-type {
   margin-block-start: 1.75rem;
 }
 
-.minigo-card-grid {
-  display: grid;
-  gap: var(--lowdit-grid-gap-lg, 1.75rem);
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+/* Grille + coque cartes : assets/css/components/card.css (Brand charge en tête).
+   Ici : repli minimal si card.css absent (moteurs hors Brand). */
+.lowdit-cards, .lowdit-card-grid {
   list-style: none;
   padding: 0;
   margin-block: 0.75rem 2.75rem;
 }
 
-.minigo-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+.lowdit-card, .lowdit-card {
   min-block-size: 7.5rem;
-  /* Repli d'abord (token) ; color-mix ensuite — vieux moteurs reçoivent la
-     base, les récents l'affinage. Voir CSS-ARCHITECTURE.md « Choix de codage ». */
-  border: 2px solid var(--lowdit-border-subtle, #e3ddd0);
-  border-color: color-mix(in srgb, var(--lowdit-night) 22%, var(--lowdit-border-subtle, #e3ddd0));
-  border-radius: var(--lowdit-radius-md, 10px);
-  padding: 1.35rem 1.45rem 1.45rem;
-  background: var(--lowdit-white);
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--lowdit-night) 10%, transparent);
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
 }
 
-/* Hover : seulement les cartes qui contiennent un lien (le lien s'étend à
-   toute la carte via ::after — le pointer « survole » bien le lien partout).
-   Sans :has(), le moteur ignore la règle entière — carte statique, rien ne casse. */
-.minigo-card:has(h3 a):hover {
-  border-color: var(--lowdit-violet);
-  border-color: color-mix(in srgb, var(--lowdit-violet) 35%, var(--lowdit-border-subtle));
-  box-shadow: 0 0.65rem 1.75rem color-mix(in srgb, var(--lowdit-night) 10%, transparent);
-  transform: translateY(-2px);
-}
-
-.minigo-card:focus-within:has(:focus-visible) {
-  border-color: var(--lowdit-violet);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lowdit-violet) 28%, transparent);
-}
-
-/* Titre de carte : toujours un h3 (heading réel pour les technologies
-   d'assistance) ; enfant-structurel, pas de classe dédiée. Le lien s'étend
-   à toute la carte via ::after — un seul lien, même zone cliquable qu'avant. */
-.minigo-card h3 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 800;
-  line-height: 1.28;
-  letter-spacing: -0.02em;
-  color: var(--lowdit-night);
-}
-
-.minigo-card h3 a {
-  color: var(--lowdit-night);
-  text-decoration: none;
-}
-
-.minigo-card h3 a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-}
-
-.minigo-card h3 a:hover {
-  color: var(--lowdit-violet);
-}
-
-.minigo-card h3 a:focus {
-  outline: none;
-}
-
-.minigo-card h3 a:focus-visible {
-  outline: 2px solid var(--lowdit-violet);
-  outline-offset: 3px;
-}
-
-.minigo-card__kicker {
+.lowdit-card__kicker, .lowdit-card__kicker {
   display: block;
   margin-block-end: 0.4rem;
   font-size: 0.8125rem;
@@ -279,32 +208,23 @@ body[class*="minigo--view-"] .minigo-header__inner {
   color: color-mix(in srgb, var(--lowdit-night) 62%, var(--lowdit-muted));
 }
 
-/* La levée au hover est un mouvement décoratif — garde locale de composant
-   (la garde globale reset.css ne neutralise que la durée, pas le déplacement). */
-@media (prefers-reduced-motion: reduce) {
-  .minigo-card:has(h3 a):hover {
-    transform: none;
-  }
-}
-
-.minigo-timeline {
+.lowdit-timeline, .lowdit-timeline {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.minigo-timeline li {
+.lowdit-timeline li, .lowdit-timeline li {
   padding: 1rem 0;
   border-bottom: 1px solid color-mix(in srgb, var(--lowdit-night) 8%, transparent);
 }
 
-.minigo-timeline time {
+.lowdit-timeline time, .lowdit-timeline time {
   color: var(--lowdit-muted);
   font-size: 0.9rem;
 }
 
-.minigo-summary,
-.minigo-card__summary {
+.lowdit-summary, .lowdit-summary {
   margin: 0.35rem 0 0;
   color: color-mix(in srgb, var(--lowdit-night) 78%, var(--lowdit-muted));
   max-width: 68ch;
@@ -312,27 +232,20 @@ body[class*="minigo--view-"] .minigo-header__inner {
   font-size: 0.9375rem;
 }
 
-/* Les liens du résumé restent cliquables : au-dessus du ::after étendu du
-   titre (la zone cliquable de la carte est un élément positionné). */
-.minigo-card__summary a {
+/* Liens secondaires dans une tuile (au-dessus du ::after du titre). */
+.lowdit-card__body a, .lowdit-card__summary a {
   position: relative;
   z-index: 1;
 }
 
-.minigo-card__meta {
-  margin: 0.25rem 0 0;
-  color: var(--lowdit-muted);
-  font-size: 0.9rem;
-}
-
-.minigo-exports {
+.lowdit-exports, .lowdit-exports {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: 1rem 0;
 }
 
-.minigo-exports a {
+.lowdit-exports a, .lowdit-exports a {
   display: inline-block;
   padding: 0.45rem 0.9rem;
   border-radius: var(--lowdit-radius-sm, 6px);
@@ -344,37 +257,37 @@ body[class*="minigo--view-"] .minigo-header__inner {
   font-size: 0.9rem;
 }
 
-.minigo-exports a:hover {
+.lowdit-exports a:hover, .lowdit-exports a:hover {
   background: color-mix(in srgb, var(--lowdit-violet) 26%, var(--lowdit-cream));
   border-color: var(--lowdit-violet);
 }
 
-.minigo-page-header {
+.lowdit-page-header, .lowdit-page-header {
   margin-bottom: 1.5rem;
 }
 
-.minigo-page-header h1 {
+.lowdit-page-header h1, .lowdit-page-header h1 {
   margin: 0 0 0.5rem;
 }
 
-.minigo-desc {
+.lowdit-desc, .lowdit-desc {
   color: var(--lowdit-muted);
   margin: 0;
 }
 
 /* Largeur par vue : voir css/views/*.css (priorité sur cette coque) */
-body[class*="minigo--view-"] .minigo-main {
+body[class*="lowdit--view-"] .lowdit-main, body[class*="lowdit--view-"] .lowdit-main {
   max-width: var(--lowdit-main-max, var(--lowdit-content-wide, 84rem));
 }
 
-/* Hero : panneau signature → charte-premium.css ; variante sans panneau : .minigo-hero--bare */
-.minigo-hero--bare {
+/* Hero : panneau signature → charte-premium.css ; variante sans panneau : .lowdit-hero--bare */
+.lowdit-hero--bare, .lowdit-hero--bare {
   margin: 0 0 2.5rem;
   padding: 2rem 0 1.5rem;
   border-bottom: 1px solid color-mix(in srgb, var(--lowdit-night) 10%, transparent);
 }
 
-.minigo-hero__eyebrow {
+.lowdit-hero__eyebrow, .lowdit-hero__eyebrow {
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: var(--lowdit-tracking-eyebrow, 0.06em);
@@ -383,12 +296,12 @@ body[class*="minigo--view-"] .minigo-main {
   margin: 0 0 0.75rem;
 }
 
-.minigo-hero h1 {
+.lowdit-hero h1, .lowdit-hero h1 {
   line-height: 1.15;
   margin: 0 0 1rem;
 }
 
-.minigo-hero__lead {
+.lowdit-hero__lead, .lowdit-hero__lead {
   font-size: 1.125rem;
   line-height: 1.5;
   color: var(--lowdit-muted);
@@ -396,50 +309,50 @@ body[class*="minigo--view-"] .minigo-main {
   max-width: 38em;
 }
 
-.minigo-hero__intro {
+.lowdit-hero__intro, .lowdit-hero__intro {
   max-width: 40em;
   line-height: 1.55;
 }
 
-.minigo-hero--slides .minigo-hero__eyebrow { color: var(--lowdit-turquoise); }
-.minigo-hero--publisher .minigo-hero__eyebrow { color: var(--lowdit-night); }
-.minigo-hero--cv .minigo-hero__eyebrow { color: var(--lowdit-violet); }
+.lowdit-hero--slides .lowdit-hero__eyebrow { color: var(--lowdit-turquoise); }
+.lowdit-hero--publisher .lowdit-hero__eyebrow { color: var(--lowdit-night); }
+.lowdit-hero--cv .lowdit-hero__eyebrow { color: var(--lowdit-violet); }
 
-.minigo-hero__actions {
+.lowdit-hero__actions, .lowdit-hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--lowdit-space-3, 0.75rem);
   margin: var(--lowdit-space-5, 1.5rem) 0 0;
 }
 
-.minigo-home-section__head {
+.lowdit-home-section__head {
   margin-bottom: 1.25rem;
 }
 
-.minigo-home-section__head h2 {
+.lowdit-home-section__head h2 {
   margin: 0 0 0.35rem;
   font-size: 1.25rem;
 }
 
-.minigo-home-section__head p {
+.lowdit-home-section__head p {
   margin: 0;
   color: var(--lowdit-muted);
 }
 
-.minigo-home-section__more {
+.lowdit-home-section__more {
   margin: 1.25rem 0 0;
   font-weight: 600;
 }
 
-.minigo-home-section__more a {
+.lowdit-home-section__more a {
   text-decoration: none;
 }
 
-.minigo-home-section__more a:hover {
+.lowdit-home-section__more a:hover {
   text-decoration: underline;
 }
 
-.minigo-featured-book {
+.lowdit-featured-book {
   display: grid;
   gap: 1.5rem;
   margin: 0 0 2.5rem;
@@ -450,13 +363,13 @@ body[class*="minigo--view-"] .minigo-main {
 }
 
 @media (min-width: 40rem) {
-  .minigo-featured-book {
+.lowdit-featured-book {
     grid-template-columns: 1fr min(14rem, 35%);
     align-items: center;
   }
 }
 
-.minigo-featured-book__label {
+.lowdit-featured-book__label {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -464,70 +377,24 @@ body[class*="minigo--view-"] .minigo-main {
   color: var(--lowdit-muted);
 }
 
-.minigo-featured-book__desc {
+.lowdit-featured-book__desc {
   margin: 0 0 1rem;
   line-height: 1.5;
 }
 
-.minigo-featured-book__actions {
+.lowdit-featured-book__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin: 0;
 }
 
-.minigo-featured-book__cover .catalog-card__visual {
+.lowdit-featured-book__cover .catalog-card__visual {
   border-radius: 6px;
   aspect-ratio: 2 / 3;
 }
 
-.minigo-btn {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-decoration: none;
-}
-
-.minigo-btn--primary {
-  background: var(--lowdit-night);
-  color: var(--lowdit-white);
-}
-
-.minigo-btn--primary:hover {
-  background: var(--lowdit-violet);
-  color: var(--lowdit-white);
-}
-
-.minigo-btn--primary:active {
-  background: color-mix(in srgb, var(--lowdit-violet) 82%, var(--lowdit-night));
-}
-
-.minigo-btn--ghost {
-  border: 1px solid color-mix(in srgb, var(--lowdit-night) 25%, transparent);
-  color: var(--lowdit-night);
-}
-
-.minigo-btn--ghost:hover {
-  border-color: var(--lowdit-violet);
-  color: var(--lowdit-violet);
-}
-
-.minigo-btn--ghost:active {
-  background: color-mix(in srgb, var(--lowdit-night) 6%, transparent);
-}
-
-.minigo-btn:focus-visible {
-  outline: 2px solid var(--lowdit-violet);
-  outline-offset: 2px;
-}
-
-.minigo-btn:disabled,
-.minigo-btn[aria-disabled="true"] {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
+/* Boutons : contrat v2 dans assets/css/components/buttons.css (chargé après lowdit-shell.css). */
 
 .repogo-toc {
   margin-top: 2rem;

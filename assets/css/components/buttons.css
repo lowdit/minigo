@@ -1,8 +1,9 @@
 /* Boutons — contrat Brand Core v2-04.
-   Centrage : min-height + flex, line-height 1 — pas de padding block (évite le
-   décalage visuel avec Atkinson). Trim typo en @supports seulement. */
+   Vocabulaire canonique lowdit-btn ; lowdit-btn reste alias (palier C).
+   Centrage : min-height + flex, line-height 1. */
 
-.minigo-btn {
+.lowdit-btn,
+.lowdit-btn {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
@@ -17,84 +18,123 @@
   text-align: center;
   text-decoration: none;
   border: 2px solid transparent;
-  transition: var(--lowdit-transition-control, background-color 150ms ease, color 150ms ease,
-    border-color 150ms ease, box-shadow 150ms ease);
+  transition: var(
+    --lowdit-transition-control,
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease
+  );
 }
 
-/* Rogne les extérieurs typo quand le moteur le gère (sinon line-height: 1 suffit). */
 @supports (text-box-trim: trim-both) {
-  .minigo-btn {
+  .lowdit-btn,
+  .lowdit-btn {
     text-box-trim: trim-both;
     text-box-edge: cap alphabetic;
   }
 }
 
-.lowdit-product__content .minigo-btn,
-.minigo-main .minigo-btn {
+.doc-body .lowdit-btn,
+.doc-body .lowdit-btn,
+.lowdit-main .lowdit-btn,
+.lowdit-main .lowdit-btn {
   line-height: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.minigo-btn--primary {
+a.lowdit-btn--primary,
+a.lowdit-btn--primary,
+.lowdit-btn--primary,
+.lowdit-btn--primary {
   background: var(--lowdit-color-action);
   color: var(--lowdit-color-action-foreground);
   border-color: var(--lowdit-color-action);
 }
 
-.minigo-btn--ghost {
+.lowdit-btn--ghost,
+.lowdit-btn--ghost {
   border-color: var(--lowdit-color-border-component);
   color: var(--lowdit-color-text);
   background: var(--lowdit-color-surface);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .minigo-btn--primary:hover {
+  .lowdit-btn--primary:hover,
+  .lowdit-btn--primary:hover {
     background: var(--lowdit-color-surface);
     color: var(--lowdit-color-action);
     border-color: var(--lowdit-color-action);
     box-shadow: inset 0 0 0 1px var(--lowdit-color-action);
+    transform: scale(1.03);
   }
 
-  .minigo-btn--ghost:hover {
+  .lowdit-btn--ghost:hover,
+  .lowdit-btn--ghost:hover {
     border-color: var(--lowdit-color-action);
     background: color-mix(in srgb, var(--lowdit-color-action) 14%, var(--lowdit-color-surface));
     color: var(--lowdit-color-text);
     box-shadow: 0 0 0 1px var(--lowdit-color-action);
+    transform: scale(1.03);
   }
 }
 
-.minigo-btn--primary:active {
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
+  .lowdit-btn--primary:hover,
+  .lowdit-btn--primary:hover,
+  .lowdit-btn--ghost:hover,
+  .lowdit-btn--ghost:hover {
+    transform: none;
+  }
+}
+
+.lowdit-btn--primary:active,
+.lowdit-btn--primary:active {
   background: color-mix(in srgb, var(--lowdit-color-action) 88%, var(--lowdit-night));
   color: var(--lowdit-color-action-foreground);
   border-color: var(--lowdit-night);
   box-shadow: none;
 }
 
-.minigo-btn--ghost:active {
+.lowdit-btn--ghost:active,
+.lowdit-btn--ghost:active {
   background: color-mix(in srgb, var(--lowdit-color-text) 10%, var(--lowdit-color-surface));
   box-shadow: none;
 }
 
-.minigo-btn:focus-visible {
+@media (prefers-reduced-motion: no-preference) {
+  .lowdit-btn:active:not(:disabled):not([aria-disabled="true"]),
+  .lowdit-btn:active:not(:disabled):not([aria-disabled="true"]) {
+    transform: translateY(1px);
+  }
+}
+
+.lowdit-btn:focus-visible,
+.lowdit-btn:focus-visible {
   outline: 2px solid var(--lowdit-color-focus);
   outline-offset: 2px;
 }
 
-.minigo-btn:disabled,
-.minigo-btn[aria-disabled="true"] {
+.lowdit-btn:disabled,
+.lowdit-btn[aria-disabled="true"],
+.lowdit-btn:disabled,
+.lowdit-btn[aria-disabled="true"] {
   opacity: 0.55;
   cursor: not-allowed;
 }
 
-.minigo-btn:disabled:hover,
-.minigo-btn[aria-disabled="true"]:hover {
+.lowdit-btn:disabled:hover,
+.lowdit-btn[aria-disabled="true"]:hover,
+.lowdit-btn:disabled:hover,
+.lowdit-btn[aria-disabled="true"]:hover {
   box-shadow: none;
 }
 
-/* Icône seule : carré tactile, centrage identique */
-.minigo-btn--icon-only {
+.lowdit-btn--icon-only,
+.lowdit-btn--icon-only {
   padding-inline: 0;
   width: 2.75rem;
   min-width: 2.75rem;

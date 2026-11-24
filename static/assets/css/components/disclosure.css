@@ -13,9 +13,9 @@
 
 .lowdit-disclosure > button {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--lowdit-space-4, 1rem);
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--lowdit-space-3, 0.75rem);
   width: 100%;
   margin: 0;
   padding: 0.75rem 1rem;
@@ -43,14 +43,16 @@
   outline-offset: 2px;
 }
 
-.lowdit-disclosure > button::after {
+/* Indicateur en tête de ligne (ordre de lecture / ACL disclosure — avant le libellé). */
+.lowdit-disclosure > button::before {
   content: "\25b8";
+  margin-top: 0.12em;
   color: var(--lowdit-color-link, var(--lowdit-violet, #5b3df5));
-  transition: transform 0.15s ease;
+  transition: var(--lowdit-transition-disclosure-icon, transform 150ms ease);
   flex-shrink: 0;
 }
 
-.lowdit-disclosure > button[aria-expanded="true"]::after {
+.lowdit-disclosure > button[aria-expanded="true"]::before {
   transform: rotate(90deg);
 }
 

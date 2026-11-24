@@ -8,31 +8,9 @@
   --lowdit-cq-xl: 64rem;
 }
 
-/* --- Gabarits nommés (largeur + mesure) ------------------------------- */
-
-.lowdit-layout {
-  width: min(100% - var(--lowdit-page-gutter) * 2, var(--lowdit-content-default));
-  margin-inline: auto;
-}
-
-.lowdit-layout--reading {
-  width: min(100% - var(--lowdit-page-gutter) * 2, var(--lowdit-content-narrow));
-  max-width: var(--lowdit-measure);
-}
-
-.lowdit-layout--standard {
-  width: min(100% - var(--lowdit-page-gutter) * 2, var(--lowdit-content-default));
-}
-
-.lowdit-layout--catalog {
-  width: min(100% - var(--lowdit-page-gutter) * 2, var(--lowdit-content-wide));
-}
-
-.lowdit-layout--studio {
-  width: min(100% - var(--lowdit-page-gutter) * 2, var(--lowdit-content-full));
-}
-
-/* --- Container queries ------------------------------------------------ */
+/* --- Compositions de largeur -------------------------------------------
+   Les anciennes classes `lowdit-layout-*` sont retirées : la posture se lit sur `data-layout` (`.lowdit-product[data-layout]`). Utiliser
+   `.wrapper` avec `data-width="reading|wide|full"`. *//* --- Container queries ------------------------------------------------ */
 
 .lowdit-cq {
   container-type: inline-size;

@@ -40,15 +40,19 @@ details.lowdit-accordion > summary,
   padding: 0.75rem 1rem;
   font-weight: 600;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--lowdit-space-3, 0.75rem);
 }
 
 details.lowdit-accordion > summary :is(h2, h3, h4, h5),
-.lowdit-accordion > details > summary :is(h2, h3, h4, h5) {
+.lowdit-accordion > details > summary :is(h2, h3, h4, h5),
+.doc-body .lowdit-accordion summary :is(h2, h3, h4, h5) {
   margin: 0;
+  margin-top: 0;
   font: inherit;
+  font-size: inherit;
+  line-height: inherit;
   font-weight: 600;
 }
 
@@ -57,19 +61,33 @@ details.lowdit-accordion > summary::-webkit-details-marker,
   display: none;
 }
 
-details.lowdit-accordion > summary::after,
-.lowdit-accordion > details > summary::after {
-  content: "+";
+/* Indicateur en tête de ligne — aligné disclosure (.lowdit-disclosure > button::before). */
+details.lowdit-accordion > summary::before,
+.lowdit-accordion > details > summary::before {
+  content: "\25b8";
+  margin-top: 0.12em;
   font-weight: 400;
-  font-size: 1.25rem;
   line-height: 1;
   color: var(--lowdit-color-link, var(--lowdit-violet, #5b3df5));
   flex-shrink: 0;
+  transition: var(--lowdit-transition-disclosure-icon, transform 150ms ease);
 }
 
-details.lowdit-accordion[open] > summary::after,
-.lowdit-accordion > details[open] > summary::after {
-  content: "\2212";
+details.lowdit-accordion[open] > summary::before,
+.lowdit-accordion > details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+@supports selector(::details-content) {
+  @media (prefers-reduced-motion: no-preference) {
+    details.lowdit-accordion::details-content,
+    .lowdit-accordion > details::details-content {
+      overflow: clip;
+      transition:
+        height var(--lowdit-duration-ui, 200ms) var(--lowdit-ease-out, ease-out),
+        opacity var(--lowdit-duration-ui, 200ms) var(--lowdit-ease-out, ease-out);
+    }
+  }
 }
 
 details.lowdit-accordion > summary:focus-visible,
