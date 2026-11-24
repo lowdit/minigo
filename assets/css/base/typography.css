@@ -123,18 +123,11 @@ ol {
   list-style: none;
 }
 
-/* Rythme des listes de prose. Les menus, grilles et listes de cartes sont des
-   listes eux aussi : un margin-block-start y décale les éléments (le premier
-   reste en place, les suivants descendent) et casse l'alignement des rangées. */
-li + li {
+/* Rythme des listes de prose, et d'elles seules : une liste sans classe hors
+   navigation (Markdown). Une liste à classe est un composant : elle porte son
+   propre espacement (gap), sans exception à maintenir ici. Spécificité 0,0,2. */
+:where(ul:not([class], nav *), ol:not([class], nav *)) > li + li {
   margin-block-start: 0.3rem;
-}
-
-:is(nav, .cluster, .lowdit-cards, .lowdit-timeline, .feature-grid,
-    .comparison-board, .zone-slots, .lowdit-prev-next__list,
-    .lowdit-breadcrumb__list, .doc-nav ul, .lowdit-nav__list,
-    .lowdit-swatches, .lowdit-gallery-grid) li + li {
-  margin-block-start: 0;
 }
 
 /* --- Listes de définitions (restaurées après le reset) -------------------- */
@@ -180,8 +173,7 @@ figcaption {
 
 /* --- Petit texte, annotations --------------------------------------------- */
 
-small,
-.lowdit-small {
+small {
   font-size: var(--lowdit-type-sm);
 }
 

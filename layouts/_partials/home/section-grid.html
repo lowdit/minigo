@@ -3,7 +3,7 @@
 {{- $exclude := site.Params.lowdit.homeExcludeSections | default $defaultExclude -}}
 {{ if site.Sections }}
   <h2>{{ i18n "section-sections" }}</h2>
-  <ul class="minigo-card-grid">
+  <ul class="minigo-card-grid grid">
     {{- range site.Sections -}}
       {{- $show := .Params.lowdit.showOnHome | default true -}}
       {{- if and $show (not (in $exclude .Section)) -}}

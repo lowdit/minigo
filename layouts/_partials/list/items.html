@@ -2,7 +2,7 @@
 {{- $style := .style | default "timeline" -}}
 {{- $flags := partial "lowdit/display-flags.html" . -}}
 {{- if eq $style "cards" -}}
-<ul class="minigo-card-grid">
+<ul class="minigo-card-grid grid">
   {{- range $pages -}}
     {{- $sum := "" -}}
     {{- with .Description -}}{{- $sum = . -}}{{- else -}}{{- $sum = .Summary | plainify -}}{{- end -}}
@@ -14,7 +14,7 @@
   {{- end -}}
 </ul>
 {{- else -}}
-<ul class="minigo-timeline">
+<ul class="minigo-timeline stack" data-space="1">
   {{- range $pages -}}
     {{- $sum := "" -}}
     {{- with .Description -}}{{- $sum = . -}}{{- else -}}{{- $sum = .Summary | plainify -}}{{- end -}}
