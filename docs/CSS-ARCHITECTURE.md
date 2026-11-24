@@ -10,9 +10,11 @@ ou chemins statiques). Volonté lowtech — pas de SCSS/PostCSS.
 |---|---|---|---|
 | 1 | settings | `assets/css/tokens/*.css` (+ `lowdit-colors.css`) | Variables CSS (couleurs, layout, motion, elevation) — chargées par le partial `lowdit/view-tokens.html`, **avant** reset/base. |
 | 2 | generic | `assets/css/base/reset.css` | Reset navigateur neutre (box-sizing, `scrollbar-gutter: stable` sur `html`, marges, listes, médias, reduced-motion). Aucune marque ni composant. |
-| 3 | elements | `assets/css/base/typography.css` puis `assets/css/lowdit-base.css` | **Typographie fluide** (`clamp`) : taille des titres, corps, `dl/dt/dd`, citations, code — rétablit ce que le reset neutralise (`h1..h6 { font-size: inherit }`). Puis familles/interlignes et prose des éléments. |
+| 3 | elements | `assets/css/base/typography.css` puis `assets/css/lowdit-base.css` | **Typographie fluide** (`clamp`) : taille des titres, corps, `dl/dt/dd`, citations, code — rétablit ce que le reset neutralise (`h1..h6 { font-size: inherit }`). Puis familles/interlignes et prose des éléments, dont les tableaux natifs et `.doc-body`. |
+| 3b | compositions | `assets/css/compositions.css` | Relations de layout réutilisables : `.stack`, `.cluster`, `.grid`, `.wrapper`, `.with-sidebar`. Chargées avant les vues et composants. |
 | 4 | system + views | `assets/css/lowdit-system.css`, `assets/css/views/*.css` | Système partagé puis vues produit (publisher, cv-vitrine, deck-studio, inquiry, catalog, thinktank) |
-| 5 | components | `assets/css/minigo.css` | Composants de la coque commune (header, nav, hero, listes, grilles) |
+| 5 | components | `assets/css/minigo.css` | Coque commune (header, nav, hero, listes, grilles) — **pas** les boutons |
+| 5b | components | `assets/css/components/buttons.css` | Contrat bouton v2 (sync Brand) ; charge **après** `minigo.css` |
 | 6 | utilities | `assets/css/utils.css` | Classes utilitaires réutilisables (skip-links). En dernier : elles peuvent surcharger sans `!important`. |
 | 7 | doc | `assets/css/product-doc.css` | Habillage des pages de documentation produit |
 | 8 | site | `assets/css/site-overrides.css` | **Optionnel, côté site** : surcharges d'un site consommant le thème (hook dans le baseof — ne jamais forker le baseof) |
@@ -20,7 +22,7 @@ ou chemins statiques). Volonté lowtech — pas de SCSS/PostCSS.
 ## Accessibilité (exigence)
 
 Toute modification de couche (tokens, base, composants, utilities) suit la **stratégie a11y thème** : [`A11Y-DEVELOPMENT.md`](A11Y-DEVELOPMENT.md) · [`../../lowtech-dev-method/docs/STRATEGIE-A11Y-THEME-MINIGO.md`](../../lowtech-dev-method/docs/STRATEGIE-A11Y-THEME-MINIGO.md).  
-Attention aux **conflits de spécificité** entre prose (`.lowdit-product__content a`) et composants (`a.minigo-btn`).
+Attention aux **conflits de spécificité** entre prose (`.doc-body a`) et composants (`a.minigo-btn`).
 
 ## Schémas de couleur (2026-11-02)
 
@@ -35,6 +37,20 @@ Arbitrage **progressif** (option A étendue) — voir [`../../lowdit-brand/brand
 | Exceptions | Frago Overgo (OS direct), Higo (`data-theme` + JS), Sligo decks (`colorway`) — documentées dans l'inventaire Brand. |
 
 La prose de base (`lowdit-base.css`) et `html` consomment les rôles sémantiques ; le reste de la coque migre incrément par incrément.
+
+## Exceptions locales au moteur Minigo
+
+Ces règles appartiennent à Minigo, pas au Brand Core. Elles ne sont pas
+synchronisées depuis `lowdit-brand/assets/css/`.
+
+| Fichier | Propriétaire | Contrat |
+| --- | --- | --- |
+| `assets/css/product-doc.css` | Minigo | Habillage documentaire : `.lowdit-product` (contexte), `.with-sidebar`, `.doc-nav`, `.doc-body`. Aucun `lowdit-product__*`. |
+| `assets/css/site-overrides.css` | Minigo / site consommateur | Surcharges optionnelles chargées en dernier ; ne pas y redéfinir les compositions Brand. |
+| `assets/css/views/*.css` | Minigo | Posture éditoriale d’une vue (`minigo--view-*`). |
+
+Une exception locale ne peut pas redéfinir `.stack`, `.grid`, `.wrapper`, les
+tokens ou les blocks Brand.
 
 ## Règles
 
@@ -58,7 +74,7 @@ bloc `.minigo-card` en session directe.
    ajouts ciblés si besoin. Les **utilities** (`utils.css`) restent pour les
    primitives hors composant (skip-links, `.visually-hidden`). La maintenance
    se fait par **bloc**, pas par catalogue de classes d'éléments.
-2. **Prose vs composants** — la prose (`.lowdit-product__content`, etc.) style
+2. **Prose vs composants** — la prose (`.doc-body`, `.minigo-body`, etc.) style
    les titres avec `:where(h2, h3, …)` pour garder une **spécificité basse**.
    Les règles du composant, plus précises (ex.
    `.lowdit-accordion > details > summary h3`), emportent sans astuce BEM ni

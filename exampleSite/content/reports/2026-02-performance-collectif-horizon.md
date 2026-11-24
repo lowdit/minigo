@@ -71,18 +71,3 @@ Ce diagramme résume l’enchaînement **mesurer → borner → optimiser → su
 ## Cadre de suivi
 
 Un tableau de bord public interne sera mis à jour chaque semaine. Les objectifs sont revus à mi-parcours afin d’ajuster le tir selon les premiers résultats mesurés.
-
-<style>
-.wave {
-  display: flex;
-  gap: 8px;
-  margin: 1.5rem 0;
-}
-.wave span {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: currentColor;
-  opacity: 0.6;
-}
-</style>
