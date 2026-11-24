@@ -1,0 +1,16 @@
+{{/* Sections accueil — composition `grid` + data-spotlight (pas BEM --featured). */}}
+{{- $defaultExclude := slice "installation" "categories" "tags" "brand" "docs" -}}
+{{- $exclude := site.Params.lowdit.homeExcludeSections | default $defaultExclude -}}
+{{ if site.Sections }}
+  <ul class="lowdit-cards">
+    {{- range site.Sections -}}
+      {{- $show := .Params.lowdit.showOnHome | default true -}}
+      {{- if and $show (not (in $exclude .Section)) -}}
+    <li class="lowdit-card{{- if eq .Section "fondations" }} lowdit-card--ref{{ end }}"{{- if eq .Section "fondations" }} data-spotlight{{ end }}>
+      <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+      {{ with .Description }}<p class="lowdit-card__body">{{ . }}</p>{{ end }}
+    </li>
+      {{- end -}}
+    {{- end -}}
+  </ul>
+{{ end }}

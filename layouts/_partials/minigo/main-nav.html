@@ -1,6 +1,6 @@
 {{- with site.Menus.main -}}
-<nav class="minigo-nav" aria-label="{{ i18n "nav-main" | default "Navigation principale" }}">
-  <ul class="minigo-nav__list">
+<nav class="lowdit-nav minigo-nav" aria-label="{{ i18n "nav-main" | default "Navigation principale" }}">
+  <ul class="lowdit-nav__list minigo-nav__list">
     {{- range . -}}
       {{- $install := or (eq .Identifier "installation") (strings.Contains .URL "installation") -}}
       {{- if not $install -}}
@@ -10,7 +10,7 @@
     {{- range . -}}
       {{- $install := or (eq .Identifier "installation") (strings.Contains .URL "installation") -}}
       {{- if $install -}}
-    <li class="minigo-nav__item--installation"><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+    <li class="lowdit-nav__item--installation minigo-nav__item--installation"><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
       {{- end -}}
     {{- end -}}
   </ul>

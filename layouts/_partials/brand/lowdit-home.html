@@ -1,0 +1,73 @@
+{{/* Accueil Brand — composition éditoriale (cibles + vitrine Lowdit), pas grille DS générique. */}}
+<div class="lowdit-home">
+
+  <header class="lowdit-home__hero lowdit-home__immersive region" data-surface="cream">
+    <div class="lowdit-home__hero-layout">
+      <div class="lowdit-home__hero-copy stack" data-space="3">
+        <p class="lowdit-eyebrow">{{ site.Params.lowdit.homeEyebrow | default "Design system" }}</p>
+        <h1>{{ .Title }}</h1>
+        {{ with .Description }}<p class="lowdit-home__hero-lead">{{ . }}</p>{{ end }}
+        <div class="cluster" data-space="2">
+          <a class="lowdit-btn lowdit-btn--primary" href="/guides/starter-kit/">Démarrer le starter kit</a>
+          <a class="lowdit-btn lowdit-btn--ghost" href="/cibles/">Voir les cibles premium</a>
+        </div>
+        <nav class="lowdit-home__parcours cluster" data-space="2" aria-label="Parcours depuis l’accueil">
+          <a class="lowdit-btn lowdit-btn--ghost" href="/brand/intention/">Découvrir</a>
+          <a class="lowdit-btn lowdit-btn--ghost" href="/fondations/composition/">Concevoir</a>
+          <a class="lowdit-btn lowdit-btn--ghost" href="/guides/developpeurs/">Intégrer</a>
+          <a class="lowdit-btn lowdit-btn--ghost" href="/qualite/">Vérifier</a>
+        </nav>
+      </div>
+      <a class="lowdit-home__planche" href="/univers/planche/">
+        <img src="{{ "boards/planche-reference-utilisateur.png" | relURL }}" width="960" height="720" alt="" decoding="async">
+        <span class="lowdit-home__planche-caption">Planche univers — voir en détail</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="lowdit-home__spotlight lowdit-home__immersive region" aria-labelledby="lowdit-home__spotlight-title">
+    <div class="lowdit-home__spotlight-inner stack" data-space="3">
+      <p class="lowdit-eyebrow" id="lowdit-home__spotlight-title">Ce que le kit produit</p>
+      <div class="with-sidebar lowdit-home__spotlight-layout">
+        <div class="lowdit-home__spotlight-cover" role="img" aria-label="Couverture type édition Repogo"></div>
+        <div class="stack" data-space="2">
+          <h2 class="lowdit-home__spotlight-title">Des surfaces éditoriales, pas des écrans SaaS</h2>
+          <p>Publisher, observatoire, deck : trois <a href="/cibles/">cibles codées</a> calent la composition avant d’élargir le catalogue de composants.</p>
+          <div class="cluster" data-space="2">
+            <a class="lowdit-btn lowdit-btn--primary" href="/cibles/livre/">Cible livre</a>
+            <a class="lowdit-btn lowdit-btn--ghost" href="/fondations/">Fondations</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lowdit-home__paths lowdit-home__immersive region" data-surface="cream" aria-labelledby="lowdit-home__paths-title">
+    <h2 id="lowdit-home__paths-title" class="visually-hidden">Par métier</h2>
+    <ul class="lowdit-cards" data-columns="2">
+      <li class="lowdit-card">
+        <p class="lowdit-eyebrow">Designers</p>
+        <h3 class="lowdit-card__title"><a href="/fondations/">Tokens, planche, intention graphique</a></h3>
+        <p class="lowdit-card__body">Une famille, un accent par écran — les refs sites servent le <a href="/guides/references-design-premium/">rythme</a>, pas la charte copiée.</p>
+      </li>
+      <li class="lowdit-card">
+        <p class="lowdit-eyebrow">Développeurs</p>
+        <h3 class="lowdit-card__title"><a href="/composants/">Composants Hugo et sync Minigo</a></h3>
+        <p class="lowdit-card__body">Partials accessibles, <code>sync-brand.sh</code>, vues <code>params.lowdit.view</code> — builds statiques, signaux rejouables.</p>
+      </li>
+    </ul>
+  </section>
+
+  {{ partial "brand/ds-diagram-strip.html" . }}
+
+  <section class="lowdit-home__explore lowdit-home__immersive stack region" data-surface="cream" data-space="3" aria-labelledby="lowdit-home__explore-title">
+    <h2 id="lowdit-home__explore-title">Sections du design system</h2>
+    {{ partial "brand/lowdit-home-sections.html" . }}
+  </section>
+
+  {{ with .Content }}
+  <div class="lowdit-home__extra doc-body">{{ . }}</div>
+  {{ end }}
+
+  <p class="lowdit-home__ref lowdit-meta"><small>Lowdit — vitrine éditoriale et kit DS. Méthode : <a href="/docs/process-charte/">cycle premium lowtech</a>.</small></p>
+</div>

@@ -1,4 +1,7 @@
-{{/* Retourne le nom de vue CSS (sans extension). */}}
+{{/*
+  Retourne le nom de vue CSS (sans extension).
+  Pedago / books : siteProfile publisher + view publisher ; layouts thème pedago/repogo priment.
+*/}}
 {{- $explicit := site.Params.lowdit.view | default site.Params.lowdit.skin | default "" -}}
 {{- if eq $explicit "none" -}}
   {{- "" -}}

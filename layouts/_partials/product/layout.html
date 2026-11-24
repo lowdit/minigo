@@ -1,5 +1,5 @@
 <article class="lowdit-product">
-  <header class="minigo-hero">
+  <header class="content-hero minigo-hero">
     <p class="minigo-hero__eyebrow">{{ i18n "product-eyebrow" | default "Installation" }}</p>
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="minigo-hero__lead">{{ . }}</p>{{ end }}
@@ -7,8 +7,8 @@
   {{- $section := .CurrentSection -}}
   {{- $children := slice -}}
   {{- with $section -}}{{- $children = .Pages.ByWeight -}}{{- end -}}
-  <div class="lowdit-product__layout">
-    <nav class="lowdit-product__nav" aria-label="{{ i18n "product-nav" | default "Documentation d'installation" }}">
+  <div class="with-sidebar">
+    <nav class="doc-nav" aria-label="{{ i18n "product-nav" | default "Documentation d'installation" }}">
       <ul>
         {{- if $children -}}
           <li>
@@ -47,7 +47,7 @@
         {{- end -}}
       </ul>
     </nav>
-    <div class="lowdit-product__content minigo-intro">
+    <div class="doc-body">
       {{ .Content }}
     </div>
   </div>

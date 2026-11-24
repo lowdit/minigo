@@ -1,0 +1,15 @@
+{{/* Routage accueil : params.lowdit.homeLayout */}}
+{{- $hl := site.Params.lowdit.homeLayout | default "lowdit-home" -}}
+{{- if eq $hl "hub-shell" -}}
+  {{ partial "lowdit/home-hub-shell.html" . }}
+{{- else if eq $hl "pedago-rail" -}}
+  <article class="lowdit-product doc-body hub-shell hub-shell--pedago-rail">
+    <p class="lowdit-eyebrow">homeLayout <code>pedago-rail</code></p>
+    <p>Sur un site <strong>pedago</strong>, l’accueil est fourni par le thème
+      (<code>theme = [&quot;pedago&quot;, &quot;minigo&quot;, …]</code>).
+      La coque Lowdit fournit tokens et <code>view = publisher</code>.</p>
+    {{- with .Content -}}<div class="zone-slot zone-slot--main">{{ . }}</div>{{- end -}}
+  </article>
+{{- else -}}
+  {{ partial "brand/lowdit-home.html" . }}
+{{- end -}}

@@ -1,0 +1,9 @@
+{{/* Accueil type hub : slots depuis le front matter de content/_index.md */}}
+{{ partial "lowdit/hub-shell.html" (dict
+  "ctx" .
+  "spotlight" (.Params.spotlight | default "")
+  "feature" (.Params.feature | default "")
+  "aside" (.Params.aside | default "")
+  "heroLayout" (.Params.heroLayout | default "")
+  "slotsLayout" (.Params.slotsLayout | default "aside-main")
+) }}

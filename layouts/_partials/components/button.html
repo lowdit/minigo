@@ -1,0 +1,16 @@
+{{- $variant := .variant | default "primary" -}}
+{{- $class := printf "lowdit-btn lowdit-btn--%s" $variant -}}
+{{- if .class -}}{{- $class = printf "%s %s" $class .class -}}{{- end -}}
+{{- $disabled := .disabled -}}
+{{- $supplement := .supplement -}}
+{{- if .href -}}
+<a class="{{ $class }}" href="{{ .href }}"
+   {{- if $disabled }} aria-disabled="true" tabindex="-1"{{ end -}}
+   {{- if .external }} target="_blank" rel="noopener noreferrer"{{ end -}}
+   {{- if .download }} download{{ end -}}
+   >{{ .text }}{{- if $supplement }} {{ $supplement }}{{- end -}}{{- if .external }} (nouvelle fenêtre){{- end -}}</a>
+{{- else -}}
+<button type="{{ .type | default "button" }}" class="{{ $class }}"
+        {{- if $disabled }} disabled{{ end -}}
+        >{{ .text }}{{- if $supplement }} {{ $supplement }}{{- end -}}</button>
+{{- end -}}
