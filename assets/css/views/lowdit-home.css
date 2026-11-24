@@ -78,6 +78,7 @@
 }
 
 .lowdit-home__hero.lowdit-home__immersive .lowdit-home__hero-layout,
+.lowdit-home .brand-preview.lowdit-home__immersive .brand-preview__layout,
 .lowdit-home__paths.lowdit-home__immersive .lowdit-home__paths__list,
 .lowdit-home__spotlight.lowdit-home__immersive .lowdit-home__spotlight-inner,
 .lowdit-home__explore.lowdit-home__immersive > :is(h2, ul) {
