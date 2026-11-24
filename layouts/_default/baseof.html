@@ -11,25 +11,13 @@
   {{ partial "lowdit/diagrams.html" . }}
   <link rel="stylesheet" href="{{ "assets/css/fonts.css" | relURL }}">
   {{/* Ordre ITCSS des fondations (voir docs/CSS-ARCHITECTURE.md) :
-       settings (tokens, view-tokens) → generic (reset) →
-       elements (typography, lowdit-base) → compositions →
+       settings (tokens, view-tokens) →
+       overgo (reset, éléments, prose) → compositions →
        system + views (view-styles) → components (lowdit-shell.css) →
        utilities (utils.css) → product-doc → site-overrides (site). */}}
   {{ partial "lowdit/view-tokens.html" . }}
   {{ partial "lowdit/theme-vars.html" . }}
-  {{ with resources.Get "css/base/reset.css" }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{ end }}
-  {{/* Couche « elements » : échelle typographique fluide (taille des titres,
-       rythme de base) — rétablit ce que le reset neutralise. */}}
-  {{ with resources.Get "css/base/typography.css" }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{ end }}
-  {{ with resources.Get "css/lowdit-base.css" }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{ else }}
-    <link rel="stylesheet" href="{{ "assets/css/lowdit-base.css" | relURL }}">
-  {{ end }}
+  {{ partial "lowdit/overgo.html" . }}
   {{/* Couche « compositions » (ITCSS) : .stack, .cluster, .grid, .wrapper,
        .with-sidebar — relations de layout réutilisables, avant composants. */}}
   {{ with resources.Get "css/compositions.css" }}
