@@ -9,7 +9,7 @@
 
    Placée après le reset et AVANT `lowdit-base.css` (elements) : ce dernier
    affine familles et interlignes, et les contextes de prose
-   (`.minigo-body`, `.minigo-intro`, `.lowdit-product__content`) gardent la
+   (`.minigo-body`, `.minigo-intro`, `.doc-body`) gardent la
    main sur les titres internes (spécificité supérieure).
 
    Volonté lowtech : aucune classe requise, aucun build, `clamp()` pour le
@@ -116,15 +116,25 @@ ol {
 
 /* Listes composants : pas d'indentation « prose » (nav, grilles, doc). */
 .minigo-nav__list,
-.lowdit-product__nav ul,
+.doc-nav ul,
 .minigo-card-grid,
 .minigo-timeline {
   padding-inline-start: 0;
   list-style: none;
 }
 
+/* Rythme des listes de prose. Les menus, grilles et listes de cartes sont des
+   listes eux aussi : un margin-block-start y décale les éléments et casse
+   l'alignement des rangées. */
 li + li {
   margin-block-start: 0.3rem;
+}
+
+:is(nav, .cluster, .lowdit-cards, .lowdit-timeline, .feature-grid,
+    .comparison-board, .zone-slots, .lowdit-prev-next__list,
+    .lowdit-breadcrumb__list, .doc-nav ul, .lowdit-nav__list,
+    .lowdit-swatches, .lowdit-gallery-grid) li + li {
+  margin-block-start: 0;
 }
 
 /* --- Listes de définitions (restaurées après le reset) -------------------- */

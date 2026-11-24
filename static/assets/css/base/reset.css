@@ -17,6 +17,8 @@
 html {
   -webkit-text-size-adjust: 100%;
   tab-size: 4;
+  /* Réserve la gouttière scroll : moins de saut horizontal quand le contenu dépasse. */
+  scrollbar-gutter: stable;
 }
 
 body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd {
