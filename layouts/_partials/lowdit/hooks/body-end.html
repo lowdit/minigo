@@ -1,0 +1,4 @@
+{{- /* minigo : initialisation de la recherche Pagefind. */ -}}
+{{- if eq (site.Params.lowdit.search | default "") "pagefind" }}
+  {{ partial "search/pagefind-init.html" . }}
+{{- end }}

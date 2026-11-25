@@ -1,0 +1,4 @@
+{{- /* minigo : feuilles de la recherche Pagefind (params.lowdit.search = "pagefind"). */ -}}
+{{- if eq (site.Params.lowdit.search | default "") "pagefind" }}
+  {{ partial "search/pagefind-assets.html" . }}
+{{- end }}

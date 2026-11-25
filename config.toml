@@ -12,6 +12,9 @@
   unsafe = true
 
 [params.lowdit]
+  # Marque minigo par défaut ; un site la remplace par la sienne.
+  logo = "logos/minigo.png"
+  faviconDir = "favicons/minigo"
   siteProfile = "catalog"
   # view = "catalog"  # publisher | deck-studio | thinktank | cv-vitrine | inquiry | none
   listStyle = "timeline"

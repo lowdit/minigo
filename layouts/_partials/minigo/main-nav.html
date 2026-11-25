@@ -1,18 +1,2 @@
-{{- with site.Menus.main -}}
-<nav class="lowdit-nav" aria-label="{{ i18n "nav-main" | default "Navigation principale" }}">
-  <ul class="lowdit-nav__list">
-    {{- range . -}}
-      {{- $install := or (eq .Identifier "installation") (strings.Contains .URL "installation") -}}
-      {{- if not $install -}}
-    <li><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
-      {{- end -}}
-    {{- end -}}
-    {{- range . -}}
-      {{- $install := or (eq .Identifier "installation") (strings.Contains .URL "installation") -}}
-      {{- if $install -}}
-    <li class="lowdit-nav__item--installation"><a href="{{ .URL | relLangURL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
-      {{- end -}}
-    {{- end -}}
-  </ul>
-</nav>
-{{- end -}}
+{{- /* Alias historique (lowtus) : la navigation principale est servie par le kit. */ -}}
+{{- partial "lowdit/main-nav.html" . -}}
