@@ -1,2 +1,3 @@
-{{- /* Alias historique (lowtus) : la navigation principale est servie par le kit. */ -}}
+{{- /* Déprécié : la navigation principale est servie par le kit (lowdit/main-nav). */ -}}
+{{- partial "lowdit/deprecated.html" (dict "id" "minigo-main-nav" "old" "le partial minigo/main-nav" "new" "lowdit/main-nav" "until" "minigo v0.8.0") -}}
 {{- partial "lowdit/main-nav.html" . -}}

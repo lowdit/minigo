@@ -1,0 +1,53 @@
+{
+  "$comment": "API publique de minigo (site navigable minimal). La coque, les jetons et les composants viennent de lowdit-kit (voir son contract/api.json). Contrôle : node ../lowdit-kit/scripts/check-public-api.mjs .",
+  "layouts": [
+    "index.html",
+    "_default/list.html",
+    "_default/single.html",
+    "_default/list.gallery.html"
+  ],
+  "blocks": [],
+  "partials": [
+    "list/items",
+    "home/section-grid",
+    "home/thinktank",
+    "home/publisher",
+    "home/presentations",
+    "home/ds-showroom",
+    "search/pagefind-assets",
+    "search/pagefind-ui",
+    "search/pagefind-init",
+    "minigo/main-nav"
+  ],
+  "internal": [
+    "lowdit/hooks/head",
+    "lowdit/hooks/header",
+    "lowdit/hooks/body-end"
+  ],
+  "params": [
+    "search",
+    "mainSections",
+    "listStyle",
+    "siteProfile",
+    "homeEyebrow",
+    "homeExcludeSections",
+    "homeExtraPartial",
+    "featuredBook",
+    "pinned",
+    "showOnHome"
+  ],
+  "deprecated": [
+    {
+      "id": "minigo-main-nav",
+      "old": "partial minigo/main-nav",
+      "new": "lowdit/main-nav (kit)",
+      "until": "v0.8.0",
+      "file": "layouts/_partials/minigo/main-nav.html"
+    }
+  ],
+  "removed": [
+    { "name": "brand/lowdit-home", "since": "v0.6.0" },
+    { "name": "brand/lowdit-home-sections", "since": "v0.6.0" },
+    { "name": "brand/ds-diagram-strip", "since": "v0.6.0" }
+  ]
+}
