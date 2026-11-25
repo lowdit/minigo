@@ -34,6 +34,11 @@ Changement d'architecture : minigo devient le **site navigable minimal**
   `brand/lowdit-home-sections`, `brand/ds-diagram-strip`) : copies du site
   Brand, qui garde les siennes.
   Où : un site qui les appelle. Migrer : les copier depuis `lowdit-brand`.
+- **`home/publisher` retiré** : copie ancienne de l'accueil éditorial de
+  repogo, qui fournit le sien (c'est lui qui s'affichait déjà).
+  Où : un site `siteProfile = "publisher"` **sans** repogo : l'accueil
+  par défaut s'affiche (plus d'erreur). Migrer : ajouter repogo. Les clés
+  `[params.lowdit] featuredBook` et `pinned` sont lues par repogo.
 - **Logo et favicons** : valeurs par défaut minigo désormais dans la config du
   module (`[params.lowdit] logo`, `faviconDir`) ; inchangé pour un site qui
   n'y touche pas.
@@ -48,7 +53,8 @@ Changement d'architecture : minigo devient le **site navigable minimal**
 Mêmes noms, rien à changer : `_default/baseof`, `_default/single.product`,
 `section/installation`, `lowdit/*` (tête, logo, favicon, social-meta, vues,
 affichage), `catalog/*`, `components/*`, `debug/*`, `exports/links`,
-`home/catalog-grid`, `product/layout`.
+`home/catalog-grid`, `product/layout`, `assets/js/*` (Mermaid, css-doodle,
+débogage), shortcodes `mermaid` et `css-doodle`.
 
 ### Ajouté
 

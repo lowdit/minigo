@@ -1,9 +1,12 @@
 {{ define "main" }}
+{{- /* Accueil selon [params.lowdit] siteProfile. Les profils cv et publisher
+       sont fournis par leur module (resugo : home/cv, repogo : home/publisher) ;
+       sans le module, repli sur l'accueil par défaut. */ -}}
 {{- $profile := site.Params.lowdit.siteProfile | default "library" -}}
-{{- if eq $profile "cv" -}}
-  {{ partial "home/cv.html" . }}
-{{- else if eq $profile "publisher" -}}
-  {{ partial "home/publisher.html" . }}
+{{- $fromModule := dict "cv" "home/cv.html" "publisher" "home/publisher.html" -}}
+{{- $modulePartial := index $fromModule $profile -}}
+{{- if and $modulePartial (templates.Exists (printf "_partials/%s" $modulePartial)) -}}
+  {{ partial $modulePartial . }}
 {{- else if eq $profile "presentations" -}}
   {{ partial "home/presentations.html" . }}
 {{- else if eq $profile "ds-showroom" -}}

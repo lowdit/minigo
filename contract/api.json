@@ -11,7 +11,6 @@
     "list/items",
     "home/section-grid",
     "home/thinktank",
-    "home/publisher",
     "home/presentations",
     "home/ds-showroom",
     "search/pagefind-assets",
@@ -32,8 +31,6 @@
     "homeEyebrow",
     "homeExcludeSections",
     "homeExtraPartial",
-    "featuredBook",
-    "pinned",
     "showOnHome"
   ],
   "deprecated": [
@@ -46,8 +43,21 @@
     }
   ],
   "removed": [
-    { "name": "brand/lowdit-home", "since": "v0.6.0" },
-    { "name": "brand/lowdit-home-sections", "since": "v0.6.0" },
-    { "name": "brand/ds-diagram-strip", "since": "v0.6.0" }
+    {
+      "name": "brand/lowdit-home",
+      "since": "v0.6.0"
+    },
+    {
+      "name": "brand/lowdit-home-sections",
+      "since": "v0.6.0"
+    },
+    {
+      "name": "brand/ds-diagram-strip",
+      "since": "v0.6.0"
+    },
+    {
+      "name": "home/publisher",
+      "since": "v0.6.0"
+    }
   ]
 }
