@@ -1,42 +1,19 @@
 <!DOCTYPE html>
 <html lang="{{ site.Language.Lang | default "fr" }}">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{/* Tête du kit (lowdit-kit) : méta, partage, favicon, polices, jetons,
+       surfaces, overgo (reset, éléments, prose), compositions. Puis minigo :
+       vues → coque (lowdit-shell) → composants → utilitaires → documentation
+       → zones → site-overrides (site). */}}
+  {{ partial "lowdit/head.html" . }}
   <title>{{ block "title" . }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-  {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
-  <link rel="canonical" href="{{ .Permalink }}">
-  {{ partial "lowdit/social-meta.html" . }}
-  {{ partial "lowdit/favicon.html" . }}
   {{ partial "lowdit/diagrams.html" . }}
-  <link rel="stylesheet" href="{{ "assets/css/fonts.css" | relURL }}">
-  {{/* Ordre ITCSS des fondations (voir docs/CSS-ARCHITECTURE.md) :
-       settings (tokens, view-tokens) →
-       overgo (reset, éléments, prose) → compositions →
-       system + views (view-styles) → components (lowdit-shell.css) →
-       utilities (utils.css) → product-doc → site-overrides (site). */}}
-  {{ partial "lowdit/view-tokens.html" . }}
-  {{ partial "lowdit/theme-vars.html" . }}
-  {{ partial "lowdit/overgo.html" . }}
-  {{/* Couche « compositions » (ITCSS) : .stack, .cluster, .grid, .wrapper,
-       .with-sidebar — relations de layout réutilisables, avant composants. */}}
-  {{ with resources.Get "css/compositions.css" }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{ else }}
-    <link rel="stylesheet" href="{{ "assets/css/compositions.css" | relURL }}">
-  {{ end }}
   {{ if eq (site.Params.lowdit.search | default "") "pagefind" }}
     {{ partial "search/pagefind-assets.html" . }}
   {{ end }}
   {{ partial "lowdit/view-styles.html" . }}
   {{ with resources.Get "css/lowdit-shell.css" }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{ else }}
-    {{ with resources.Get "css/minigo.css" }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}">
-    {{ else }}
-      <link rel="stylesheet" href="{{ "assets/css/lowdit-shell.css" | relURL }}">
-    {{ end }}
   {{ end }}
   {{- /* Composants du kit (lowdit-kit), dans l'ordre de la cascade. */}}
   {{- range slice "forms" "buttons" "navigation" "card" "accordion" "disclosure" "quiz-drill" }}
