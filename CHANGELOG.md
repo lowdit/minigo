@@ -43,6 +43,10 @@ Changement d'architecture : minigo devient le **site navigable minimal**
   module (`[params.lowdit] logo`, `faviconDir`) ; inchangé pour un site qui
   n'y touche pas.
 
+- **Retiré : `_default/list.gallery.html`**, sans effet : Hugo ne le choisit
+  pas pour une rubrique `layout: gallery`. La galerie vient de la liste du kit,
+  qui lit `layout: gallery`. Où, migrer : rien à faire.
+
 ### Déprécié
 
 - **`partial "minigo/main-nav.html"`** → `lowdit/main-nav.html` (kit).

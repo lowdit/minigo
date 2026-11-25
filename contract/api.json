@@ -3,8 +3,7 @@
   "layouts": [
     "index.html",
     "_default/list.html",
-    "_default/single.html",
-    "_default/list.gallery.html"
+    "_default/single.html"
   ],
   "blocks": [],
   "partials": [
