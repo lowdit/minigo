@@ -13,6 +13,10 @@ Changement d'architecture : minigo devient le **site navigable minimal**
 
 ### Cassé
 
+- **`siteProfile = "catalog"` n'est plus posé par défaut** par minigo : le
+  modèle par défaut (`catalog`) vient du kit. Même rendu.
+  Où : un site qui lisait `site.Params.lowdit.siteProfile` dans ses gabarits.
+  Migrer : lire `partial "lowdit/resolve-model.html" .`.
 - **Classes `minigo-*` renommées `lowdit-*`** dans tous les gabarits
   (correspondance 1:1 : `minigo-hero` → `lowdit-hero`, `minigo-header__inner`
   → `lowdit-header__inner`, `minigo-card-grid` → `lowdit-card-grid`…).
@@ -62,6 +66,8 @@ débogage), shortcodes `mermaid` et `css-doodle`.
 
 ### Ajouté
 
+- Modèles `catalog`, `hub`, `showroom` et l'accueil de `decks` déclarés dans
+  `[params.lowdit.models]` ; l'accueil suit `[params.lowdit] model`.
 - Feuilles des modèles `thinktank` et `catalog` (`assets/css/views/`),
   venues de `lowdit-kit` (même chemin : transparent).
 - La recherche Pagefind se branche par les points d'accroche du kit

@@ -15,8 +15,8 @@
   # Marque minigo par défaut ; un site la remplace par la sienne.
   logo = "logos/minigo.png"
   faviconDir = "favicons/minigo"
-  siteProfile = "catalog"
-  # view = "catalog"  # publisher | deck-studio | thinktank | cv-vitrine | inquiry | none
+  # Modèle du site : `model = "<nom>"` (défaut : catalog). Les modèles sont
+  # déclarés par les modules qui les servent (voir [params.lowdit.models]).
   listStyle = "timeline"
   paginate = 20
   showSummary = true
@@ -24,3 +24,16 @@
   showPrintLink = true
   showPresentationLink = true
   search = ""
+
+# Modèles servis par minigo : accueil (home) et feuille (sheet, assets/css/views/).
+# Un autre module peut compléter un modèle (ex. sligo ajoute la feuille de decks).
+[params.lowdit.models.catalog]
+  sheet = "catalog"
+[params.lowdit.models.hub]
+  home = "home/thinktank.html"
+  sheet = "thinktank"
+[params.lowdit.models.showroom]
+  home = "home/ds-showroom.html"
+  sheet = "thinktank"
+[params.lowdit.models.decks]
+  home = "home/presentations.html"
