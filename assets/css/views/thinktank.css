@@ -1,15 +1,15 @@
 /* Vue thinktank — publications institutionnelles, crédibilité par la typo */
 .lowdit--view-thinktank {
-  --view-accent: var(--lowdit-night);
-  --view-surface-page: var(--lowdit-white);
+  --view-accent: var(--lowdit-color-text);
+  --view-surface-page: var(--lowdit-color-surface);
 }
 
 .lowdit--view-thinktank {
-  background: var(--lowdit-white);
+  background: var(--lowdit-color-surface);
 }
 
 .lowdit--view-thinktank .lowdit-page-bg {
-  background: var(--lowdit-white);
+  background: var(--lowdit-color-surface);
 }
 
 .lowdit--view-thinktank .lowdit-page-bg::before,
@@ -18,9 +18,9 @@
 }
 
 .lowdit--view-thinktank .lowdit-header {
-  border-bottom: 2px solid var(--lowdit-night);
+  border-bottom: 2px solid var(--lowdit-color-text);
   padding-block: var(--lowdit-space-4);
-  background: var(--lowdit-white);
+  background: var(--lowdit-color-surface);
 }
 
 .lowdit--view-thinktank .lowdit-main {
@@ -41,12 +41,12 @@
   letter-spacing: var(--lowdit-tracking-tight, -0.02em);
   line-height: var(--lowdit-line-tight);
   max-width: 20ch;
-  color: var(--lowdit-night);
+  color: var(--lowdit-color-text);
 }
 
 .lowdit--view-thinktank .lowdit-hero__eyebrow,
 .lowdit--view-thinktank .content-hero__eyebrow {
-  color: var(--lowdit-night);
+  color: var(--lowdit-color-text);
 }
 
 .lowdit--view-thinktank .lowdit-timeline li {
@@ -63,19 +63,19 @@
 .lowdit--view-thinktank .lowdit-timeline a {
   font-size: 1.0625rem;
   font-weight: 600;
-  color: var(--lowdit-night);
+  color: var(--lowdit-color-text);
   text-decoration: none;
 }
 
 .lowdit--view-thinktank .lowdit-timeline a:hover {
-  color: var(--lowdit-violet);
+  color: var(--lowdit-color-accent);
 }
 
 .lowdit--view-thinktank .lowdit-card {
   border-radius: var(--lowdit-radius-sm);
   border: 1px solid var(--lowdit-border-subtle);
-  border-left: 3px solid var(--lowdit-night);
-  background: var(--lowdit-white);
+  border-left: 3px solid var(--lowdit-color-text);
+  background: var(--lowdit-color-surface);
 }
 
 .lowdit--view-thinktank .repogo-article .lowdit-page-header {
@@ -97,5 +97,5 @@
 
 /* Règles de la vue, sorties des feuilles communes du kit (2026-11-25). */
 .lowdit--view-thinktank {
-  --lowdit-charte-accent: var(--lowdit-night, #0b2545);
+  --lowdit-charte-accent: var(--lowdit-color-text);
 }

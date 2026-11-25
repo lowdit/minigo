@@ -74,6 +74,11 @@ débogage), shortcodes `mermaid` et `css-doodle`.
   (`lowdit/hooks/{head,header,body-end}`).
 - Contrat `contract/api.json` (contrôle : `node ../lowdit-kit/scripts/check-public-api.mjs .`).
 
+### Corrigé
+
+- `thinktank.css, catalog.css` lit les rôles du kit (`--lowdit-color-*`) au lieu de la palette
+  Lowdit : une marque déclinée s'y applique. Même rendu pour Lowdit.
+
 ## v0.5.0 — 2026-11-02
 
 Fondation `color-scheme`, copie de la marque Brand (dernière version

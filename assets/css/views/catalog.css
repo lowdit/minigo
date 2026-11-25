@@ -1,11 +1,11 @@
 /* Vue catalog — bibliothèque neutre */
 .lowdit--view-catalog {
-  --view-accent: var(--lowdit-violet);
-  --view-surface-page: var(--lowdit-cream);
+  --view-accent: var(--lowdit-color-accent);
+  --view-surface-page: var(--lowdit-color-background);
 }
 
 .lowdit--view-catalog .lowdit-header {
-  background: var(--lowdit-white);
+  background: var(--lowdit-color-surface);
   border-bottom: 1px solid var(--lowdit-border-subtle);
 }
 
@@ -18,5 +18,5 @@
 }
 
 .lowdit--view-catalog .lowdit-hero__eyebrow {
-  color: var(--lowdit-violet);
+  color: var(--lowdit-color-accent);
 }
