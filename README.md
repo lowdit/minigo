@@ -2,27 +2,20 @@
 
 Coque Hugo **Lowdit** minimale : catalogues de documents, liens vers exports (`print`, `presentation`, `resume`), recherche [**Pagefind**](https://pagefind.app/) optionnelle.
 
-## Sans modules Go (Windows)
+## Place dans l'univers
 
-```bash
-# Copier brand + minigo dans themes/
-./../lowdit-brand/scripts/sync-brand.sh themes/minigo
-cp -R . themes/minigo   # ou clone dans themes/minigo
+Minigo = **site navigable minimal** : accueil, rubriques, listes, pagination,
+RSS, recherche. Il n'a ni CSS ni gabarit de base : la coque (gabarit `baseof`,
+jetons, Overgo, composants, vues) vient de [`lowdit-kit`](../lowdit-kit), qu'il
+importe. Minigo étend le gabarit du kit par ses points d'accroche
+(`layouts/_partials/lowdit/hooks/` : recherche Pagefind) et fournit le logo et
+les favicons minigo par défaut (`[params.lowdit]` dans `config.toml`).
 
-# Site
-theme = "minigo"
+```toml
+theme = ["github.com/lowdit/minigo", "github.com/lowdit/repogo"]
+[module]
+  workspace = "../bin/hugo.work"   # local ; "off" en production (go.mod)
 ```
-
-## Distribution de la marque
-
-`lowdit-brand` **n'est pas un module Hugo** : c'est un site (marque + design
-system) qui centralise tokens, `lowdit-base.css`, `lowdit-system.css`, `views/`
-et `components/`. Chaque thème en garde une **copie** pour rester autonome,
-rafraîchie par `sync-brand.sh` (voir `../lowdit-brand/scripts/sync-brand.sh`).
-
-Minigo embarque déjà ces assets sous `assets/css/` + `static/assets/css/` :
-un site peut donc utiliser `theme = ["minigo", "repogo"]` sans rien d'autre à
-importer.
 
 ## Example site + Pagefind
 
@@ -44,7 +37,7 @@ hugo -s exampleSite server
 | `view` | *(auto)* | Vue premium : `publisher`, `deck-studio`, `thinktank`, `cv-vitrine`, `inquiry`, `catalog`, ou `none` |
 | `skin` | — | Alias de `view` (rétrocompat.) |
 
-Charte éditoriale des vues : **`lowdit-brand/brand/VUES-PREMIUM.md`**. Tokens et CSS : **`lowdit-brand/docs/DESIGN-SYSTEM.md`**. Sync : `../lowdit-brand/scripts/sync-brand.sh .`
+Charte éditoriale des vues : **`lowdit-brand/brand/VUES-PREMIUM.md`**. Jetons et CSS : **`lowdit-kit`** (voir son README).
 
 ## GitHub Pages
 
@@ -57,4 +50,4 @@ Empilement typique : `theme = ["minigo", "repogo"]` — voir `lowdit-brand/docs/
 
 ### Galerie catalog
 
-Partials `layouts/_partials/catalog/` — consommés par resugo, sligo, repogo. **Importer minigo** (`[module.imports]` + `replace` local dans `go.mod`). Listes : `layout: gallery` sur l’`_index` de section (minigo/repogo/resugo).
+Partials `catalog/` (servis par `lowdit-kit`) — consommés par resugo, sligo, repogo. Listes : `layout: gallery` sur l’`_index` de section (minigo/repogo/resugo).
