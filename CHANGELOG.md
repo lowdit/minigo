@@ -62,6 +62,8 @@ débogage), shortcodes `mermaid` et `css-doodle`.
 
 ### Ajouté
 
+- Feuilles des modèles `thinktank` et `catalog` (`assets/css/views/`),
+  venues de `lowdit-kit` (même chemin : transparent).
 - La recherche Pagefind se branche par les points d'accroche du kit
   (`lowdit/hooks/{head,header,body-end}`).
 - Contrat `contract/api.json` (contrôle : `node ../lowdit-kit/scripts/check-public-api.mjs .`).
